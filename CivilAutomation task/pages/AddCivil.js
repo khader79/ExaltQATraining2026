@@ -69,5 +69,7 @@ export class AddCivil {
 
     if (civilData.mobile !== undefined)
       await this.mobileInput.fill(civilData.mobile);
+
+    if (civilData.dob !== undefined) await this.dobInput.fill(civilData.dob);
   }
 }
