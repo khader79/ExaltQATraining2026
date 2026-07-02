@@ -12,6 +12,8 @@ export class AddCivil {
     this.dobInput = page.locator("#dob");
     this.saveButton = page.getByRole("button", { name: "Save" });
     this.modal = page.locator("#civilModal");
+    this.table= page.getByRole("table");
+    this.rows = this.table.getByRole("row");
   }
 
   async closeModalIfOpen() {
@@ -29,7 +31,11 @@ export class AddCivil {
     await this.civilIdInput.fill(civilData.civilId);
     await this.ageInput.fill(civilData.age);
     await this.mobileInput.fill(civilData.mobile);
-    await this.dobInput.fill(civilData.dob);
+
+    if (civilData.dob) {
+    await this.dobInput.focus();
+    await this.dobInput.pressSequentially(civilData.dob);
+  }
 
     if (civilData.gender) {
       await this.genderSelect.selectOption({ label: civilData.gender });
@@ -55,21 +61,43 @@ export class AddCivil {
     expect(validationMessage).toContain(expectedMessage);
   }
 
-  async addCivilDataPartial(civilData) {
-    if (civilData.firstName !== undefined)
-      await this.firstNameInput.fill(civilData.firstName);
+async addCivilDataPartial(civilData) {
+  if (civilData.firstName !== undefined)
+    await this.firstNameInput.fill(civilData.firstName);
 
-    if (civilData.lastName !== undefined)
-      await this.lastNameInput.fill(civilData.lastName);
+  if (civilData.lastName !== undefined)
+    await this.lastNameInput.fill(civilData.lastName);
 
-    if (civilData.civilId !== undefined)
-      await this.civilIdInput.fill(civilData.civilId);
+  if (civilData.civilId !== undefined)
+    await this.civilIdInput.fill(civilData.civilId);
 
-    if (civilData.age !== undefined) await this.ageInput.fill(civilData.age);
+  if (civilData.age !== undefined) 
+    await this.ageInput.fill(civilData.age);
 
-    if (civilData.mobile !== undefined)
-      await this.mobileInput.fill(civilData.mobile);
+  if (civilData.mobile !== undefined)
+    await this.mobileInput.fill(civilData.mobile);
 
-    if (civilData.dob !== undefined) await this.dobInput.fill(civilData.dob);
+  if (civilData.dob !== undefined) {
+    await this.dobInput.focus();
+    await this.dobInput.pressSequentially(civilData.dob);
   }
+
+  await this.saveButton.click();
+}
+
+async checkDataAppearsInTable(id,fieldName) {
+  const rowElement = this.rows
+        .filter({
+          has: this.page.getByRole("cell", {
+            name: id,
+            exact: true,
+          }),
+        });
+      await expect(
+        rowElement.getByRole("cell", {
+          name: fieldName,
+          exact: true,
+        }),
+      ).toBeVisible();
+}
 }

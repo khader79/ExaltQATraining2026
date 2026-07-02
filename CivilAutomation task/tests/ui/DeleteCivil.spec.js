@@ -28,7 +28,7 @@ test.describe("Civil System - Delete Operations", () => {
       const formModel = await civilSystem.getFormModel();
       await expect(formModel).toBeVisible();
       await addCivil.addCivilData(addCivilData);
-      await addCivil.closeModalIfOpen();
+
     });
 
     test("Delete button removes the civil record", async () => {

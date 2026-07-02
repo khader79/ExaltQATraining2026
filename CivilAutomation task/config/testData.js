@@ -5,7 +5,7 @@ const VALID_CIVIL_DATA = {
   lastName: "Qanbar",
   age: "30",
   mobile: "059974504",
-  dob: "1900-06-15",
+  dob: "06151990",
   gender: "Male",
 };
 

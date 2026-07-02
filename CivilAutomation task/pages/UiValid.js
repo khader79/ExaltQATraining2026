@@ -8,22 +8,30 @@ export class UiValid {
   }
 
   async validateUi() {
+    const textContent = await this.header.textContent();
+    const totalCivils = Number(textContent.match(/Total Civils: (\d+)/)?.[1]);
+    const numberofMales = Number(textContent.match(/Males: (\d+)/)?.[1]);
+    const numberofFemales = Number(textContent.match(/Females: (\d+)/)?.[1]);
+    
+    await expect(numberofMales + numberofFemales).toStrictEqual(totalCivils);
+    await expect(totalCivils).toBeGreaterThan(0);
+    await expect(numberofMales).toBeGreaterThan(0);
+    await expect(numberofFemales).toBeGreaterThan(0); 
     await expect(this.header).toHaveText(
       /Total Civils: [1-9]\d*, Males: [1-9]\d*, Females: [1-9]\d*/,
     );
+
   }
 
-  async validateGraph() {
-    await expect(this.graph).toBeVisible();
+ async validateGraph() {
+  await expect(this.graph).toBeVisible();
 
-    const boundingBox = await this.graph.boundingBox();
-    expect(boundingBox).not.toBeNull();
-    expect(boundingBox.width).toBeGreaterThan(0);
-    expect(boundingBox.height).toBeGreaterThan(0);
+ const chartData = await this.page.evaluate(() => {
+  const chart = Chart.getChart("genderChart");
+  return chart?.data?.datasets?.[0]?.data;
+});
 
-    await expect(this.graph).toHaveScreenshot("gender-chart-drawing.png", {
-      threshold: 1,
-      animations: "disabled",
-    });
-  }
+expect(chartData).toBeTruthy();
+expect(chartData.some(v => v > 0)).toBeTruthy();
+}
 }

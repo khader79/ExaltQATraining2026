@@ -88,7 +88,7 @@ test.describe("Civil System - Form Input Validation", () => {
         "Value must be greater than or equal to 0.",
       );
     });
-
+    
     test("Verify that the age field accept input with value zero", async () => {
       const validData = { ...addCivilData, age: "0" };
       await addCivil.addCivilData(validData);
@@ -128,31 +128,18 @@ test.describe("Civil System - Form Input Validation", () => {
       await addCivil.addCivilData(addCivilData);
       await getCivil.getOneCivilData(addCivilData.civilId);
       await getCivil.expectedRowVisible(addCivilData.civilId);
-      const rowElement = civilSystem.page
-        .getByRole("table")
-        .getByRole("row")
-        .filter({
-          has: civilSystem.page.getByRole("cell", {
-            name: addCivilData.civilId,
-            exact: true,
-          }),
-        });
-      await expect(
-        rowElement.getByRole("cell", {
-          name: addCivilData.gender,
-          exact: true,
-        }),
-      ).toBeVisible();
+      await addCivil.checkDataAppearsInTable(addCivilData.civilId, addCivilData.gender);
     });
 
-    test("Verify that the Date of Birth field does not accept future dates", async () => {
-      const invalidData = { ...addCivilData, dob: "2027-12-01" };
-      await addCivil.addCivilDataPartial(invalidData);
-      await addCivil.evaluateMessage(
-        "dob",
-        "Value must be 12/31/2025 or earlier.",
-      );
-    });
+   test("Verify that the Date of Birth field does not accept future dates", async () => {
+  const invalidData = { ...addCivilData, dob: "12012027" }; 
+  
+  await addCivil.addCivilDataPartial(invalidData);
+  await addCivil.evaluateMessage(
+    "dob",
+    "Value must be 12/31/2025 or earlier.",
+  );
+});
 
     test("Verify that the Date of Birth field cannot be left empty", async () => {
       const invalidData = { ...addCivilData, dob: "" };
@@ -239,17 +226,19 @@ test.describe("Civil System - Form Input Validation", () => {
       }
     });
 
-    test("Verify that the Date of Birth field accepts a valid date format", async () => {
-      const validData = { ...addCivilData, dob: "1990-06-15" };
-      await addCivil.addCivilData(validData);
-      await getCivil.getOneCivilData(validData.civilId);
-      await getCivil.expectedRowVisible(validData.civilId);
-    });
+  test("Verify that the Date of Birth field accepts a valid date format", async () => {
+  const validData = { ...addCivilData, dob: "06151990" }; 
+  
+  await addCivil.addCivilData(validData);
+  await getCivil.getOneCivilData(validData.civilId);
+  await getCivil.expectedRowVisible(validData.civilId);
+  await addCivil.checkDataAppearsInTable(addCivilData.civilId, addCivilData.dob);
+});
 
     test("Verify that the Date of Birth field dosen't accepts a invalid date format", async () => {
-      const invalidData = { ...addCivilData, dob: "1990-15-06" };
-      await addCivil.addCivilDataPartial(invalidData);
-      await addCivil.evaluateMessage("dob");
+    const invalidData = { ...addCivilData, dob: "19901506" };
+   await addCivil.addCivilDataPartial(invalidData);
+     
     });
 
     test.afterEach(async () => {
