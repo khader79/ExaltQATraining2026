@@ -59,15 +59,9 @@ test.describe("Civil System - Get / Read Operations", () => {
 
     test.afterEach(async () => {
       if (!addCivilData || !addCivilData.civilId) {
-        console.log("Cleanup skipped: Valid unique ID not generated.");
         await addCivil.closeModalIfOpen();
         return;
       }
-
-      console.log(
-        "Cleanup: Deleting civil record with ID:",
-        addCivilData.civilId,
-      );
       await getCivil.getOneCivilData(addCivilData.civilId);
       await deleteCivil.deleteCivil(addCivilData.civilId);
       addCivilData = null;

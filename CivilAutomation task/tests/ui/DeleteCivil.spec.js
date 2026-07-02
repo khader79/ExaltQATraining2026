@@ -32,24 +32,24 @@ test.describe("Civil System - Delete Operations", () => {
     });
 
     test("Delete button removes the civil record", async () => {
-      try {
+  
         await getCivil.getOneCivilData(addCivilData.civilId);
         await deleteCivil.deleteCivil(addCivilData.civilId);
-      } catch (error) {
-        console.error("Error during deletion test:", error);
-        throw error;
-      }
+        await getCivil.expectedNotRowVisible(addCivilData.civilId);
     });
 
     test("Delete All CVs button shows a confirmation dialog", async () => {
       await deleteCivil.deleteAllCivils();
     });
 
-    test.afterEach(async () => {
+   test.afterEach(async () => {
       if (!addCivilData || !addCivilData.civilId) {
         await addCivil.closeModalIfOpen();
         return;
       }
+      await getCivil.getOneCivilData(addCivilData.civilId);
+      await deleteCivil.deleteCivil(addCivilData.civilId);
+      addCivilData = null;
     });
   });
 });
