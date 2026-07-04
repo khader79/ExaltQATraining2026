@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { EditCivil } from "../../pages/EditCivil";
 import { CivilSystem } from "../../pages/CivilSystem";
 import { AddCivil } from "../../pages/AddCivil";
-import { GetCivil } from "../../pages/Getcivil";
+import { GetCivil } from "../../pages/GetCivil";
 import { createUniqueCivilData } from "../../utils/civilData";
 import { DeleteCivil } from "../../pages/deleteCivil";
 
