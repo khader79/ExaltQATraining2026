@@ -1,0 +1,331 @@
+{
+  "info": {
+    "_postman_id": "fa6e1ff7-fb31-4bbb-8deb-7b0b7cb26ba9",
+    "name": "CivilTask",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "37873077"
+  },
+  "item": [
+    {
+      "name": "Get",
+      "item": [
+        {
+          "name": "Get All",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "GetOneByID",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Delete",
+      "item": [
+        {
+          "name": "delete Civil",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"FirstName\": \"Khader\",\r\n    \"LastName\": \"Qaabar\",\r\n    \"ID\": \"1\",\r\n    \"Age\": \"22\",\r\n    \"Mobile\": \"0569974805\",\r\n    \"Gender\":\"Male\",\r\n    \"DOB\":\"31-12-2025\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/delete/1121",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "delete",
+                "1121"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Update",
+      "item": [
+        {
+          "name": "edit Civil",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"FirstName\": \"Khader\",\r\n    \"LastName\": \"Qaabar\",\r\n    \"ID\": \"1\",\r\n    \"Age\": \"22\",\r\n    \"Mobile\": \"0569974805\",\r\n    \"Gender\":\"Male\",\r\n    \"DOB\":\"31-12-2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/edit/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "edit",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Add",
+      "item": [
+        {
+          "name": "Add",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"FirstName\": \"Khaderweqe\",\r\n    \"LastName\": \"Qaabarwqeqwe\",\r\n    \"ID\": \"1\",\r\n    \"Age\": \"22\",\r\n    \"Mobile\": \"0569974804\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/add/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "add",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add with empty Firstname",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"FirstName\": \"Khaderweqe\",\r\n    \"LastName\": \"Qaabarwqeqwe\",\r\n    \"ID\": \"1\",\r\n    \"Age\": \"22\",\r\n    \"Mobile\": \"0569974804\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/add/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "add",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add with empty Lastname",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"FirstName\": \"Khader\",\r\n    \"LastName\": \"\",\r\n    \"ID\": \"12311\",\r\n    \"Age\": \"22\",\r\n    \"Mobile\": \"0569974805\",\r\n    \"Gender\":\"Male\",\r\n    \"DOB\":\"31-12-2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/add/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "add",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add for test ID",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"FirstName\": \"Khader\",\r\n    \"LastName\": \"Qaabar\",\r\n    \"ID\": \"AB\",\r\n    \"Age\": \"22\",\r\n    \"Mobile\": \"0569974805\",\r\n    \"Gender\":\"Male\",\r\n    \"DOB\":\"31-12-2025\"\r\n}\r\n/* {\r\n    \"FirstName\": \"Khader\",\r\n    \"LastName\": \"Qaabar\",\r\n    \"ID\": \"\",\r\n    \"Age\": \"22\",\r\n    \"Mobile\": \"0569974805\",\r\n    \"Gender\":\"Male\",\r\n    \"DOB\":\"31-12-2025\"\r\n} */",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/add/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "add",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add for test age",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "/* {\r\n    \"FirstName\": \"Khader\",\r\n    \"LastName\": \"Qaabar\",\r\n    \"ID\": \"123\",\r\n    \"Age\": \"\",\r\n    \"Mobile\": \"0569974805\",\r\n    \"Gender\":\"Male\",\r\n    \"DOB\":\"31-12-2025\"\r\n} */\r\n/* {\r\n    \"FirstName\": \"Khader\",\r\n    \"LastName\": \"Qaabar\",\r\n    \"ID\": \"123\",\r\n    \"Age\": \"AB\",\r\n    \"Mobile\": \"0569974805\",\r\n    \"Gender\":\"Male\",\r\n    \"DOB\":\"31-12-2025\"\r\n}  */\r\n\r\n/* {\r\n    \"FirstName\": \"Khader\",\r\n    \"LastName\": \"Qaabar\",\r\n    \"ID\": \"123\",\r\n    \"Age\": \"-1\",\r\n    \"Mobile\": \"0569974805\",\r\n    \"Gender\":\"Male\",\r\n    \"DOB\":\"31-12-2025\"\r\n}  */\r\n\r\n/* {\r\n    \"FirstName\": \"Khader\",\r\n    \"LastName\": \"Qaabar\",\r\n    \"ID\": \"123\",\r\n    \"Age\": \"0\",\r\n    \"Mobile\": \"0569974805\",\r\n    \"Gender\":\"Male\",\r\n    \"DOB\":\"31-12-2025\"\r\n}  */\r\n\r\n/* {\r\n    \"FirstName\": \"Khader\",\r\n    \"LastName\": \"Qaabar\",\r\n    \"ID\": \"123\",\r\n    \"Age\": \"1\",\r\n    \"Mobile\": \"0569974805\",\r\n    \"Gender\":\"Male\",\r\n    \"DOB\":\"31-12-2025\"\r\n}  */\r\n\r\n/* {\r\n    \"FirstName\": \"Khader\",\r\n    \"LastName\": \"Qaabar\",\r\n    \"ID\": \"123\",\r\n    \"Age\": \"119\",\r\n    \"Mobile\": \"0569974805\",\r\n    \"Gender\":\"Male\",\r\n    \"DOB\":\"31-12-2025\"\r\n}   */\r\n\r\n/* {\r\n    \"FirstName\": \"Khader\",\r\n    \"LastName\": \"Qaabar\",\r\n    \"ID\": \"123\",\r\n    \"Age\": \"120\",\r\n    \"Mobile\": \"0569974805\",\r\n    \"Gender\":\"Male\",\r\n    \"DOB\":\"31-12-2025\"\r\n}  */\r\n\r\n/* {\r\n    \"FirstName\": \"Khader\",\r\n    \"LastName\": \"Qaabar\",\r\n    \"ID\": \"123\",\r\n    \"Age\": \"121\",\r\n    \"Mobile\": \"0569974805\",\r\n    \"Gender\":\"Male\",\r\n    \"DOB\":\"31-12-2025\"\r\n}  */",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/add/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "add",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add for test mobile",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"FirstName\": \"Khader\",\r\n    \"LastName\": \"Qaabar\",\r\n    \"ID\": \"123\",\r\n    \"Age\": \"22\",\r\n    \"Mobile\": \"\",\r\n    \"Gender\":\"Male\",\r\n    \"DOB\":\"31-12-2025\"\r\n} ",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/add/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "add",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add for Gender",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "/* {\r\n    \"FirstName\": \"Khader\",\r\n    \"LastName\": \"Qaabar\",\r\n    \"ID\": \"123\",\r\n    \"Age\": \"22\",\r\n    \"Mobile\": \"0569974804\",\r\n    \"Gender\":\"Male\",\r\n    \"DOB\":\"31-12-2025\"\r\n}  */\r\n{\r\n    \"FirstName\": \"Khader\",\r\n    \"LastName\": \"Qaabar\",\r\n    \"ID\": \"123\",\r\n    \"Age\": \"22\",\r\n    \"Mobile\": \"0569974804\",\r\n    \"Gender\":\"Female\",\r\n    \"DOB\":\"31-12-2025\"\r\n} \r\n \r\n/* {\r\n    \"FirstName\": \"Khader\",\r\n    \"LastName\": \"Qaabar\",\r\n    \"ID\": \"123\",\r\n    \"Age\": \"22\",\r\n    \"Mobile\": \"0569974804\",\r\n    \"Gender\":\"\",\r\n    \"DOB\":\"31-12-2025\"\r\n}  */",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/add/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "add",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add for DOB",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "/* {\r\n    \"FirstName\": \"Khader\",\r\n    \"LastName\": \"Qaabar\",\r\n    \"ID\": \"123\",\r\n    \"Age\": \"22\",\r\n    \"Mobile\": \"0569974804\",\r\n    \"Gender\":\"Male\",\r\n    \"DOB\":\"31-12-2025\"\r\n}   */\r\n{\r\n    \"FirstName\": \"Khader\",\r\n    \"LastName\": \"Qaabar\",\r\n    \"ID\": \"123\",\r\n    \"Age\": \"22\",\r\n    \"Mobile\": \"0569974804\",\r\n    \"Gender\":\"Male\",\r\n    \"DOB\":\"31-12-2027\"\r\n} \r\n \r\n/* {\r\n    \"FirstName\": \"Khader\",\r\n    \"LastName\": \"Qaabar\",\r\n    \"ID\": \"123\",\r\n    \"Age\": \"22\",\r\n    \"Mobile\": \"0569974804\",\r\n    \"Gender\":\"Male\",\r\n    \"DOB\":\"0-12-2025\"\r\n}  */\r\n\r\n/* {\r\n    \"FirstName\": \"Khader\",\r\n    \"LastName\": \"Qaabar\",\r\n    \"ID\": \"123\",\r\n    \"Age\": \"22\",\r\n    \"Mobile\": \"0569974804\",\r\n    \"Gender\":\"Male\",\r\n    \"DOB\":\"31-0-2025\"\r\n}  */",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/add/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "add",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

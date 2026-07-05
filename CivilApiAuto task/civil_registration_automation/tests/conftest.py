@@ -1,32 +1,27 @@
+from datetime import time
+
 import pytest # type: ignore
 from civil_registration_automation.pages.add_civil_api import add_civil_record
 from civil_registration_automation.pages.delete_civil_api import delete_civil_record
 from civil_registration_automation.utils.id_generator import generate_unique_id
-from civil_registration_automation.constants.constants import NORMAL_TEST_DATA
+from civil_registration_automation.utils.civil_record_builder import build_civil_record_data
 
 
 @pytest.fixture
 def cleanup_box():
-    box = {"id": None}
+    box = {"ids": []}
     try:
         yield box
     finally:
-        if box["id"] is not None:
-            print(f"\n[Teardown] Automatically deleting record ID: {box['id']}")
-            delete_civil_record(box["id"])
+        for rid in box["ids"]:
+            print(f"\n[Teardown] Automatically deleting record ID: {rid}")
+            delete_civil_record(rid)
+
 
 @pytest.fixture
 def created_record():
     record_id = generate_unique_id()
-    data={
-        "FirstName": NORMAL_TEST_DATA["FirstName"],
-        "LastName": NORMAL_TEST_DATA["LastName"],
-        "ID": record_id,
-        "Age": NORMAL_TEST_DATA["Age"],
-        "Mobile": NORMAL_TEST_DATA["Mobile"],
-        "Gender": NORMAL_TEST_DATA["Gender"],
-        "DOB": NORMAL_TEST_DATA["DOB"]
-    }
+    data = build_civil_record_data(ID=record_id)
     response = add_civil_record(data)
     assert response.ok, f"Create failed: {response.status_code} {response.text}"
 
