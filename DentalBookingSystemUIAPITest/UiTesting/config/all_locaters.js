@@ -5,6 +5,13 @@ export const locaters = {
     phoneInput: '#signup-phone',
     submitButton: '#signup-form button[type="submit"]',
   },
+
+  login: {
+    usernameInput: '#login-username',
+    passwordInput: '#login-password',
+    submitButton: '#login-form button[type="submit"]',
+  },
+
   messages: {
     message: '#message',
     massageClasses: {
@@ -16,6 +23,8 @@ export const locaters = {
       existsMessageText: 'Username or phone number already exists',
       RequiredMessageText: 'Please fill out this field.',
       invalidPhoneMessageText: 'Please enter a valid phone number.',
+      successLoginMessageText: 'Logged in successfully',
+      invalidLoginMessageText: 'Invalid username or password',
     },
     massageColors: {
       successMessageColor: 'rgb(0, 128, 0)',
