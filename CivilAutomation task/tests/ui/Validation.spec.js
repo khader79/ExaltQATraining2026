@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { CivilSystem } from "../../pages/CivilSystem";
 import { AddCivil } from "../../pages/AddCivil";
-import { GetCivil } from "../../pages/Getcivil";
+import { GetCivil } from "../../pages/GetCivil";
 import { DeleteCivil } from "../../pages/deleteCivil";
 import { createUniqueCivilData } from "../../utils/civilData";
 import { CIVIL_VALIDATION } from "../../config/testData";
