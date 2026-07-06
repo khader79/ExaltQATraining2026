@@ -4,6 +4,7 @@ import { AddCivil } from "../../pages/AddCivil";
 import { GetCivil } from "../../pages/Getcivil";
 import { DeleteCivil } from "../../pages/deleteCivil";
 import { createUniqueCivilData } from "../../utils/civilData";
+import { CIVIL_VALIDATION } from "../../config/testData";
 
 test.describe("Civil System - Form Input Validation", () => {
   let civilSystem;
@@ -64,56 +65,56 @@ test.describe("Civil System - Form Input Validation", () => {
       await addCivil.addCivilDataPartial(invalidData);
       await addCivil.evaluateMessage(
         "gender",
-        "Please select an item in the list.",
+        CIVIL_VALIDATION.ERRORS.GENDER_EMPTY,
       );
     });
 
     test("Verify that the ID field doesn't accept the text input", async () => {
-      const invalidData = { ...addCivilData, civilId: "AB" };
+      const invalidData = { ...addCivilData, civilId: CIVIL_VALIDATION.BOUNDARIES.INVALID_ID_TEXT };
       await addCivil.addCivilData(invalidData);
-      await getCivil.getOneCivilData("AB");
+      await getCivil.getOneCivilData(CIVIL_VALIDATION.BOUNDARIES.INVALID_ID_TEXT);
       try {
-        await getCivil.expectedNotRowVisible("AB");
+        await getCivil.expectedNotRowVisible(CIVIL_VALIDATION.BOUNDARIES.INVALID_ID_TEXT);
       } finally {
-        await deleteCivil.deleteCivil("AB");
+        await deleteCivil.deleteCivil(CIVIL_VALIDATION.BOUNDARIES.INVALID_ID_TEXT);
         addCivilData = null;
       }
     });
 
     test("Verify that the age field doesn't accept input less than zero", async () => {
-      const invalidData = { ...addCivilData, age: "-1" };
+      const invalidData = { ...addCivilData, age: CIVIL_VALIDATION.BOUNDARIES.INVALID_AGE_MIN };
       await addCivil.addCivilDataPartial(invalidData);
       await addCivil.evaluateMessage(
         "age",
-        "Value must be greater than or equal to 0.",
+        CIVIL_VALIDATION.ERRORS.AGE_MIN,
       );
     });
     
     test("Verify that the age field accept input with value zero", async () => {
-      const validData = { ...addCivilData, age: "0" };
+      const validData = { ...addCivilData, age: CIVIL_VALIDATION.BOUNDARIES.VALID_AGE_ZERO };
       await addCivil.addCivilData(validData);
       await getCivil.getOneCivilData(validData.civilId);
       await getCivil.expectedRowVisible(validData.civilId);
     });
 
     test("Verify that the age field accept input less than 120", async () => {
-      const validData = { ...addCivilData, age: "119" };
+      const validData = { ...addCivilData, age: CIVIL_VALIDATION.BOUNDARIES.VALID_AGE_NEAR_MAX };
       await addCivil.addCivilData(validData);
       await getCivil.getOneCivilData(validData.civilId);
       await getCivil.expectedRowVisible(validData.civilId);
     });
 
     test("Verify that the age field doesn't accept input more than 120", async () => {
-      const invalidData = { ...addCivilData, age: "121" };
+      const invalidData = { ...addCivilData, age: CIVIL_VALIDATION.BOUNDARIES.INVALID_AGE_MAX };
       await addCivil.addCivilDataPartial(invalidData);
       await addCivil.evaluateMessage(
         "age",
-        "Value must be less than or equal to 120.",
+        CIVIL_VALIDATION.ERRORS.AGE_MAX,
       );
     });
 
     test("Verify that the phone number field doesn't accept the text input", async () => {
-      const invalidData = { ...addCivilData, mobile: "ABasasdads" };
+      const invalidData = { ...addCivilData, mobile: CIVIL_VALIDATION.BOUNDARIES.INVALID_MOBILE_TEXT };
       await addCivil.addCivilData(invalidData);
       await getCivil.getOneCivilData(invalidData.civilId);
       try {
@@ -131,15 +132,14 @@ test.describe("Civil System - Form Input Validation", () => {
       await addCivil.checkDataAppearsInTable(addCivilData.civilId, addCivilData.gender);
     });
 
-   test("Verify that the Date of Birth field does not accept future dates", async () => {
-  const invalidData = { ...addCivilData, dob: "12012027" }; 
-  
-  await addCivil.addCivilDataPartial(invalidData);
-  await addCivil.evaluateMessage(
-    "dob",
-    "Value must be 12/31/2025 or earlier.",
-  );
-});
+    test("Verify that the Date of Birth field does not accept future dates", async () => {
+      const invalidData = { ...addCivilData, dob: CIVIL_VALIDATION.BOUNDARIES.INVALID_DOB_FUTURE }; 
+      await addCivil.addCivilDataPartial(invalidData);
+      await addCivil.evaluateMessage(
+        "dob",
+        CIVIL_VALIDATION.ERRORS.DOB_FUTURE,
+      );
+    });
 
     test("Verify that the Date of Birth field cannot be left empty", async () => {
       const invalidData = { ...addCivilData, dob: "" };
@@ -154,61 +154,61 @@ test.describe("Civil System - Form Input Validation", () => {
     });
 
     test("Verify that the firstname field accepts valid text input", async () => {
-      const validData = { ...addCivilData, firstName: "Waleed" };
+      const validData = { ...addCivilData, firstName: CIVIL_VALIDATION.BOUNDARIES.VALID_FIRSTNAME };
       await addCivil.addCivilData(validData);
       await getCivil.getOneCivilData(validData.civilId);
       await getCivil.expectedRowVisible(validData.civilId);
     });
 
     test("Verify that the lastname field accepts valid text input", async () => {
-      const validData = { ...addCivilData, lastName: "Qanbar" };
+      const validData = { ...addCivilData, lastName: CIVIL_VALIDATION.BOUNDARIES.VALID_LASTNAME };
       await addCivil.addCivilData(validData);
       await getCivil.getOneCivilData(validData.civilId);
       await getCivil.expectedRowVisible(validData.civilId);
     });
 
     test("Verify that the ID field accepts only numeric input", async () => {
-      const validData = { ...addCivilData, civilId: "12" };
+      const validData = { ...addCivilData, civilId: CIVIL_VALIDATION.BOUNDARIES.VALID_SHORT_ID };
       await addCivil.addCivilData(validData);
-      await getCivil.getOneCivilData("12");
+      await getCivil.getOneCivilData(CIVIL_VALIDATION.BOUNDARIES.VALID_SHORT_ID);
       try {
-        await getCivil.expectedRowVisible("12");
+        await getCivil.expectedRowVisible(CIVIL_VALIDATION.BOUNDARIES.VALID_SHORT_ID);
       } finally {
-        await deleteCivil.deleteCivil("12");
+        await deleteCivil.deleteCivil(CIVIL_VALIDATION.BOUNDARIES.VALID_SHORT_ID);
         addCivilData = null;
       }
     });
 
     test("Verify that the age field accepts only numeric input", async () => {
-      const validData = { ...addCivilData, age: "6" };
+      const validData = { ...addCivilData, age: CIVIL_VALIDATION.BOUNDARIES.VALID_AGE_SINGLE_DIGIT };
       await addCivil.addCivilData(validData);
       await getCivil.getOneCivilData(validData.civilId);
       await getCivil.expectedRowVisible(validData.civilId);
     });
 
     test("Verify that the age field accept input more than zero", async () => {
-      const validData = { ...addCivilData, age: "1" };
+      const validData = { ...addCivilData, age: CIVIL_VALIDATION.BOUNDARIES.VALID_AGE_ONE };
       await addCivil.addCivilData(validData);
       await getCivil.getOneCivilData(validData.civilId);
       await getCivil.expectedRowVisible(validData.civilId);
     });
 
     test("Verify that the age field accept input with value 120", async () => {
-      const validData = { ...addCivilData, age: "120" };
+      const validData = { ...addCivilData, age: CIVIL_VALIDATION.BOUNDARIES.VALID_AGE_MAX };
       await addCivil.addCivilData(validData);
       await getCivil.getOneCivilData(validData.civilId);
       await getCivil.expectedRowVisible(validData.civilId);
     });
 
     test("Verify that the phone number field accepts only numeric input", async () => {
-      const validData = { ...addCivilData, mobile: "0569974804" };
+      const validData = { ...addCivilData, mobile: CIVIL_VALIDATION.BOUNDARIES.VALID_MOBILE_ALT };
       await addCivil.addCivilData(validData);
       await getCivil.getOneCivilData(validData.civilId);
       await getCivil.expectedRowVisible(validData.civilId);
     });
 
     test("Verify that the phone number field accepte unique value only", async () => {
-      const uniqueMobile = "0569974504";
+      const uniqueMobile = CIVIL_VALIDATION.BOUNDARIES.UNIQUE_MOBILE_SEED;
       const firstRecord = { ...addCivilData, mobile: uniqueMobile };
       await addCivil.addCivilData(firstRecord);
       const secondRecord = await createUniqueCivilData();
@@ -226,19 +226,17 @@ test.describe("Civil System - Form Input Validation", () => {
       }
     });
 
-  test("Verify that the Date of Birth field accepts a valid date format", async () => {
-  const validData = { ...addCivilData, dob: "06151990" }; 
-  
-  await addCivil.addCivilData(validData);
-  await getCivil.getOneCivilData(validData.civilId);
-  await getCivil.expectedRowVisible(validData.civilId);
-  await addCivil.checkDataAppearsInTable(addCivilData.civilId, addCivilData.dob);
-});
+    test("Verify that the Date of Birth field accepts a valid date format", async () => {
+      const validData = { ...addCivilData, dob: CIVIL_VALIDATION.BOUNDARIES.VALID_DOB }; 
+      await addCivil.addCivilData(validData);
+      await getCivil.getOneCivilData(validData.civilId);
+      await getCivil.expectedRowVisible(validData.civilId);
+      await addCivil.checkDataAppearsInTable(addCivilData.civilId, addCivilData.dob);
+    });
 
     test("Verify that the Date of Birth field dosen't accepts a invalid date format", async () => {
-    const invalidData = { ...addCivilData, dob: "19901506" };
-   await addCivil.addCivilDataPartial(invalidData);
-     
+      const invalidData = { ...addCivilData, dob: CIVIL_VALIDATION.BOUNDARIES.INVALID_DOB_FORMAT };
+      await addCivil.addCivilDataPartial(invalidData);
     });
 
     test.afterEach(async () => {

@@ -1,4 +1,5 @@
 import { expect } from "@playwright/test";
+import { CIVIL_VALIDATION } from "../config/testData";
 
 export class EditCivil {
   constructor(page) {
@@ -21,18 +22,24 @@ export class EditCivil {
       has: this.page.getByRole("cell", { name: civilId, exact: true }),
     });
   }
+
   async clickEditButton(civilId) {
     const row = await this.getCivilRowById(civilId);
     const EditButton = row.locator("button", { hasText: "Edit" });
     await EditButton.click();
   }
+
   async editCivilData(updatedData) {
     await this.firstNameInput.fill(updatedData.firstName);
     await this.lastNameInput.fill(updatedData.lastName);
     await this.civilIdInput.fill(updatedData.civilId);
     await this.ageInput.fill(updatedData.age);
     await this.mobileInput.fill(updatedData.mobile);
-    await this.dobInput.fill(updatedData.dob);
+
+   if (updatedData.dob) {
+      await this.dobInput.focus();
+      await this.dobInput.pressSequentially(updatedData.dob);
+    } 
 
     if (updatedData.gender) {
       await this.genderSelect.selectOption({ label: updatedData.gender });
@@ -79,9 +86,10 @@ export class EditCivil {
     }
 
     if (updatedData.dob !== undefined) {
+      await this.dobInput.focus();
       await this.dobInput.clear();
       if (updatedData.dob !== "") {
-        await this.dobInput.fill(updatedData.dob);
+        await this.dobInput.pressSequentially(updatedData.dob);
       }
     }
 
@@ -106,7 +114,7 @@ export class EditCivil {
 
   async evaluateMessage(
     fieldName,
-    expectedMessage = "Please fill out this field",
+    expectedMessage = CIVIL_VALIDATION.ERRORS.FIELD_REQUIRED,
   ) {
     const field = this.page.locator(`#${fieldName}`);
     const isValid = await field.evaluate((el) => el.checkValidity());

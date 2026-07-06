@@ -35,10 +35,6 @@ test.describe("Civil System - Get / Read Operations", () => {
       const tableData = await getCivil.getCivilData();
       expect(tableData.length).toBeGreaterThan(0);
 
-      const totalText = await civilSystem.page
-        .getByText(/Total Civils:/)
-        .textContent();
-      expect(totalText).not.toBeNull();
     });
 
     test("Verify that when search the user by id the whole information appears correctly", async () => {

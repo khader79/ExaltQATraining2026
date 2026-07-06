@@ -1,10 +1,15 @@
-import { VALID_CIVIL_DATA } from "../config/testData.js";
+import { VALID_CIVIL_DATA ,API_URL} from "../config/testData.js";
 
 export async function createUniqueCivilData() {
   let records = [];
 
   try {
-    const response = await fetch("http://localhost:3000/get/all");
+    const response = await fetch(API_URL, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     if (response.ok) {
       records = await response.json();
     }

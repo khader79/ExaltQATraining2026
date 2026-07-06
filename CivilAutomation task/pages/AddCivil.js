@@ -1,5 +1,5 @@
 import { expect } from "@playwright/test";
-
+import{CIVIL_VALIDATION} from "../config/testData";
 export class AddCivil {
   constructor(page) {
     this.page = page;
@@ -47,7 +47,7 @@ export class AddCivil {
 
   async evaluateMessage(
     fieldName,
-    expectedMessage = "Please fill out this field",
+    expectedMessage = CIVIL_VALIDATION.ERRORS.FIELD_REQUIRED,
   ) {
     const field = this.page.locator(`#${fieldName}`);
 

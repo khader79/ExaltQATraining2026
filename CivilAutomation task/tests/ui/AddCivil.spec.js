@@ -23,6 +23,7 @@ test.describe("Civil System - addCivil", () => {
     await civilSystem.clickAddCivilButton();
     await expect(await civilSystem.getFormModel()).toBeVisible();
   });
+  
   test.describe("Add Civil Operations", () => {
     test.beforeEach(async () => {
       addCivilData = await createUniqueCivilData();

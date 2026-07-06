@@ -7,6 +7,9 @@ export class GetCivil {
     this.searchInput = page.locator("#searchInput");
     this.table = page.getByRole("table");
     this.rows = this.table.getByRole("row");
+    this.totalText = this.page
+            .getByText(/Total Civils:/)
+            .textContent();
   }
 
   async getCivilData() {
@@ -16,7 +19,8 @@ export class GetCivil {
   getCivilRowById(civilId) {
     return this.rows.filter({
       has: this.page.getByRole("cell", { name: civilId, exact: true }),
-    });
+    })
+          expect(this.totalText).not.toBeNull();
   }
 
   async getOneCivilData(nameOrId) {
@@ -53,4 +57,6 @@ export class GetCivil {
       .first();
     await expect(row).not.toBeVisible();
   }
+
+
 }
