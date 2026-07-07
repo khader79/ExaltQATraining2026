@@ -1,7 +1,7 @@
 import { locaters } from '../config/all_locaters.js';
 import { MainPage } from './main.js';
 import { expect } from '@playwright/test';
-
+import { BookingPage } from './booking.js';
 export class LoginPage {
   constructor(page) {
     this.page = page;
@@ -9,6 +9,7 @@ export class LoginPage {
     this.passwordInput = page.locator(locaters.login.passwordInput);
     this.submitButton = page.locator(locaters.login.submitButton);
     this.mainPage = new MainPage(page);
+    this.bookingSection = new BookingPage(page);
   }
 
   async getUsernameInput() {
@@ -32,25 +33,10 @@ export class LoginPage {
   }
 
   async login(username, password) {
+    await this.usernameInput.clear();
     await this.enterUsername(username);
+    await this.passwordInput.clear();
     await this.enterPassword(password);
     await this.clickSubmitButton();
-  }
-
-  async CheckLoginSuccess(username, password) {
-    await this.login(username, password);
-    const messageLocator = await this.mainPage.getMessage();
-    await messageLocator.waitFor({ state: 'visible' });
-    await expect(messageLocator).toHaveText(
-      locaters.messages.messagesText.successLoginMessageText
-    );
-  }
-
-  async CheckLoginFailure(username, password) {
-    await this.login(username, password);
-    const messageText = await this.mainPage.getMessageText();
-    expect(messageText).toBe(
-      locaters.messages.messagesText.invalidLoginMessageText
-    );
   }
 }

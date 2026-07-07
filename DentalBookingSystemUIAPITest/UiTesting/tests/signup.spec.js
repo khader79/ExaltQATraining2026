@@ -10,17 +10,23 @@ import { locaters } from '../config/all_locaters.js';
 import {
   generateUniqueUsername,
   generateUniquePhoneNumber,
+  generateUniqueWhitespace,
+  generateUniquePhoneCharacters,
 } from '../utils/generateUnique.js';
+import { BookingPage } from '../pages/booking.js';
 
 let mainPage;
 let signupPage;
 let loginPage;
+let bookingPage;
 
 test.beforeEach(async ({ page }) => {
   mainPage = new MainPage(page);
   signupPage = new SignupPage(page);
   loginPage = new LoginPage(page);
+  bookingPage = new BookingPage(page);
   await mainPage.navigateToWebsite();
+  await page.reload();
 });
 
 test('Verify that a user is successfully created with all the correct data.', async ({
@@ -34,11 +40,19 @@ test('Verify that a user is successfully created with all the correct data.', as
     SIGNUP_TEST_DATA.password,
     uniquePhone
   );
-  expect(await mainPage.getMessageText()).toBe(
+
+  await expect(await mainPage.getMessage()).toHaveText(
     locaters.messages.messagesText.successCreateMessageText
   );
 
-  await loginPage.CheckLoginSuccess(uniqueUsername, SIGNUP_TEST_DATA.password);
+  await page.reload();
+
+  await loginPage.login(uniqueUsername, SIGNUP_TEST_DATA.password);
+  await expect(await bookingPage.getBookingSection()).toBeVisible();
+
+  await expect(await mainPage.getMessage()).toHaveText(
+    locaters.messages.messagesText.successLoginMessageText
+  );
 });
 
 test('Verify that the user creation process fails if a user with the same username or phone number already exists.', async ({
@@ -53,13 +67,19 @@ test('Verify that the user creation process fails if a user with the same userna
     uniquePhone
   );
 
+  await expect(await mainPage.getMessage()).toHaveText(
+    locaters.messages.messagesText.successCreateMessageText
+  );
+
+  await page.reload();
+
   await signupPage.signup(
     uniqueUsername,
     SIGNUP_TEST_DATA.password,
     uniquePhone
   );
 
-  expect(await mainPage.getMessageText()).toBe(
+  await expect(await mainPage.getMessage()).toHaveText(
     locaters.messages.messagesText.existsMessageText
   );
 });
@@ -118,13 +138,14 @@ test('Verify that the user creation process fails if characters or special symbo
   page,
 }) => {
   const uniqueUsername = generateUniqueUsername();
+  const uniquePhoneCharacters = generateUniquePhoneCharacters();
   await signupPage.signup(
     uniqueUsername,
     SIGNUP_TEST_DATA.password,
-    INVALID_SIGNUP_TEST_DATA.invalidPhone
+    uniquePhoneCharacters
   );
 
-  expect(await mainPage.getMessageText()).toBe(
+  await expect(await mainPage.getMessage()).toHaveText(
     locaters.messages.messagesText.invalidPhoneMessageText
   );
 
@@ -136,12 +157,18 @@ test('Verify that the user creation process fails if characters or special symbo
 test('Verify that when fields are filled only with blank spaces (whitespaces), the account is not created.', async ({
   page,
 }) => {
+  const uniqueSpacesUser = generateUniqueUsername();
+  const uniqueSpacesPhone = generateUniqueWhitespace();
+
   await signupPage.signup(
+    uniqueSpacesUser,
     INVALID_SIGNUP_TEST_DATA.whitespaceInput,
-    INVALID_SIGNUP_TEST_DATA.whitespaceInput,
-    INVALID_SIGNUP_TEST_DATA.whitespaceInput
+    uniqueSpacesPhone
   );
 
+  await expect(await mainPage.getMessage()).toHaveText(
+    locaters.messages.messagesText.RequiredMessageText
+  );
   await expect(await mainPage.getMessage()).toHaveClass(
     locaters.messages.massageClasses.errorMessageClass
   );

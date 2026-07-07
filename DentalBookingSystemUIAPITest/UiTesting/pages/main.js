@@ -10,11 +10,9 @@ export class MainPage {
   async navigateToWebsite() {
     await this.page.goto(BASE_URL);
   }
-  async getMessageText() {
-    return await this.message.textContent();
-  }
+
   async getMessage() {
-    return await this.message;
+    return this.message;
   }
 
   async getFieldValidationMessage(inputLocator) {

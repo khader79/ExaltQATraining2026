@@ -33,8 +33,12 @@ export class SignupPage {
   }
 
   async signup(username, password, phone) {
+    await this.usernameInput.clear();
+
     await this.enterUsername(username);
+    await this.passwordInput.clear();
     await this.enterPassword(password);
+    await this.phoneInput.clear();
     await this.enterPhone(phone);
     await this.clickSubmitButton();
   }
