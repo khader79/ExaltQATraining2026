@@ -4,25 +4,12 @@ import {
   getStartTime,
   getEndTime,
 } from './generateUnique.js';
-import { SIGNUP_TEST_DATA, FIXED_TEST_CONSTANTS } from '../config/constants.js';
+import { SIGNUP_TEST_DATA } from '../config/constants.js';
 import { locaters } from '../config/all_locaters.js';
 import { expect } from '@playwright/test';
 
 export const FIXED_START_TIME = getStartTime();
 export const FIXED_END_TIME = getEndTime(30);
-
-export const getFutureDateWithOffsetDays = (daysOffset) => {
-  const date = new Date(
-    FIXED_TEST_CONSTANTS.baseYear,
-    FIXED_TEST_CONSTANTS.baseMonth - 1,
-    FIXED_TEST_CONSTANTS.baseDay
-  );
-  date.setDate(date.getDate() + daysOffset);
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  const year = date.getFullYear();
-  return `${month}${day}${year}`;
-};
 
 export const activeTestData = {
   date: '',

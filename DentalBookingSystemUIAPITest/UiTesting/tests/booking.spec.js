@@ -10,7 +10,6 @@ import {
 } from '../config/constants.js';
 import { locaters } from '../config/all_locaters.js';
 import {
-  getFutureDateWithOffsetDays,
   FIXED_START_TIME,
   FIXED_END_TIME,
   activeTestData,
@@ -35,11 +34,7 @@ test.beforeEach(async ({ page }) => {
 test('Verify successful appointment booking when valid future date and time are provided.', async ({
   page,
 }) => {
-  activeTestData.set(
-    getFutureDateWithOffsetDays(1),
-    FIXED_START_TIME,
-    FIXED_END_TIME
-  );
+  activeTestData.set(BOOKING_TEST_DATA.basic.date, FIXED_START_TIME, FIXED_END_TIME);
 
   await bookingPage.bookAppointment(
     activeTestData.date,
@@ -64,15 +59,11 @@ test('Verify that booking fails when attempting to book an appointment with a pa
   );
 });
 
-// BUG-003: Booking with duration < 30 min is accepted — app does not enforce minimum duration
+// QTDA-3 / BUG-003: Booking with duration < 30 min is accepted — app does not enforce minimum duration
 test('Verify that booking fails when the appointment duration is less than 30 minutes.', async ({
   page,
 }) => {
-  activeTestData.set(
-    getFutureDateWithOffsetDays(2),
-    FIXED_START_TIME,
-    getEndTime(29)
-  );
+  activeTestData.set(BOOKING_TEST_DATA.durLess30.date, FIXED_START_TIME, getEndTime(29));
   await bookingPage.bookAppointment(
     activeTestData.date,
     activeTestData.startTime,
@@ -88,11 +79,7 @@ test('Verify that booking fails when the appointment duration is less than 30 mi
 test('Verify that an appointment is booked when the appointment duration more than 30 minutes.', async ({
   page,
 }) => {
-  activeTestData.set(
-    getFutureDateWithOffsetDays(3),
-    FIXED_START_TIME,
-    getEndTime(45)
-  );
+  activeTestData.set(BOOKING_TEST_DATA.durMore30.date, FIXED_START_TIME, getEndTime(45));
 
   await bookingPage.bookAppointment(
     activeTestData.date,
@@ -107,11 +94,7 @@ test('Verify that an appointment is booked when the appointment duration more th
 test('Verify that an appointment is booked when the appointment duration is 30 minutes.', async ({
   page,
 }) => {
-  activeTestData.set(
-    getFutureDateWithOffsetDays(4),
-    FIXED_START_TIME,
-    FIXED_END_TIME
-  );
+  activeTestData.set(BOOKING_TEST_DATA.dur30.date, FIXED_START_TIME, FIXED_END_TIME);
 
   await bookingPage.bookAppointment(
     activeTestData.date,
@@ -139,11 +122,7 @@ test('Verify that booking fails when attempting to book an appointment with a pa
 test('Verify that the booking fails when the specified time period completely overlaps with a pre-existing appointment.', async ({
   page,
 }) => {
-  activeTestData.set(
-    getFutureDateWithOffsetDays(5),
-    FIXED_START_TIME,
-    FIXED_END_TIME
-  );
+  activeTestData.set(BOOKING_TEST_DATA.overlap.date, FIXED_START_TIME, FIXED_END_TIME);
 
   await bookingPage.bookAppointment(
     activeTestData.date,
@@ -164,28 +143,25 @@ test('Verify that the booking fails when the specified time period completely ov
   );
 });
 
-// BUG-004: End before start shows wrong error message
-test.fail('Verify that booking fails when the End Time is set before the Start Time.', async ({
-  page,
-}) => {
-  await bookingPage.bookAppointment(
-    getFutureDateWithOffsetDays(6),
-    FIXED_END_TIME,
-    FIXED_START_TIME
-  );
-  await expect(mainPage.message).toHaveText(
-    locaters.messages.messagesText.endBeforeStartMessageText
-  );
-});
+// QTDA-5 / BUG-004: End before start shows wrong error message
+test(
+  'Verify that booking fails when the End Time is set before the Start Time.',
+  async ({ page }) => {
+    await bookingPage.bookAppointment(
+      BOOKING_TEST_DATA.endBefore.date,
+      FIXED_END_TIME,
+      FIXED_START_TIME
+    );
+    await expect(mainPage.message).toHaveText(
+      locaters.messages.messagesText.endBeforeStartMessageText
+    );
+  }
+);
 
 test('Verify successful appointment cancellation when all fields have data', async ({
   page,
 }) => {
-  activeTestData.set(
-    getFutureDateWithOffsetDays(7),
-    FIXED_START_TIME,
-    FIXED_END_TIME
-  );
+  activeTestData.set(BOOKING_TEST_DATA.cancelData.date, FIXED_START_TIME, FIXED_END_TIME);
 
   await bookingPage.bookAppointment(
     activeTestData.date,
@@ -202,25 +178,22 @@ test('Verify successful appointment cancellation when all fields have data', asy
   );
 });
 
-// BUG-006: Cancel non-existent appointment succeeds
-test.fail('Verify that cancellation fails when trying to cancel an appointment that does not exist.', async ({
-  page,
-}) => {
-  await bookingPage.cancelAppointment();
-  await expect(mainPage.message).toHaveText(
-    locaters.messages.messagesText.notFoundCancelMessageText
-  );
-});
+// QTDA-6 / BUG-006: Cancel non-existent appointment succeeds
+test(
+  'Verify that cancellation fails when trying to cancel an appointment that does not exist.',
+  async ({ page }) => {
+    await bookingPage.cancelAppointment();
+    await expect(mainPage.message).toHaveText(
+      locaters.messages.messagesText.notFoundCancelMessageText
+    );
+  }
+);
 
 // BUG-005: Cancel succeeds even when fields are empty
 test('Verify that cancellation fails when the date field is empty.', async ({
   page,
 }) => {
-  activeTestData.set(
-    getFutureDateWithOffsetDays(2),
-    FIXED_START_TIME,
-    FIXED_END_TIME
-  );
+  activeTestData.set(BOOKING_TEST_DATA.cancelDate.date, FIXED_START_TIME, FIXED_END_TIME);
 
   await bookingPage.bookAppointment(
     activeTestData.date,
@@ -233,8 +206,8 @@ test('Verify that cancellation fails when the date field is empty.', async ({
 
   await bookingPage.dateInput.clear();
   await bookingPage.cancelAppointment();
-  await expect(mainPage.message).not.toHaveText(
-    locaters.messages.messagesText.successCancelMessageText
+  await expect(mainPage.message).toHaveText(
+    locaters.messages.messagesText.RequiredMessageText
   );
 });
 
@@ -242,11 +215,7 @@ test('Verify that cancellation fails when the date field is empty.', async ({
 test('Verify that cancellation fails when the start time field is empty.', async ({
   page,
 }) => {
-  activeTestData.set(
-    getFutureDateWithOffsetDays(3),
-    FIXED_START_TIME,
-    FIXED_END_TIME
-  );
+  activeTestData.set(BOOKING_TEST_DATA.cancelStart.date, FIXED_START_TIME, FIXED_END_TIME);
 
   await bookingPage.bookAppointment(
     activeTestData.date,
@@ -259,8 +228,8 @@ test('Verify that cancellation fails when the start time field is empty.', async
 
   await bookingPage.startTimeInput.clear();
   await bookingPage.cancelAppointment();
-  await expect(mainPage.message).not.toHaveText(
-    locaters.messages.messagesText.successCancelMessageText
+  await expect(mainPage.message).toHaveText(
+    locaters.messages.messagesText.RequiredMessageText
   );
 });
 
@@ -268,11 +237,7 @@ test('Verify that cancellation fails when the start time field is empty.', async
 test('Verify that cancellation fails when the end time field is empty.', async ({
   page,
 }) => {
-  activeTestData.set(
-    getFutureDateWithOffsetDays(4),
-    FIXED_START_TIME,
-    FIXED_END_TIME
-  );
+  activeTestData.set(BOOKING_TEST_DATA.cancelEnd.date, FIXED_START_TIME, FIXED_END_TIME);
 
   await bookingPage.bookAppointment(
     activeTestData.date,
@@ -285,8 +250,8 @@ test('Verify that cancellation fails when the end time field is empty.', async (
 
   await bookingPage.endTimeInput.clear();
   await bookingPage.cancelAppointment();
-  await expect(mainPage.message).not.toHaveText(
-    locaters.messages.messagesText.successCancelMessageText
+  await expect(mainPage.message).toHaveText(
+    locaters.messages.messagesText.RequiredMessageText
   );
 });
 
@@ -309,7 +274,7 @@ test('Verify that an appointment is not booked when the start time is empty.', a
   page,
 }) => {
   await bookingPage.bookAppointment(
-    getFutureDateWithOffsetDays(8),
+    BOOKING_TEST_DATA.basic.date,
     INVALID_BOOKING_TEST_DATA.emptyStartTime,
     FIXED_END_TIME
   );
@@ -323,7 +288,7 @@ test('Verify that an appointment is not booked when the end time is empty.', asy
   page,
 }) => {
   await bookingPage.bookAppointment(
-    getFutureDateWithOffsetDays(9),
+    BOOKING_TEST_DATA.basic.date,
     FIXED_START_TIME,
     INVALID_BOOKING_TEST_DATA.emptyEndTime
   );
@@ -336,11 +301,7 @@ test('Verify that an appointment is not booked when the end time is empty.', asy
 test('Verify that an appointment can be booked successfully if its Start Time is exactly equal to the End Time of a pre-existing appointment.', async ({
   page,
 }) => {
-  activeTestData.set(
-    getFutureDateWithOffsetDays(10),
-    FIXED_START_TIME,
-    FIXED_END_TIME
-  );
+  activeTestData.set(BOOKING_TEST_DATA.startEnd.date, FIXED_START_TIME, FIXED_END_TIME);
 
   await bookingPage.bookAppointment(
     activeTestData.date,
@@ -380,7 +341,7 @@ test('Verify that booking fails and the system handles validation properly when 
   page,
 }) => {
   await bookingPage.bookAppointment(
-    getFutureDateWithOffsetDays(11),
+    BOOKING_TEST_DATA.basic.date,
     INVALID_BOOKING_TEST_DATA.invalidStartTime,
     FIXED_END_TIME
   );
@@ -393,7 +354,7 @@ test('Verify that booking fails and the system handles validation properly when 
   page,
 }) => {
   await bookingPage.bookAppointment(
-    getFutureDateWithOffsetDays(12),
+    BOOKING_TEST_DATA.basic.date,
     FIXED_START_TIME,
     INVALID_BOOKING_TEST_DATA.invalidEndTime
   );
@@ -405,11 +366,7 @@ test('Verify that booking fails and the system handles validation properly when 
 test("Verify that booking fails when the new appointment's Start Time starts inside a pre-existing appointment (Partial Overlap).", async ({
   page,
 }) => {
-  activeTestData.set(
-    getFutureDateWithOffsetDays(13),
-    FIXED_START_TIME,
-    FIXED_END_TIME
-  );
+  activeTestData.set(BOOKING_TEST_DATA.partial.date, FIXED_START_TIME, FIXED_END_TIME);
 
   await bookingPage.bookAppointment(
     activeTestData.date,
@@ -433,11 +390,7 @@ test("Verify that booking fails when the new appointment's Start Time starts ins
 test('Verify that booking fails when there is a minor partial overlap', async ({
   page,
 }) => {
-  activeTestData.set(
-    getFutureDateWithOffsetDays(14),
-    FIXED_START_TIME,
-    FIXED_END_TIME
-  );
+  activeTestData.set(BOOKING_TEST_DATA.minor.date, FIXED_START_TIME, FIXED_END_TIME);
 
   await bookingPage.bookAppointment(
     activeTestData.date,

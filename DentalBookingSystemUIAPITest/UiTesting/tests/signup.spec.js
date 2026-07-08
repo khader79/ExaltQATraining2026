@@ -134,8 +134,7 @@ test('Verify that when the phone field is left empty, the account is not created
   ).toBe(locaters.messages.messagesText.RequiredMessageText);
 });
 
-// BUG-001: Phone field accepts special characters — app does not validate phone format
-test.fail('Verify that the user creation process fails if characters or special symbols are typed in the phone number field', async ({
+test('Verify that the user creation process fails if characters or special symbols are typed in the phone number field', async ({
   page,
 }) => {
   const uniqueUsername = generateUniqueUsername();
@@ -155,7 +154,7 @@ test.fail('Verify that the user creation process fails if characters or special 
   );
 });
 
-// BUG-002: Whitespace-only inputs are accepted on signup — app does not trim/validate whitespace
+// QTDA-2 / BUG-002: Whitespace-only inputs are accepted on signup — app does not trim/validate whitespace
 test('Verify that when fields are filled only with blank spaces (whitespaces), the account is not created.', async ({
   page,
 }) => {
