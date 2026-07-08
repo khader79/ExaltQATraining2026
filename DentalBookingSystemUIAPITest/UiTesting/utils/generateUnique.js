@@ -1,4 +1,7 @@
 import { SIGNUP_TEST_DATA } from '../config/constants.js';
+
+export const getBaseTime = () => new Date();
+
 export const generateUniqueUsername = () => {
   const timestamp = Date.now().toString();
   const letter = Math.random().toString(36).substring(2, 3);
@@ -30,23 +33,23 @@ export const generateUniquePhoneCharacters = () => {
 };
 
 export const getStartTime = () => {
-  const now = new Date();
-  const hours = String(now.getHours()).padStart(2, '0');
-  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const time = getBaseTime();
+  const hours = String(time.getHours()).padStart(2, '0');
+  const minutes = String(time.getMinutes()).padStart(2, '0');
   return `${hours}:${minutes}`;
 };
 
 export const getEndTime = (addTime = 30) => {
-  const now = new Date();
-  const end = new Date(now.getTime() + addTime * 60000);
+  const time = getBaseTime();
+  const end = new Date(time.getTime() + addTime * 60000);
   const hours = String(end.getHours()).padStart(2, '0');
   const minutes = String(end.getMinutes()).padStart(2, '0');
   return `${hours}:${minutes}`;
 };
 
 export const getPastTime = () => {
-  const now = new Date();
-  const past = new Date(now.getTime() - 30 * 60000);
+  const time = getBaseTime();
+  const past = new Date(time.getTime() - 30 * 60000);
   const hours = String(past.getHours()).padStart(2, '0');
   const minutes = String(past.getMinutes()).padStart(2, '0');
   return `${hours}:${minutes}`;

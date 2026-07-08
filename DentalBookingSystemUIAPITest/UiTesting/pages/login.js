@@ -28,6 +28,10 @@ export class LoginPage {
     await this.passwordInput.fill(password);
   }
 
+  async getSubmitButton() {
+    return this.submitButton;
+  }
+
   async clickSubmitButton() {
     await this.submitButton.click();
   }

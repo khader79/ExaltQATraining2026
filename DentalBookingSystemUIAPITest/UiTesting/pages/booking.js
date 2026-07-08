@@ -27,6 +27,14 @@ export class BookingPage {
     return this.endTimeInput;
   }
 
+  async getSubmitButton() {
+    return this.submitButton;
+  }
+
+  async getCancelButton() {
+    return this.cancelButton;
+  }
+
   async bookAppointment(date, startTime, endTime) {
     await this.dateInput.focus();
     await this.dateInput.pressSequentially(date);
@@ -35,6 +43,16 @@ export class BookingPage {
     await this.endTimeInput.fill(endTime);
 
     await this.submitButton.click();
+  }
+
+  async getEndTimeValue() {
+    const endTimeValue = await this.endTimeInput.inputValue();
+    return endTimeValue;
+  }
+
+  async getStartTimeValue() {
+    const startTimeValue = await this.startTimeInput.inputValue();
+    return startTimeValue;
   }
 
   async cancelAppointment() {

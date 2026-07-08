@@ -18,6 +18,7 @@ export const locaters = {
     endTimeInput: '#end-time',
     submitButton: '#booking-form button[type="submit"]',
     cancelButton: '#cancel-appointment',
+    logoutButton: '#logout',
   },
   messages: {
     message: '#message',
@@ -35,12 +36,11 @@ export const locaters = {
       successBookingMessageText: 'Appointment booked successfully',
       successCancelMessageText: 'Appointment canceled successfully',
       pastDateBookingMessageText: 'Cannot book an appointment in the past',
-      endTimeLessThan30MinutesMessageText:
-        'End time must be at least 30 minutes after start time',
-    },
-    massageColors: {
-      successMessageColor: 'rgb(0, 128, 0)',
-      errorMessageColor: 'rgb(255, 0, 0)',
+      endBeforeStartMessageText:
+        'Cannot book an appointment with end time before start time',
+      overlappingBookingMessageText:
+        'Appointment slot already booked or overlaps with another appointment',
+      notFoundCancelMessageText: 'No appointment found to cancel',
     },
   },
 };

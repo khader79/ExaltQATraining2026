@@ -28,6 +28,10 @@ export class SignupPage {
     await this.phoneInput.fill(phone);
   }
 
+  async getSubmitButton() {
+    return this.submitButton;
+  }
+
   async clickSubmitButton() {
     await this.submitButton.click();
   }

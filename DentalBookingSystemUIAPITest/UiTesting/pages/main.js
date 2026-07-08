@@ -5,6 +5,7 @@ export class MainPage {
   constructor(page) {
     this.page = page;
     this.message = page.locator(locaters.messages.message);
+    this.logoutButton = page.locator(locaters.booking.logoutButton);
   }
 
   async navigateToWebsite() {
@@ -13,6 +14,10 @@ export class MainPage {
 
   async getMessage() {
     return this.message;
+  }
+
+  async getLogoutButton() {
+    return this.logoutButton;
   }
 
   async getFieldValidationMessage(inputLocator) {

@@ -1,6 +1,6 @@
 import { PassThrough } from 'node:stream';
 
-export const BASE_URL = 'http://localhost:3000/';
+export const BASE_URL = 'http://localhost:8080/';
 
 export const SIGNUP_TEST_DATA = {
   username: 'khader',
@@ -22,6 +22,15 @@ export const INVALID_LOGIN_TEST_DATA = {
 };
 
 export const BOOKING_TEST_DATA = {
-  Date: '15082027',
-  pastDate: '15082020',
+  Date: '08202026',
+  pastDate: '08152020',
+};
+
+export const INVALID_BOOKING_TEST_DATA = {
+  emptyDate: '',
+  emptyStartTime: '',
+  emptyEndTime: '',
+  invalidDate: 'erw##&ge',
+  invalidStartTime: '00:00',
+  invalidEndTime: '01:00',
 };
