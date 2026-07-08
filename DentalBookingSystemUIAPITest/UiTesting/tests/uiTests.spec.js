@@ -69,6 +69,7 @@ test('Verify that all mandatory UI fields and action buttons for appointment man
   await expect(await bookingPage.getCancelButton()).toBeVisible();
 });
 
+// BUG-007: Logout button missing from booking page
 test('Verify the presence of a Logout button on the main booking page to allow users to terminate their session.', async ({
   page,
 }) => {

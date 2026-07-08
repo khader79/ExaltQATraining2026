@@ -1,6 +1,10 @@
 import { SIGNUP_TEST_DATA } from '../config/constants.js';
 
-export const getBaseTime = () => new Date();
+// Captured once at module import: 3 hours in the future
+// Ensures all time calculations are consistent AND always in the future
+const FUTURE_BASE_TIME = new Date(Date.now() + 3 * 60 * 60 * 1000);
+
+export const getBaseTime = () => new Date(FUTURE_BASE_TIME);
 
 export const generateUniqueUsername = () => {
   const timestamp = Date.now().toString();

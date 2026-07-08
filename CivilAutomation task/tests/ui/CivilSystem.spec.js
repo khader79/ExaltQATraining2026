@@ -24,7 +24,7 @@ test.describe("Civil System", () => {
   });
 
   test.describe("UI validation", () => {
-    test.only("Verify UI elements are visible", async () => {
+    test("Verify UI elements are visible", async () => {
       await uiValid.validateUi();
     });
 

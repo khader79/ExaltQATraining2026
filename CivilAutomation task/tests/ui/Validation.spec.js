@@ -240,13 +240,16 @@ test.describe("Civil System - Form Input Validation", () => {
     });
 
     test.afterEach(async () => {
-      if (!addCivilData || !addCivilData.civilId) {
+      try {
         await addCivil.closeModalIfOpen();
-        return;
+        if (addCivilData && addCivilData.civilId) {
+          await getCivil.getOneCivilData(addCivilData.civilId);
+          await deleteCivil.deleteCivil(addCivilData.civilId);
+        }
+      } catch {
+      } finally {
+        addCivilData = null;
       }
-      await getCivil.getOneCivilData(addCivilData.civilId);
-      await deleteCivil.deleteCivil(addCivilData.civilId);
-      addCivilData = null;
     });
   });
 });

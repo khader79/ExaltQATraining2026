@@ -14,6 +14,40 @@ export class BookingPage {
   async getBookingSection() {
     return this.bookingSection;
   }
+  async bookAppointment(date, startTime, endTime) {
+    await this.dateInput.clear();
+    await this.dateInput.focus();
+    await this.dateInput.pressSequentially(date);
+
+    if (startTime && /[a-zA-Z]/.test(startTime)) {
+      await this.startTimeInput.focus();
+      await this.startTimeInput.pressSequentially(startTime);
+    } else {
+      await this.startTimeInput.fill(startTime || '');
+    }
+
+    if (endTime && /[a-zA-Z]/.test(endTime)) {
+      await this.endTimeInput.focus();
+      await this.endTimeInput.pressSequentially(endTime);
+    } else {
+      await this.endTimeInput.fill(endTime || '');
+    }
+
+    await this.submitButton.click();
+  }
+
+  async cancelExistingBooking(date, startTime, endTime) {
+    await this.dateInput.clear();
+    await this.dateInput.focus();
+    await this.dateInput.pressSequentially(date);
+    await this.startTimeInput.fill(startTime);
+    await this.endTimeInput.fill(endTime);
+    await this.cancelButton.click();
+  }
+
+  async cancelAppointment() {
+    await this.cancelButton.click();
+  }
 
   async getDateInput() {
     return this.dateInput;
@@ -35,27 +69,11 @@ export class BookingPage {
     return this.cancelButton;
   }
 
-  async bookAppointment(date, startTime, endTime) {
-    await this.dateInput.focus();
-    await this.dateInput.pressSequentially(date);
-
-    await this.startTimeInput.fill(startTime);
-    await this.endTimeInput.fill(endTime);
-
-    await this.submitButton.click();
-  }
-
   async getEndTimeValue() {
-    const endTimeValue = await this.endTimeInput.inputValue();
-    return endTimeValue;
+    return await this.endTimeInput.inputValue();
   }
 
   async getStartTimeValue() {
-    const startTimeValue = await this.startTimeInput.inputValue();
-    return startTimeValue;
-  }
-
-  async cancelAppointment() {
-    await this.cancelButton.click();
+    return await this.startTimeInput.inputValue();
   }
 }

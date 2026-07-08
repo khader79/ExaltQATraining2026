@@ -46,7 +46,7 @@ test('Verify successful appointment booking when valid future date and time are 
     activeTestData.startTime,
     activeTestData.endTime
   );
-  await expect(await mainPage.getMessage()).toHaveText(
+  await expect(mainPage.message).toHaveText(
     locaters.messages.messagesText.successBookingMessageText
   );
 });
@@ -59,11 +59,12 @@ test('Verify that booking fails when attempting to book an appointment with a pa
     FIXED_START_TIME,
     FIXED_END_TIME
   );
-  await expect(await mainPage.getMessage()).toHaveText(
+  await expect(mainPage.message).toHaveText(
     locaters.messages.messagesText.pastDateBookingMessageText
   );
 });
 
+// BUG-003: Booking with duration < 30 min is accepted — app does not enforce minimum duration
 test('Verify that booking fails when the appointment duration is less than 30 minutes.', async ({
   page,
 }) => {
@@ -77,7 +78,7 @@ test('Verify that booking fails when the appointment duration is less than 30 mi
     activeTestData.startTime,
     activeTestData.endTime
   );
-  const messageText = await mainPage.getMessage().textContent();
+  const messageText = await mainPage.message.textContent();
   expect(messageText.trim().length).toBeGreaterThan(0);
   expect(messageText).not.toBe(
     locaters.messages.messagesText.successBookingMessageText
@@ -98,7 +99,7 @@ test('Verify that an appointment is booked when the appointment duration more th
     activeTestData.startTime,
     activeTestData.endTime
   );
-  await expect(await mainPage.getMessage()).toHaveText(
+  await expect(mainPage.message).toHaveText(
     locaters.messages.messagesText.successBookingMessageText
   );
 });
@@ -117,21 +118,21 @@ test('Verify that an appointment is booked when the appointment duration is 30 m
     activeTestData.startTime,
     activeTestData.endTime
   );
-  await expect(await mainPage.getMessage()).toHaveText(
+  await expect(mainPage.message).toHaveText(
     locaters.messages.messagesText.successBookingMessageText
   );
 });
 
-test('Verify that booking with a past time (relative to now) on a future date is accepted.', async ({
+test('Verify that booking fails when attempting to book an appointment with a past time.', async ({
   page,
 }) => {
   await bookingPage.bookAppointment(
-    getFutureDateWithOffsetDays(1),
-    getPastTime(),
-    getEndTime()
+    BOOKING_TEST_DATA.pastDate,
+    INVALID_BOOKING_TEST_DATA.pastStartTime,
+    INVALID_BOOKING_TEST_DATA.pastEndTime
   );
-  await expect(await mainPage.getMessage()).toHaveText(
-    locaters.messages.messagesText.successBookingMessageText
+  await expect(mainPage.message).toHaveText(
+    locaters.messages.messagesText.pastDateBookingMessageText
   );
 });
 
@@ -149,7 +150,7 @@ test('Verify that the booking fails when the specified time period completely ov
     activeTestData.startTime,
     activeTestData.endTime
   );
-  await expect(await mainPage.getMessage()).toHaveText(
+  await expect(mainPage.message).toHaveText(
     locaters.messages.messagesText.successBookingMessageText
   );
 
@@ -158,12 +159,13 @@ test('Verify that the booking fails when the specified time period completely ov
     activeTestData.startTime,
     activeTestData.endTime
   );
-  await expect(await mainPage.getMessage()).toHaveText(
+  await expect(mainPage.message).toHaveText(
     locaters.messages.messagesText.overlappingBookingMessageText
   );
 });
 
-test('Verify that booking fails when the End Time is set before the Start Time.', async ({
+// BUG-004: End before start shows wrong error message
+test.fail('Verify that booking fails when the End Time is set before the Start Time.', async ({
   page,
 }) => {
   await bookingPage.bookAppointment(
@@ -171,93 +173,119 @@ test('Verify that booking fails when the End Time is set before the Start Time.'
     FIXED_END_TIME,
     FIXED_START_TIME
   );
-  await expect(await mainPage.getMessage()).toHaveText(
+  await expect(mainPage.message).toHaveText(
     locaters.messages.messagesText.endBeforeStartMessageText
   );
 });
 
-test('Verify successful appointment cancellation', async ({ page }) => {
-  const targetDate = getFutureDateWithOffsetDays(7);
-  await bookingPage.bookAppointment(
-    targetDate,
+test('Verify successful appointment cancellation when all fields have data', async ({
+  page,
+}) => {
+  activeTestData.set(
+    getFutureDateWithOffsetDays(7),
     FIXED_START_TIME,
     FIXED_END_TIME
   );
-  await expect(await mainPage.getMessage()).toHaveText(
+
+  await bookingPage.bookAppointment(
+    activeTestData.date,
+    activeTestData.startTime,
+    activeTestData.endTime
+  );
+  await expect(mainPage.message).toHaveText(
     locaters.messages.messagesText.successBookingMessageText
   );
 
   await bookingPage.cancelAppointment();
-  await expect(await mainPage.getMessage()).toHaveText(
+  await expect(mainPage.message).toHaveText(
     locaters.messages.messagesText.successCancelMessageText
   );
 });
 
-test('Verify that cancellation fails when trying to cancel an appointment that does not exist.', async ({
+// BUG-006: Cancel non-existent appointment succeeds
+test.fail('Verify that cancellation fails when trying to cancel an appointment that does not exist.', async ({
   page,
 }) => {
   await bookingPage.cancelAppointment();
-  await expect(await mainPage.getMessage()).toHaveText(
+  await expect(mainPage.message).toHaveText(
     locaters.messages.messagesText.notFoundCancelMessageText
   );
 });
 
+// BUG-005: Cancel succeeds even when fields are empty
 test('Verify that cancellation fails when the date field is empty.', async ({
   page,
 }) => {
-  const targetDate = getFutureDateWithOffsetDays(15);
-  await bookingPage.bookAppointment(
-    targetDate,
+  activeTestData.set(
+    getFutureDateWithOffsetDays(2),
     FIXED_START_TIME,
     FIXED_END_TIME
   );
-  await expect(await mainPage.getMessage()).toHaveText(
+
+  await bookingPage.bookAppointment(
+    activeTestData.date,
+    activeTestData.startTime,
+    activeTestData.endTime
+  );
+  await expect(mainPage.message).toHaveText(
     locaters.messages.messagesText.successBookingMessageText
   );
 
-  await (await bookingPage.getDateInput()).clear();
+  await bookingPage.dateInput.clear();
   await bookingPage.cancelAppointment();
-  await expect(await mainPage.getMessage()).not.toHaveText(
+  await expect(mainPage.message).not.toHaveText(
     locaters.messages.messagesText.successCancelMessageText
   );
 });
 
+// BUG-005: Cancel succeeds even when fields are empty
 test('Verify that cancellation fails when the start time field is empty.', async ({
   page,
 }) => {
-  const targetDate = getFutureDateWithOffsetDays(16);
-  await bookingPage.bookAppointment(
-    targetDate,
+  activeTestData.set(
+    getFutureDateWithOffsetDays(3),
     FIXED_START_TIME,
     FIXED_END_TIME
   );
-  await expect(await mainPage.getMessage()).toHaveText(
+
+  await bookingPage.bookAppointment(
+    activeTestData.date,
+    activeTestData.startTime,
+    activeTestData.endTime
+  );
+  await expect(mainPage.message).toHaveText(
     locaters.messages.messagesText.successBookingMessageText
   );
 
-  await (await bookingPage.getStartTimeInput()).clear();
+  await bookingPage.startTimeInput.clear();
   await bookingPage.cancelAppointment();
-  await expect(await mainPage.getMessage()).not.toHaveText(
+  await expect(mainPage.message).not.toHaveText(
     locaters.messages.messagesText.successCancelMessageText
   );
 });
 
+// BUG-005: Cancel succeeds even when fields are empty
 test('Verify that cancellation fails when the end time field is empty.', async ({
   page,
 }) => {
-  const targetDate = getFutureDateWithOffsetDays(17);
-  await bookingPage.bookAppointment(
-    targetDate,
+  activeTestData.set(
+    getFutureDateWithOffsetDays(4),
     FIXED_START_TIME,
     FIXED_END_TIME
   );
-  await expect(await mainPage.getMessage()).toHaveText(
+
+  await bookingPage.bookAppointment(
+    activeTestData.date,
+    activeTestData.startTime,
+    activeTestData.endTime
+  );
+  await expect(mainPage.message).toHaveText(
     locaters.messages.messagesText.successBookingMessageText
   );
 
-  await (await bookingPage.getEndTimeInput()).clear();
+  await bookingPage.endTimeInput.clear();
   await bookingPage.cancelAppointment();
-  await expect(await mainPage.getMessage()).not.toHaveText(
+  await expect(mainPage.message).not.toHaveText(
     locaters.messages.messagesText.successCancelMessageText
   );
 });
@@ -265,16 +293,16 @@ test('Verify that cancellation fails when the end time field is empty.', async (
 test('Verify that an appointment is not booked when the date is empty.', async ({
   page,
 }) => {
-  await (await bookingPage.getDateInput()).clear();
+  await bookingPage.dateInput.clear();
   await bookingPage.bookAppointment(
     INVALID_BOOKING_TEST_DATA.emptyDate,
     FIXED_START_TIME,
     FIXED_END_TIME
   );
 
-  expect(
-    await mainPage.getFieldValidationMessage(await bookingPage.getDateInput())
-  ).toBe(locaters.messages.messagesText.RequiredMessageText);
+  expect(await mainPage.getFieldValidationMessage(bookingPage.dateInput)).toBe(
+    locaters.messages.messagesText.RequiredMessageText
+  );
 });
 
 test('Verify that an appointment is not booked when the start time is empty.', async ({
@@ -287,9 +315,7 @@ test('Verify that an appointment is not booked when the start time is empty.', a
   );
 
   expect(
-    await mainPage.getFieldValidationMessage(
-      await bookingPage.getStartTimeInput()
-    )
+    await mainPage.getFieldValidationMessage(bookingPage.startTimeInput)
   ).toBe(locaters.messages.messagesText.RequiredMessageText);
 });
 
@@ -303,9 +329,7 @@ test('Verify that an appointment is not booked when the end time is empty.', asy
   );
 
   expect(
-    await mainPage.getFieldValidationMessage(
-      await bookingPage.getEndTimeInput()
-    )
+    await mainPage.getFieldValidationMessage(bookingPage.endTimeInput)
   ).toBe(locaters.messages.messagesText.RequiredMessageText);
 });
 
@@ -323,7 +347,7 @@ test('Verify that an appointment can be booked successfully if its Start Time is
     activeTestData.startTime,
     activeTestData.endTime
   );
-  await expect(await mainPage.getMessage()).toHaveText(
+  await expect(mainPage.message).toHaveText(
     locaters.messages.messagesText.successBookingMessageText
   );
 
@@ -332,7 +356,7 @@ test('Verify that an appointment can be booked successfully if its Start Time is
     FIXED_END_TIME,
     getEndTime(60)
   );
-  await expect(await mainPage.getMessage()).toHaveText(
+  await expect(mainPage.message).toHaveText(
     locaters.messages.messagesText.successBookingMessageText
   );
 });
@@ -340,16 +364,16 @@ test('Verify that an appointment can be booked successfully if its Start Time is
 test('Verify that booking fails and the system handles validation properly when characters or invalid text formats are entered into the Date', async ({
   page,
 }) => {
-  await (await bookingPage.getDateInput()).clear();
+  await bookingPage.dateInput.clear();
   await bookingPage.bookAppointment(
     INVALID_BOOKING_TEST_DATA.invalidDate,
     FIXED_START_TIME,
     FIXED_END_TIME
   );
 
-  expect(
-    await mainPage.getFieldValidationMessage(await bookingPage.getDateInput())
-  ).toBe(locaters.messages.messagesText.RequiredMessageText);
+  expect(await mainPage.getFieldValidationMessage(bookingPage.dateInput)).toBe(
+    locaters.messages.messagesText.RequiredMessageText
+  );
 });
 
 test('Verify that booking fails and the system handles validation properly when characters or invalid text formats are entered into the StartTime', async ({
@@ -360,7 +384,7 @@ test('Verify that booking fails and the system handles validation properly when 
     INVALID_BOOKING_TEST_DATA.invalidStartTime,
     FIXED_END_TIME
   );
-  await expect(await mainPage.getMessage()).not.toHaveText(
+  await expect(mainPage.message).not.toHaveText(
     locaters.messages.messagesText.successBookingMessageText
   );
 });
@@ -373,7 +397,7 @@ test('Verify that booking fails and the system handles validation properly when 
     FIXED_START_TIME,
     INVALID_BOOKING_TEST_DATA.invalidEndTime
   );
-  await expect(await mainPage.getMessage()).not.toHaveText(
+  await expect(mainPage.message).not.toHaveText(
     locaters.messages.messagesText.successBookingMessageText
   );
 });
@@ -392,7 +416,7 @@ test("Verify that booking fails when the new appointment's Start Time starts ins
     activeTestData.startTime,
     activeTestData.endTime
   );
-  await expect(await mainPage.getMessage()).toHaveText(
+  await expect(mainPage.message).toHaveText(
     locaters.messages.messagesText.successBookingMessageText
   );
 
@@ -401,7 +425,7 @@ test("Verify that booking fails when the new appointment's Start Time starts ins
     getEndTime(15),
     getEndTime(75)
   );
-  await expect(await mainPage.getMessage()).toHaveText(
+  await expect(mainPage.message).toHaveText(
     locaters.messages.messagesText.overlappingBookingMessageText
   );
 });
@@ -420,7 +444,7 @@ test('Verify that booking fails when there is a minor partial overlap', async ({
     activeTestData.startTime,
     activeTestData.endTime
   );
-  await expect(await mainPage.getMessage()).toHaveText(
+  await expect(mainPage.message).toHaveText(
     locaters.messages.messagesText.successBookingMessageText
   );
 
@@ -429,7 +453,7 @@ test('Verify that booking fails when there is a minor partial overlap', async ({
     getEndTime(29),
     getEndTime(60)
   );
-  await expect(await mainPage.getMessage()).toHaveText(
+  await expect(mainPage.message).toHaveText(
     locaters.messages.messagesText.overlappingBookingMessageText
   );
 });
