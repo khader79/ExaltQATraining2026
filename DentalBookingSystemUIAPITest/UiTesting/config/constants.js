@@ -1,4 +1,9 @@
-export const BASE_URL = 'http://localhost:3000/';
+import {
+  getDateWithOffsetDays,
+  getTimeWithOffsetMinutes,
+} from '../utils/dateTimeHelpers.js';
+
+export const BASE_URL = 'http://localhost:8080/';
 
 export const SIGNUP_TEST_DATA = {
   username: 'khader',
@@ -26,24 +31,107 @@ export const BOOKING_DURATION = {
 };
 
 export const BOOKING_TEST_DATA = {
-  SUCCESS: { startTime: '09:00', endTime: '09:30' },
-  PAST_DATE: { startTime: '09:00', endTime: '09:30' },
-  SHORT_DURATION: { startTime: '10:00', endTime: '10:29' },
-  LONG_DURATION: { startTime: '09:00', endTime: '09:45' },
-  THIRTY_MIN_DURATION: { startTime: '09:00', endTime: '09:30' },
-  OVERLAP: { startTime: '09:00', endTime: '09:30' },
-  REVERSED_TIME: { startTime: '09:30', endTime: '09:00' },
-  CANCEL_SUCCESS: { startTime: '09:00', endTime: '09:30' },
-  CANCEL_EMPTY_DATE: { startTime: '09:00', endTime: '09:30' },
-  CANCEL_EMPTY_START: { startTime: '09:00', endTime: '09:30' },
-  CANCEL_EMPTY_END: { startTime: '09:00', endTime: '09:30' },
-  ADJACENT: { startTime: '09:00', endTime: '09:30' },
-  PARTIAL_OVERLAP: { startTime: '09:00', endTime: '09:30' },
-  MINOR_OVERLAP: { startTime: '09:00', endTime: '09:30' },
+  SUCCESS: {
+    date: getDateWithOffsetDays(1),
+    startTime: '09:00',
+    endTime: '09:30',
+  },
+  PAST_DATE: {
+    date: getDateWithOffsetDays(-1),
+    startTime: '09:00',
+    endTime: '09:30',
+  },
+  SHORT_DURATION: {
+    date: getDateWithOffsetDays(2),
+    startTime: '10:00',
+    endTime: '10:29',
+  },
+  LONG_DURATION: {
+    date: getDateWithOffsetDays(3),
+    startTime: '09:00',
+    endTime: '09:45',
+  },
+  THIRTY_MIN_DURATION: {
+    date: getDateWithOffsetDays(4),
+    startTime: '09:00',
+    endTime: '09:30',
+  },
+  PAST_TIME: {
+    date: getDateWithOffsetDays(0),
+    startTime: getTimeWithOffsetMinutes(-30),
+    endTime: getTimeWithOffsetMinutes(30),
+  },
+  OVERLAP: {
+    date: getDateWithOffsetDays(5),
+    startTime: '09:00',
+    endTime: '09:30',
+  },
+  REVERSED_TIME: {
+    date: getDateWithOffsetDays(6),
+    startTime: '09:30',
+    endTime: '09:00',
+  },
+  CANCEL_SUCCESS: {
+    date: getDateWithOffsetDays(7),
+    startTime: '09:00',
+    endTime: '09:30',
+  },
+  CANCEL_EMPTY_DATE: {
+    date: getDateWithOffsetDays(8),
+    startTime: '09:00',
+    endTime: '09:30',
+  },
+  CANCEL_EMPTY_START: {
+    date: getDateWithOffsetDays(9),
+    startTime: '09:00',
+    endTime: '09:30',
+  },
+  CANCEL_EMPTY_END: {
+    date: getDateWithOffsetDays(10),
+    startTime: '09:00',
+    endTime: '09:30',
+  },
+  ADJACENT: {
+    date: getDateWithOffsetDays(11),
+    startTime: '09:30',
+    endTime: '10:00',
+    nextStartTime: '10:00',
+    nextEndTime: '10:30',
+  },
+  PARTIAL_OVERLAP: {
+    date: getDateWithOffsetDays(12),
+    startTime: '09:30',
+    endTime: '10:00',
+    overlapStartTime: '09:33',
+    overlapEndTime: '10:30',
+  },
+  MINOR_OVERLAP: {
+    date: getDateWithOffsetDays(13),
+    startTime: '09:30',
+    endTime: '10:00',
+    overlapStartTime: '09:59',
+    overlapEndTime: '11:00',
+  },
   EMPTY_DATE: { date: '', startTime: '09:00', endTime: '09:30' },
-  EMPTY_START: { startTime: '', endTime: '09:30' },
-  EMPTY_END: { startTime: '09:00', endTime: '' },
+  EMPTY_START: {
+    date: getDateWithOffsetDays(14),
+    startTime: '',
+    endTime: '09:30',
+  },
+  EMPTY_END: {
+    date: getDateWithOffsetDays(15),
+    startTime: '09:00',
+    endTime: '',
+  },
   INVALID_DATE: { date: 'erw##&ge', startTime: '09:00', endTime: '09:30' },
-  INVALID_START: { startTime: '00:00', endTime: '09:30' },
-  INVALID_END: { startTime: '09:00', endTime: '01:00' },
+  INVALID_START: {
+    date: getDateWithOffsetDays(16),
+    startTime: 'erw##',
+    endTime: '09:30',
+  },
+  INVALID_END: {
+    date: getDateWithOffsetDays(17),
+    startTime: '09:00',
+    endTime: 'erw##',
+  },
 };
