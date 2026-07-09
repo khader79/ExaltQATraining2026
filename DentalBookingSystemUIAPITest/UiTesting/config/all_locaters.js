@@ -36,6 +36,8 @@ export const locaters = {
       successBookingMessageText: 'Appointment booked successfully',
       successCancelMessageText: 'Appointment canceled successfully',
       pastDateBookingMessageText: 'Cannot book an appointment in the past',
+      shortDurationBookingMessageText:
+        'Appointment duration must be at least 30 minutes',
       endBeforeStartMessageText:
         'Cannot book an appointment with end time before start time',
       overlappingBookingMessageText:
