@@ -25,12 +25,14 @@ LOGIN_PAYLOAD = {
 }
 
 BOOKING_PAYLOAD = {
-    "date": "2030-11-12",   
+    "date": "2030-11-18",   
     "startTime": "10:00",
     "endTime": "11:00",
     "pastDate": "2025-08-15",
     "endtimeLessThan30Minutes": "10:29",
     "exactly30Minutes": "10:30",
+    "endTimeBeforeStartTime": "09:30",
+    "secondEndtime": "11:30"
 }
 
 MESSAGES ={
@@ -40,5 +42,7 @@ MESSAGES ={
     "phone_empty": "Phone cannot be empty",
     "invalid_phone": "Invalid phone number",
     "past": "Cannot book an appointment in the past",
-    "less_than_30": "Appointment duration must be at least 30 minutes"
+    "less_than_30": "Appointment duration must be at least 30 minutes",
+    "end_time_before_start_time": "End time must be after start time",
+    "existing_appointment" : "Appointment slot already booked or overlaps with another appointment"
 }
