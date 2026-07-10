@@ -1,0 +1,137 @@
+{
+  "info": {
+    "_postman_id": "11e622e6-a551-468d-a1cf-5605d18695b3",
+    "name": "DentalAPITesting",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "37873077"
+  },
+  "item": [
+    {
+      "name": "Signup",
+      "item": [
+        {
+          "name": "Signup",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "/* {\r\n    \"username\": \"testuser11\",\r\n    \"password\": \"testpassword\",\r\n    \"phone\": \"2234567890\"\r\n} */\r\n/* {\r\n    \"username\": \"testuser11\",\r\n    \"password\": \"testpassword\",\r\n    \"phone\": \"2234567890\"\r\n} */\r\n/* {\r\n    \"username\": \"\",\r\n    \"password\": \"testpassword\",\r\n    \"phone\": \"2234567893\"\r\n} */\r\n/* {\r\n    \"username\": \"wrwerwerwer\",\r\n    \"password\": \"\",\r\n    \"phone\": \"2234567895\"\r\n} */\r\n/* {\r\n    \"username\": \"wrwerwerwer\",\r\n    \"password\": \"testpassword\",\r\n    \"phone\": \"\"\r\n} */\r\n{\r\n    \"username\": \"           \",\r\n    \"password\": \"       \",\r\n    \"phone\": \"             \"\r\n} ",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/signup",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "signup"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Login",
+      "item": [
+        {
+          "name": "login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"password\": \"123\",\r\n    \"username\": \"khader\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Book",
+      "item": [
+        {
+          "name": "book",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "/* {\r\n    \"date\": \"2027-08-20\",\r\n    \"startTime\": \"10:00\",\r\n    \"endTime\": \"11:00\",\r\n    \"username\" :\"khader\"\r\n}  */\r\n\r\n/* {\r\n    \"date\": \"2025-08-20\",\r\n    \"startTime\": \"10:00\",\r\n    \"endTime\": \"11:00\",\r\n    \"username\" :\"khader\"\r\n} */\r\n\r\n/* {\r\n    \"date\": \"2027-08-21\",\r\n    \"startTime\": \"10:00\",\r\n    \"endTime\": \"10:29\",\r\n    \"username\" :\"khader\"\r\n} */\r\n\r\n/* {\r\n    \"date\": \"2027-08-21\",\r\n    \"startTime\": \"10:00\",\r\n    \"endTime\": \"9:30\",\r\n    \"username\" :\"khader\"\r\n} */\r\n\r\n/* {\r\n    \"date\": \"2027-08-20\",\r\n    \"startTime\": \"10:00\",\r\n    \"endTime\": \"11:00\",\r\n    \"username\" :\"khader\"\r\n} */\r\n/* {\r\n    \"date\": \"2027-08-20\",\r\n    \"startTime\": \"11:00\",\r\n    \"endTime\": \"12:00\",\r\n    \"username\" :\"khader\"\r\n} */\r\n/* {\r\n    \"date\": \"2027-08-20\",\r\n    \"startTime\": \"10:10\",\r\n    \"endTime\": \"11:10\",\r\n    \"username\" :\"khader\"\r\n} */\r\n/* {\r\n    \"date\": \"2027-08-20\",\r\n    \"startTime\": \"10:59\",\r\n    \"endTime\": \"11:59\",\r\n    \"username\" :\"khader\"\r\n} */\r\n/* {\r\n    \"date\": \"\",\r\n    \"startTime\": \"10:10\",\r\n    \"endTime\": \"11:10\",\r\n    \"username\" :\"khader\"\r\n} */ \r\n/* {\r\n    \"date\": \"2027-08-20\",\r\n    \"startTime\": \"\",\r\n    \"endTime\": \"11:10\",\r\n    \"username\" :\"khader\"\r\n}  */\r\n/* {\r\n    \"date\": \"2027-08-20\",\r\n    \"startTime\": \"10:10\",\r\n    \"endTime\": \"\",\r\n    \"username\" :\"khader\"\r\n}  */\r\n/*  {\r\n    \"date\": \"20/08/2027\",\r\n    \"startTime\": \"10:10\",\r\n    \"endTime\": \"11:10\",\r\n    \"username\" :\"khader\"\r\n}  \r\n */",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/book",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "book"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "cancel",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"date\": \"2027-08-30\",\r\n    \"startTime\": \"10:00\",\r\n    \"endTime\": \"\",\r\n    \"username\" :\"khader\"\r\n} ",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/cancel",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "cancel"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
