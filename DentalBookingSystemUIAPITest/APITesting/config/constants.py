@@ -25,14 +25,19 @@ LOGIN_PAYLOAD = {
 }
 
 BOOKING_PAYLOAD = {
-    "date": "2030-11-18",   
+    "date": "2030-11-19",   
     "startTime": "10:00",
     "endTime": "11:00",
     "pastDate": "2025-08-15",
     "endtimeLessThan30Minutes": "10:29",
     "exactly30Minutes": "10:30",
     "endTimeBeforeStartTime": "09:30",
-    "secondEndtime": "11:30"
+    "secondEndtime": "11:30",
+    "partialOverlapStartTime": "10:10",
+    "partialOverlapEndTime": "11:10",
+    "overlapByOneMinuteStartTime": "10:59",
+    "overlapByOneMinuteEndTime": "11:59",
+    "empty": ""
 }
 
 MESSAGES ={
@@ -44,5 +49,16 @@ MESSAGES ={
     "past": "Cannot book an appointment in the past",
     "less_than_30": "Appointment duration must be at least 30 minutes",
     "end_time_before_start_time": "End time must be after start time",
-    "existing_appointment" : "Appointment slot already booked or overlaps with another appointment"
+    "existing_appointment" : "Appointment slot already booked or overlaps with another appointment",
+    "empty_field": "Field cannot be empty",
+    "appointment_not_found": "Appointment not found",
+    "cancel_success": "Appointment canceled successfully",
+}
+
+CANCEL_PAYLOAD = {
+    "date": "2027-08-19",
+    "startTime": "10:00",
+    "endTime": "11:00",
+    "nonExistentDate": "2027-08-11",
+    "empty": ""
 }

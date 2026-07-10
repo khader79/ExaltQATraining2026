@@ -204,3 +204,157 @@ def test_book_appointment_startTime_isEndTime_for_other_appointment(setup_bookin
     response_json = response2.json()
 
     assert response_json["success"] == True
+
+def test_book_appointment_startTime_isEndTime_for_other_appointment_partially_overlap(setup_booking):
+    username = setup_booking["username"]
+
+    booking_payload1 = create_booking_payload(
+        BOOKING_PAYLOAD["date"],
+        BOOKING_PAYLOAD["startTime"],
+        BOOKING_PAYLOAD["endTime"],
+        username
+    )
+
+    response1 = book_appointment(booking_payload1)
+
+    assert response1.status_code == 201, (
+        f"Expected status code 201 for first booking, but got {response1.status_code}"
+    )
+
+    setup_booking["booking_payload"].append(booking_payload1)
+
+    booking_payload2 = create_booking_payload(
+        BOOKING_PAYLOAD["date"],
+        BOOKING_PAYLOAD["partialOverlapStartTime"],
+        BOOKING_PAYLOAD["partialOverlapEndTime"],
+        username
+    )
+
+    response2 = book_appointment(booking_payload2)
+
+    response_json = response2.json()
+
+    assert response_json["success"] == False
+    assert response_json["message"] == MESSAGES["existing_appointment"]
+    assert response2.status_code == 409, (
+        f"Expected status code 409 for overlapping appointment, but got {response2.status_code}"
+    )
+
+
+def test_book_appointment_with_overlap_by_one_minute(setup_booking):
+    username = setup_booking["username"]
+
+    booking_payload1 = create_booking_payload(
+        BOOKING_PAYLOAD["date"],
+        BOOKING_PAYLOAD["startTime"],
+        BOOKING_PAYLOAD["endTime"],
+        username
+    )
+
+    response1 = book_appointment(booking_payload1)
+
+    
+
+    assert response1.status_code == 201, (
+        f"Expected status code 201 for first booking, but got {response1.status_code}"
+    )
+
+    setup_booking["booking_payload"].append(booking_payload1)
+
+    booking_payload2 = create_booking_payload(
+        BOOKING_PAYLOAD["date"],
+        BOOKING_PAYLOAD["overlapByOneMinuteStartTime"],
+        BOOKING_PAYLOAD["overlapByOneMinuteEndTime"],
+        username
+    )   
+    response2 = book_appointment(booking_payload2)
+
+    response_json = response2.json()
+
+    assert response_json["success"] == False
+    assert response_json["message"] == MESSAGES["existing_appointment"]
+    assert response2.status_code == 409, (
+        f"Expected status code 409 for overlapping appointment, but got {response2.status_code}"
+    )
+
+def test_book_appointment_with_empty_date(setup_booking):
+    username = setup_booking["username"]
+
+    booking_payload = create_booking_payload(
+        BOOKING_PAYLOAD["empty"],
+        BOOKING_PAYLOAD["startTime"],
+        BOOKING_PAYLOAD["endTime"],
+        username
+    )
+
+    response = book_appointment(booking_payload)
+
+    response_json = response.json()
+
+    assert response_json["success"] == False
+    assert response_json["message"] == MESSAGES["empty_field"]
+    assert response.status_code == 400, (
+        f"Expected status code 400 for empty date, but got {response.status_code}"
+    )
+    setup_booking["booking_payload"].append(booking_payload)
+
+def test_book_appointment_with_empty_startTime(setup_booking):
+    username = setup_booking["username"]
+
+    booking_payload = create_booking_payload(
+        BOOKING_PAYLOAD["date"],
+        BOOKING_PAYLOAD["empty"],
+        BOOKING_PAYLOAD["endTime"],
+        username
+    )
+
+    response = book_appointment(booking_payload)
+
+    response_json = response.json()
+
+    assert response_json["success"] == False
+    assert response_json["message"] == MESSAGES["empty_field"]
+    assert response.status_code == 400, (
+        f"Expected status code 400 for empty startTime, but got {response.status_code}"
+    )
+    setup_booking["booking_payload"].append(booking_payload)
+
+def test_book_appointment_with_empty_endTime(setup_booking):
+    username = setup_booking["username"]
+
+    booking_payload = create_booking_payload(
+        BOOKING_PAYLOAD["date"],
+        BOOKING_PAYLOAD["startTime"],
+        BOOKING_PAYLOAD["empty"],
+        username
+    )
+
+    response = book_appointment(booking_payload)
+
+    response_json = response.json()
+
+    assert response_json["success"] == False
+    assert response_json["message"] == MESSAGES["empty_field"]
+    assert response.status_code == 400, (
+        f"Expected status code 400 for empty endTime, but got {response.status_code}"
+    )
+    
+
+def test_book_appointment_with_empty_username(setup_booking):
+    booking_payload = create_booking_payload(
+        BOOKING_PAYLOAD["date"],
+        BOOKING_PAYLOAD["startTime"],
+        BOOKING_PAYLOAD["endTime"],
+        ""
+    )
+    setup_booking["booking_payload"].append(booking_payload)
+    response = book_appointment(booking_payload)
+
+    response_json = response.json()
+
+    assert response_json["message"] == MESSAGES["empty_field"]
+    assert response_json["success"] == False
+    assert response.status_code == 400, (
+        f"Expected status code 400 for empty username, but got {response.status_code}"
+    )
+
