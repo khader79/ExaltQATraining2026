@@ -18,9 +18,11 @@ export default class StagesPage {
   async isStagesVisible() {
     return await this.stages.isVisible();
   }
-  async getStages() {
-    return await this.stages;
+
+  getStages() {
+    return this.stages;
   }
+
   async getStageCount() {
     return await this.stage.count();
   }
@@ -28,22 +30,56 @@ export default class StagesPage {
   async getStageText(index) {
     return await this.stage.nth(index).textContent();
   }
+
+  getRejectionContainer() {
+    return this.rejectionContainer;
+  }
+
+  getRejectionInput(index = 0) {
+    return this.rejectionInput.nth(index);
+  }
+
+  getRejectionSubmit(index = 0) {
+    return this.rejectionSubmit.nth(index);
+  }
+
+  async clickRejectionSubmit(index = 0) {
+    await this.rejectionSubmit.nth(index).click();
+  }
+
+  getDoneButton(index = 0) {
+    return this.doneButton.nth(index);
+  }
+
+  getPendingButton(index = 0) {
+    return this.pendingButton.nth(index);
+  }
+
+  getRejectedButton(index = 0) {
+    return this.rejectedButton.nth(index);
+  }
+
   async clickDoneButton() {
     await this.doneButton.click();
   }
+
   async clickPendingButton() {
     await this.pendingButton.click();
   }
+
   async clickRejectedButton() {
     await this.rejectedButton.click();
   }
-  async getDoneButton(index = 0) {
-    return await this.doneButton.nth(index);
+
+  async clickDoneButtonByIndex(index) {
+    await this.doneButton.nth(index).click();
   }
-  async getPendingButton(index = 0) {
-    return await this.pendingButton.nth(index);
+
+  async clickPendingButtonByIndex(index) {
+    await this.pendingButton.nth(index).click();
   }
-  async getRejectedButton(index = 0) {
-    return await this.rejectedButton.nth(index);
+
+  async clickRejectedButtonByIndex(index) {
+    await this.rejectedButton.nth(index).click();
   }
 }

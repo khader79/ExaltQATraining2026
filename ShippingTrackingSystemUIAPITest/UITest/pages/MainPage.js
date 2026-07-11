@@ -1,6 +1,6 @@
 import { BASE_URL } from "../config/constants.js";
-
 import { Message_LOCATERS } from "../config/locaters.js";
+
 export default class MainPage {
   constructor(page) {
     this.page = page;
@@ -16,7 +16,15 @@ export default class MainPage {
   }
 
   async isMessageVisible() {
-    return await this.message.isVisible();
+    return await this.successMessage.isVisible();
+  }
+
+  getSuccessMessageLocator() {
+    return this.successMessage;
+  }
+
+  getErrorMessageLocator() {
+    return this.errorMessage;
   }
 
   async getSuccessMessageText() {

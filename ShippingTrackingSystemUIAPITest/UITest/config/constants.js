@@ -1,8 +1,8 @@
 export const BASE_URL = "http://localhost:3000";
 
 export const VALID_TRACKING_Data = {
-  TrackingId: "0",
-  Password: "0",
+  TrackingId: "2",
+  Password: "2",
 };
 
 export const INVALID_TRACKING_Data = {
@@ -14,6 +14,10 @@ export const INVALID_TRACKING_Data = {
 export const MESSAGES = {
   LOAD_STAGES_SUCCESS: "Shipment stages loaded successfully!",
   ID_PASSWORD_ERROR: "Invalid Tracking ID or Password",
+  REJECTION_SUCCESS: (number) => `Stage ${number + 1} marked as rejected`,
+  REJECTION_ERROR: "Please provide a reason for rejection",
+  PENDING_SUCCESS: (number) => `Stage ${number + 1} marked as pending`,
+  DONE_SUCCESS: (number) => `Stage ${number + 1} marked as done`,
 };
 
 export const SHIPPING_STAGES = {
@@ -23,4 +27,9 @@ export const SHIPPING_STAGES = {
   STAGE_4: "Stage 4: Order Clearance Completed",
   STAGE_5: "Stage 5: Order in Delivery Stage",
   STAGE_6: "Stage 6: Order Delivered",
+};
+
+export const REJECTION_CAUSES = {
+  CAUSE_1: "Test Rejection Reason",
+  CAUSE_2: "Incorrect Item",
 };
