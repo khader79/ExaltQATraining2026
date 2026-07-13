@@ -100,7 +100,9 @@ class TestUpdateShipment:
         response = update_shipment(payload)
         assert_update_bad_request(response)
 
-    def test_update_fails_rejected_stage_requires_rejection_reason(self, setup_shipment):
+    def test_update_fails_rejected_stage_requires_rejection_reason(
+        self, setup_shipment
+    ):
         payload = create_update_payload(
             tracking_id=setup_shipment["trackingId"],
             stage_index=UPDATE_SHIPMENT_DATA["VALID_STAGE_INDEX"],
@@ -110,7 +112,9 @@ class TestUpdateShipment:
         response = update_shipment(payload)
         assert_update_bad_request(response)
 
-    def test_update_stage_2_cannot_be_updated_before_stage_1_completed(self, setup_shipment):
+    def test_update_stage_2_cannot_be_updated_before_stage_1_completed(
+        self, setup_shipment
+    ):
         payload = create_update_payload(
             tracking_id=setup_shipment["trackingId"],
             stage_index=1,
@@ -119,7 +123,9 @@ class TestUpdateShipment:
         response = update_shipment(payload)
         assert_update_bad_request(response)
 
-    def test_update_stage_2_can_be_updated_after_stage_1_completed(self, setup_shipment):
+    def test_update_stage_2_can_be_updated_after_stage_1_completed(
+        self, setup_shipment
+    ):
         stage_1_payload = create_update_payload(
             tracking_id=setup_shipment["trackingId"],
             stage_index=0,
