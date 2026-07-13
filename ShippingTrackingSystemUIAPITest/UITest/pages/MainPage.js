@@ -1,22 +1,14 @@
-import { BASE_URL } from "../config/constants.js";
-import { Message_LOCATERS } from "../config/locaters.js";
+import { MESSAGE_LOCATERS } from "./locaters.js";
 
 export default class MainPage {
   constructor(page) {
     this.page = page;
-    this.url = BASE_URL;
-    this.successMessage = this.page.locator(
-      Message_LOCATERS["message success"],
-    );
-    this.errorMessage = this.page.locator(Message_LOCATERS["message error"]);
+    this.successMessage = this.page.locator(MESSAGE_LOCATERS.SUCCESS);
+    this.errorMessage = this.page.locator(MESSAGE_LOCATERS.ERROR);
   }
 
   async navigate() {
-    await this.page.goto(this.url);
-  }
-
-  async isMessageVisible() {
-    return await this.successMessage.isVisible();
+    await this.page.goto("/");
   }
 
   getSuccessMessageLocator() {
@@ -33,5 +25,15 @@ export default class MainPage {
 
   async getErrorMessageText() {
     return await this.errorMessage.textContent();
+  }
+
+  async verifySuccessMessage(expectedText) {
+    const { expect } = await import("@playwright/test");
+    await expect(this.successMessage).toContainText(expectedText);
+  }
+
+  async verifyErrorMessage(expectedText) {
+    const { expect } = await import("@playwright/test");
+    await expect(this.errorMessage).toContainText(expectedText);
   }
 }
