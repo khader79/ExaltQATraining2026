@@ -4,8 +4,8 @@ VALID_SHIPMENT_DATA = {
 }
 
 INVALID_SHIPMENT_DATA = {
-    "trackingId": "999",
-    "password": "999",
+    "trackingId": "9999",
+    "password": "9999",
     "empty": "",
 }
 
