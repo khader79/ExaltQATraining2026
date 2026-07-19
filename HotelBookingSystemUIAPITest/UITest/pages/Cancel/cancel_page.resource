@@ -12,3 +12,7 @@ Click Cancel Booking Button
 Cancel Last Booking
     Wait Until Element Is Visible    ${CANCEL_BOOKING_ID_INPUT}    timeout=${DEFAULT_TIMEOUT}
     Click Cancel Booking Button
+
+Cancel Booking If Exists
+    ${cancel_id}=    Get Element Attribute    ${CANCEL_BOOKING_ID_INPUT}    value
+    Run Keyword If    '${cancel_id}' != ''    Click Cancel Booking Button

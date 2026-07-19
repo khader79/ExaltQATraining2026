@@ -24,7 +24,7 @@ ${sort_rating}           Rating
 ${non_existent_city}     UnknownCity
 
 # TC-11: Valid Booking
-${booking_hotel_id}      HTL-102
+${booking_hotel_id}      HTL-101
 ${booking_customer}      Test
 ${booking_people}        1
 ${booking_beds}          1

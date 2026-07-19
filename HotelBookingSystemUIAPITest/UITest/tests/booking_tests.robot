@@ -3,9 +3,24 @@ Documentation    Booking Management Tests
 Resource         ../pages/Booking/booking_page.resource
 Resource         ../pages/Cancel/cancel_page.resource
 Resource         ../config/TestData.resource
+Library          ../utils/api_helper.py
 Suite Setup      Open Hotel Application
 Suite Teardown   Close Hotel Application
 Test Teardown    Clear Booking Form
+
+*** Keywords ***
+Fill All Remaining Rooms
+    ${filled}=    Fill All Rooms    ${booking_hotel_id}    ${booking_check_in}    ${booking_check_out}
+    Log    Filled ${filled} additional rooms via API
+
+Cancel All Test Bookings
+    ${cancelled}=    Cancel All Bookings
+    Log    Cancelled ${cancelled} bookings via API
+
+Cleanup After TC21
+    Cancel All Test Bookings
+    Clear Element Text    ${CANCEL_BOOKING_ID_INPUT}
+    Clear Booking Form
 
 *** Test Cases ***
 
@@ -83,6 +98,18 @@ TC-20 Booking Blocked With Past Check-in Date
 TC-21 Booking Blocked When No Rooms Available
     [Documentation]    Booking is blocked when no rooms are available for selected dates.
     [Tags]    booking    create    negative
+    [Setup]    Fill All Remaining Rooms
     Fill Valid Booking    ${booking_hotel_id}    ${booking_customer}    ${booking_people}    ${booking_beds}    ${booking_twin_beds}    ${conflict_check_in}    ${conflict_check_out}
     Submit Booking
     Verify Booking Error    ${BOOKING_NO_ROOMS}
+    [Teardown]    Cleanup After TC21
+
+TC-22 Booking Blocked With Invalid People Text
+    [Documentation]    The People field rejects non-numeric text input.
+    [Tags]    booking    create    negative
+    Fill Valid Booking    ${booking_hotel_id}    ${booking_customer}    ${booking_people}    ${booking_beds}    ${booking_twin_beds}    ${booking_check_in}    ${booking_check_out}
+    Clear People
+    Input Text    ${BOOKING_PEOPLE_INPUT}    abc
+    ${value}=    Get Element Attribute    ${BOOKING_PEOPLE_INPUT}    value
+    Should Not Be Equal    ${value}    abc    msg=People field should not accept non-numeric text
+    Submit Booking
