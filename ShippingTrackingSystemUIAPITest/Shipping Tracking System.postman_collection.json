@@ -1,0 +1,76 @@
+{
+  "info": {
+    "_postman_id": "f65df71d-1354-4a01-8ec9-5eb74b9cbae7",
+    "name": "Shipping Tracking System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "37873077"
+  },
+  "item": [
+    {
+      "name": "Track",
+      "item": [
+        {
+          "name": "track",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "/* {\r\n    \"password\": \"1\",\r\n    \"trackingId\": \"1\"\r\n} */\r\n\r\n/* {\r\n    \"password\": \"1\",\r\n    \"trackingId\": \"132\"\r\n} */\r\n\r\n/* {\r\n    \"password\": \"132\",\r\n    \"trackingId\": \"1\"\r\n} */\r\n/* {\r\n    \"password\": \"1\",\r\n    \"trackingId\": \"\"\r\n} */\r\n/* {\r\n    \"password\": \"\",\r\n    \"trackingId\": \"1\"\r\n} */\r\n/* {\r\n    \"password\": \"1\"\r\n} */\r\n{\r\n    \"trackingId\": \"1\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/track",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "track"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Update",
+      "item": [
+        {
+          "name": "update",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "/* {\r\n    \"cause\": \"\",\r\n    \"stageIndex\": 1,\r\n    \"status\": \"done\",\r\n    \"trackingId\": \"1\"\r\n} */\r\n/* {\r\n    \"cause\": \"test\",\r\n    \"stageIndex\": 3,\r\n    \"status\": \"done\",\r\n    \"trackingId\": \"1\"\r\n} */\r\n/* {\r\n    \"cause\": \"\",\r\n    \"stageIndex\": 2,\r\n    \"status\": \"pending\",\r\n    \"trackingId\": \"1\"\r\n}  */\r\n/* {\r\n    \"cause\": \"test\",\r\n    \"stageIndex\": 2,\r\n    \"status\": \"rejected\",\r\n    \"trackingId\": \"1\"\r\n}  */\r\n/* {\r\n    \"cause\": \"\",\r\n    \"stageIndex\": 1,\r\n    \"status\": \"done\",\r\n    \"trackingId\": \"9999\"\r\n}  */\r\n/* {\r\n    \"cause\": \"\",\r\n    \"stageIndex\": 1,\r\n    \"status\": \"done\",\r\n    \"trackingId\": \"\"\r\n}  */\r\n/* {\r\n    \"cause\": \"\",\r\n    \"stageIndex\": 1,\r\n    \"status\": \"done\"\r\n}  */\r\n/* {\r\n    \"cause\": \"\",\r\n    \"stageIndex\": 6,\r\n    \"status\": \"done\",\r\n    \"trackingId\": \"1\"\r\n} */\r\n/* {\r\n    \"cause\": \"\",\r\n    \"status\": \"done\",\r\n    \"trackingId\": \"1\"\r\n} */\r\n/* {\r\n    \"cause\": \"\",\r\n    \"stageIndex\": 1,\r\n    \"status\": \"inprogress\",\r\n    \"trackingId\": \"2\"\r\n} */\r\n/* {\r\n    \"cause\": \"\",\r\n    \"stageIndex\": 1,\r\n    \"trackingId\": \"2\"\r\n} */\r\n/* {\r\n    \"cause\": \"\",\r\n    \"stageIndex\": 2,\r\n    \"status\": \"rejected\",\r\n    \"trackingId\": \"1\"\r\n} */\r\n{\r\n    \"cause\": \"\",\r\n    \"stageIndex\": 1,\r\n    \"status\": \"done\",\r\n    \"trackingId\": \"5\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/update",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "update"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

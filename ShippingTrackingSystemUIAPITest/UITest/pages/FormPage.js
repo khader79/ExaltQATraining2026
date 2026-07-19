@@ -1,8 +1,13 @@
-import { CONTAINER_LOCATERS, FORM_LOCATERS } from "../config/locaters.js";
+import MainPage from "./MainPage.js";
+import { CONTAINER_LOCATERS, FORM_LOCATERS } from "./locaters.js";
+import {
+  VALID_TRACKING_Data,
+  INVALID_TRACKING_Data,
+} from "../config/testData.js";
 
-export default class FormPage {
+export default class FormPage extends MainPage {
   constructor(page) {
-    this.page = page;
+    super(page);
     this.container = this.page.locator(CONTAINER_LOCATERS.CONTAINER);
     this.form = this.page.locator(FORM_LOCATERS.FORM);
     this.trackingIdInput = this.page.locator(FORM_LOCATERS.TRACKING_ID_INPUT);
@@ -41,13 +46,53 @@ export default class FormPage {
   async getSubmitButtonText() {
     return await this.submitButton.textContent();
   }
+
   async getContainerText() {
     return await this.container.textContent();
   }
 
-  async fill_the_form(trackingId, password) {
+  async fillTheForm(trackingId, password) {
     await this.enterTrackingId(trackingId);
     await this.enterPassword(password);
     await this.submitForm();
+  }
+
+  async trackWithValidCredentials() {
+    await this.fillTheForm(
+      VALID_TRACKING_Data.TrackingId,
+      VALID_TRACKING_Data.Password,
+    );
+  }
+
+  async trackWithInvalidId() {
+    await this.fillTheForm(
+      INVALID_TRACKING_Data.TrackingId,
+      VALID_TRACKING_Data.Password,
+    );
+  }
+
+  async trackWithInvalidPassword() {
+    await this.fillTheForm(
+      VALID_TRACKING_Data.TrackingId,
+      INVALID_TRACKING_Data.Password,
+    );
+  }
+
+  async trackWithEmptyId() {
+    await this.fillTheForm(
+      INVALID_TRACKING_Data.empty,
+      VALID_TRACKING_Data.Password,
+    );
+  }
+
+  async trackWithEmptyPassword() {
+    await this.fillTheForm(
+      VALID_TRACKING_Data.TrackingId,
+      INVALID_TRACKING_Data.empty,
+    );
+  }
+
+  async trackWithCredentials(trackingId, password) {
+    await this.fillTheForm(trackingId, password);
   }
 }

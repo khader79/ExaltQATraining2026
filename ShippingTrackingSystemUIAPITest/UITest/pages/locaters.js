@@ -1,6 +1,7 @@
 export const CONTAINER_LOCATERS = {
   CONTAINER: ".container",
 };
+
 export const FORM_LOCATERS = {
   FORM: ".form",
   TRACKING_ID_INPUT: "#trackingId",
@@ -21,7 +22,7 @@ export const STAGES_LOCATERS = {
   REJECTION_SUBMIT: ".rejection-cause button",
 };
 
-export const Message_LOCATERS = {
-  "message error": ".message.error",
-  "message success": ".message.success",
+export const MESSAGE_LOCATERS = {
+  ERROR: ".message.error",
+  SUCCESS: ".message.success",
 };

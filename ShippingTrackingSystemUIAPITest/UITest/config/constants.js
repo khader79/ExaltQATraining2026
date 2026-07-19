@@ -1,35 +1,7 @@
-export const BASE_URL = "http://localhost:3000";
-
-export const VALID_TRACKING_Data = {
-  TrackingId: "2",
-  Password: "2",
-};
-
-export const INVALID_TRACKING_Data = {
-  TrackingId: "12",
-  Password: "12345678",
-  empty: "",
-};
-
-export const MESSAGES = {
-  LOAD_STAGES_SUCCESS: "Shipment stages loaded successfully!",
-  ID_PASSWORD_ERROR: "Invalid Tracking ID or Password",
-  REJECTION_SUCCESS: (number) => `Stage ${number + 1} marked as rejected`,
-  REJECTION_ERROR: "Please provide a reason for rejection",
-  PENDING_SUCCESS: (number) => `Stage ${number + 1} marked as pending`,
-  DONE_SUCCESS: (number) => `Stage ${number + 1} marked as done`,
-};
-
-export const SHIPPING_STAGES = {
-  STAGE_1: "Stage 1: Order Received",
-  STAGE_2: "Stage 2: Order Shipped",
-  STAGE_3: "Stage 3: Order Received to Destination Country",
-  STAGE_4: "Stage 4: Order Clearance Completed",
-  STAGE_5: "Stage 5: Order in Delivery Stage",
-  STAGE_6: "Stage 6: Order Delivered",
-};
-
-export const REJECTION_CAUSES = {
-  CAUSE_1: "Test Rejection Reason",
-  CAUSE_2: "Incorrect Item",
-};
+export { MESSAGES } from "./messages.js";
+export {
+  VALID_TRACKING_Data,
+  INVALID_TRACKING_Data,
+  REJECTION_CAUSES,
+} from "./testData.js";
+export { SHIPPING_STAGES, SHIPPING_STAGES_LIST } from "./stages.js";

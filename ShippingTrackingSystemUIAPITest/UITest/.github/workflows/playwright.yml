@@ -15,13 +15,26 @@ jobs:
         node-version: lts/*
     - name: Install dependencies
       run: npm ci
+      working-directory: UITest
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+      working-directory: UITest
     - name: Run Playwright tests
       run: npx playwright test
-    - uses: actions/upload-artifact@v4
-      if: ${{ !cancelled() }}
+      working-directory: UITest
+      env:
+        BASE_URL: http://localhost:3000
+    - name: Upload HTML Report
+      uses: actions/upload-artifact@v4
+      if: always()
       with:
         name: playwright-report
-        path: playwright-report/
+        path: UITest/playwright-report/
+        retention-days: 30
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results
+        path: UITest/test-results/
         retention-days: 30
