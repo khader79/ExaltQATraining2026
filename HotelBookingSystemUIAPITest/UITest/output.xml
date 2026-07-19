@@ -1,0 +1,1910 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.11.9 on win32)" generated="2026-07-19T13:56:40.414218" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\Users\khade\Downloads\ExaltQATraining2026\HotelBookingSystemUIAPITest\UITest\tests">
+<suite id="s1-s1" name="Booking Tests" source="C:\Users\khade\Downloads\ExaltQATraining2026\HotelBookingSystemUIAPITest\UITest\tests\booking_tests.robot">
+<kw name="Open Hotel Application" owner="base_page" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:40.836879" level="INFO">Opening browser 'chrome' to base url 'http://localhost:3000'.</msg>
+<arg>${BASE_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-07-19T13:56:40.836879" elapsed="1.662816"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-07-19T13:56:42.499695" elapsed="0.053799"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:40.835348" elapsed="1.720781"/>
+</kw>
+<test id="s1-s1-t1" name="TC-11 Create Valid Booking" line="12">
+<kw name="Fill Valid Booking" owner="booking_page">
+<kw name="Fill Hotel ID" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:42.568928" level="INFO">Typing text 'HTL-102' into text field 'id=bookingHotelId'.</msg>
+<arg>${BOOKING_HOTEL_ID_INPUT}</arg>
+<arg>${hotel_id}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:42.567398" elapsed="0.239297"/>
+</kw>
+<arg>${hotel_id}</arg>
+<status status="PASS" start="2026-07-19T13:56:42.564075" elapsed="0.242620"/>
+</kw>
+<kw name="Fill Customer Name" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:42.809533" level="INFO">Typing text 'Test' into text field 'id=customerName'.</msg>
+<arg>${BOOKING_CUSTOMER_INPUT}</arg>
+<arg>${name}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:42.808757" elapsed="0.166639"/>
+</kw>
+<arg>${customer}</arg>
+<status status="PASS" start="2026-07-19T13:56:42.808212" elapsed="0.168233"/>
+</kw>
+<kw name="Fill People" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:42.979533" level="INFO">Typing text '1' into text field 'id=people'.</msg>
+<arg>${BOOKING_PEOPLE_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:42.979533" elapsed="0.110565"/>
+</kw>
+<arg>${people}</arg>
+<status status="PASS" start="2026-07-19T13:56:42.978000" elapsed="0.113108"/>
+</kw>
+<kw name="Fill Beds" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:43.093433" level="INFO">Typing text '1' into text field 'id=beds'.</msg>
+<arg>${BOOKING_BEDS_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:43.092522" elapsed="0.099511"/>
+</kw>
+<arg>${beds}</arg>
+<status status="PASS" start="2026-07-19T13:56:43.091503" elapsed="0.100530"/>
+</kw>
+<kw name="Fill Twin Beds" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:43.193947" level="INFO">Typing text '0' into text field 'id=twinBeds'.</msg>
+<arg>${BOOKING_TWIN_BEDS_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:43.193554" elapsed="0.100927"/>
+</kw>
+<arg>${twin_beds}</arg>
+<status status="PASS" start="2026-07-19T13:56:43.192033" elapsed="0.103638"/>
+</kw>
+<kw name="Fill Check In Date" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:43.300056" level="INFO">Typing text '19072026' into text field 'id=checkInDate'.</msg>
+<arg>${BOOKING_CHECK_IN_INPUT}</arg>
+<arg>${date}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:43.298202" elapsed="0.124493"/>
+</kw>
+<arg>${check_in}</arg>
+<status status="PASS" start="2026-07-19T13:56:43.297195" elapsed="0.125500"/>
+</kw>
+<kw name="Fill Check Out Date" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:43.424231" level="INFO">Typing text '20072026' into text field 'id=checkOutDate'.</msg>
+<arg>${BOOKING_CHECK_OUT_INPUT}</arg>
+<arg>${date}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:43.424231" elapsed="0.144488"/>
+</kw>
+<arg>${check_out}</arg>
+<status status="PASS" start="2026-07-19T13:56:43.422695" elapsed="0.147599"/>
+</kw>
+<arg>${booking_hotel_id}</arg>
+<arg>${booking_customer}</arg>
+<arg>${booking_people}</arg>
+<arg>${booking_beds}</arg>
+<arg>${booking_twin_beds}</arg>
+<arg>${booking_check_in}</arg>
+<arg>${booking_check_out}</arg>
+<status status="PASS" start="2026-07-19T13:56:42.560423" elapsed="1.010425"/>
+</kw>
+<kw name="Submit Booking" owner="booking_page">
+<kw name="Click Book Room Button" owner="booking_page">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:43.584218" level="INFO">Clicking button 'xpath=//button[contains(text(), 'Book Room')]'.</msg>
+<arg>${BOOKING_SUBMIT_BTN}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:43.581885" elapsed="0.145013"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-07-19T13:56:44.728942" level="INFO">Slept 1 second.</msg>
+<arg>${SLEEP_DURATION}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-07-19T13:56:43.726898" elapsed="1.002044"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:43.580846" elapsed="1.148096"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:43.578062" elapsed="1.150880"/>
+</kw>
+<kw name="Verify Booking Success" owner="booking_page">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${BOOKING_OUTPUT}</arg>
+<arg>timeout=${DEFAULT_TIMEOUT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-07-19T13:56:44.730479" elapsed="0.018221"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:44.817122" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-31.png"&gt;&lt;img src="selenium-screenshot-31.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2026-07-19T13:56:44.818658" level="FAIL">Element 'id=bookingOutput' should have contained text 'Booking created' but its text was '{
+  "success": true,
+  "booking": {
+    "id": "BKG-421445",
+    "hotelId": "HTL-102",
+    "customerName": "Test",
+    "people": 1,
+    "beds": 1,
+    "twinBeds": 0,
+    "checkInDate": "2026-07-19",
+    "checkOutDate": "2026-07-20",
+    "bookingDate": "2026-07-19T10:56:43.724Z",
+    "status": "confirmed",
+    "amount": 290
+  }
+}'.</msg>
+<arg>${BOOKING_OUTPUT}</arg>
+<arg>${BOOKING_SUCCESS_TEXT}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="FAIL" start="2026-07-19T13:56:44.748700" elapsed="0.071482">Element 'id=bookingOutput' should have contained text 'Booking created' but its text was '{
+  "success": true,
+  "booking": {
+    "id": "BKG-421445",
+    "hotelId": "HTL-102",
+    "customerName": "Test",
+    "people": 1,
+    "beds": 1,
+    "twinBeds": 0,
+    "checkInDate": "2026-07-19",
+    "checkOutDate": "2026-07-20",
+    "bookingDate": "2026-07-19T10:56:43.724Z",
+    "status": "confirmed",
+    "amount": 290
+  }
+}'.</status>
+</kw>
+<status status="FAIL" start="2026-07-19T13:56:44.728942" elapsed="0.091770">Element 'id=bookingOutput' should have contained text 'Booking created' but its text was '{
+  "success": true,
+  "booking": {
+    "id": "BKG-421445",
+    "hotelId": "HTL-102",
+    "customerName": "Test",
+    "people": 1,
+    "beds": 1,
+    "twinBeds": 0,
+    "checkInDate": "2026-07-19",
+    "checkOutDate": "2026-07-20",
+    "bookingDate": "2026-07-19T10:56:43.724Z",
+    "status": "confirmed",
+    "amount": 290
+  }
+}'.</status>
+</kw>
+<kw name="Cancel Last Booking" owner="cancel_page">
+<status status="NOT RUN" start="2026-07-19T13:56:44.820712" elapsed="0.000000"/>
+</kw>
+<kw name="Clear Booking Form" owner="booking_page" type="TEARDOWN">
+<kw name="Clear Hotel ID" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_HOTEL_ID_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:44.821355" elapsed="0.024692"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:44.821355" elapsed="0.024692"/>
+</kw>
+<kw name="Clear Customer Name" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_CUSTOMER_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:44.847566" elapsed="0.028335"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:44.846047" elapsed="0.029854"/>
+</kw>
+<kw name="Clear People" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_PEOPLE_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:44.875901" elapsed="0.039121"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:44.875901" elapsed="0.039121"/>
+</kw>
+<kw name="Clear Beds" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_BEDS_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:44.915022" elapsed="0.022138"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:44.915022" elapsed="0.022138"/>
+</kw>
+<kw name="Clear Twin Beds" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_TWIN_BEDS_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:44.937160" elapsed="0.024708"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:44.937160" elapsed="0.025218"/>
+</kw>
+<kw name="Clear Check In Date" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_CHECK_IN_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:44.963910" elapsed="0.021690"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:44.962378" elapsed="0.023222"/>
+</kw>
+<kw name="Clear Check Out Date" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_CHECK_OUT_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:44.985600" elapsed="0.019918"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:44.985600" elapsed="0.019918"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:44.820712" elapsed="0.184806"/>
+</kw>
+<doc>Booking completes when all required fields are correct.</doc>
+<tag>booking</tag>
+<tag>create</tag>
+<tag>positive</tag>
+<status status="FAIL" start="2026-07-19T13:56:42.556652" elapsed="2.448866">Element 'id=bookingOutput' should have contained text 'Booking created' but its text was '{
+  "success": true,
+  "booking": {
+    "id": "BKG-421445",
+    "hotelId": "HTL-102",
+    "customerName": "Test",
+    "people": 1,
+    "beds": 1,
+    "twinBeds": 0,
+    "checkInDate": "2026-07-19",
+    "checkOutDate": "2026-07-20",
+    "bookingDate": "2026-07-19T10:56:43.724Z",
+    "status": "confirmed",
+    "amount": 290
+  }
+}'.</status>
+</test>
+<test id="s1-s1-t2" name="TC-12 Booking Blocked With Reversed Dates" line="20">
+<kw name="Fill Valid Booking" owner="booking_page">
+<kw name="Fill Hotel ID" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:45.008317" level="INFO">Typing text 'HTL-102' into text field 'id=bookingHotelId'.</msg>
+<arg>${BOOKING_HOTEL_ID_INPUT}</arg>
+<arg>${hotel_id}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:45.008317" elapsed="0.063943"/>
+</kw>
+<arg>${hotel_id}</arg>
+<status status="PASS" start="2026-07-19T13:56:45.008317" elapsed="0.063943"/>
+</kw>
+<kw name="Fill Customer Name" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:45.073780" level="INFO">Typing text 'Test' into text field 'id=customerName'.</msg>
+<arg>${BOOKING_CUSTOMER_INPUT}</arg>
+<arg>${name}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:45.073780" elapsed="0.072590"/>
+</kw>
+<arg>${customer}</arg>
+<status status="PASS" start="2026-07-19T13:56:45.072260" elapsed="0.074110"/>
+</kw>
+<kw name="Fill People" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:45.148645" level="INFO">Typing text '1' into text field 'id=people'.</msg>
+<arg>${BOOKING_PEOPLE_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:45.148092" elapsed="0.074172"/>
+</kw>
+<arg>${people}</arg>
+<status status="PASS" start="2026-07-19T13:56:45.148092" elapsed="0.074172"/>
+</kw>
+<kw name="Fill Beds" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:45.223822" level="INFO">Typing text '1' into text field 'id=beds'.</msg>
+<arg>${BOOKING_BEDS_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:45.223822" elapsed="0.095318"/>
+</kw>
+<arg>${beds}</arg>
+<status status="PASS" start="2026-07-19T13:56:45.222264" elapsed="0.096876"/>
+</kw>
+<kw name="Fill Twin Beds" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:45.319140" level="INFO">Typing text '0' into text field 'id=twinBeds'.</msg>
+<arg>${BOOKING_TWIN_BEDS_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:45.319140" elapsed="0.085940"/>
+</kw>
+<arg>${twin_beds}</arg>
+<status status="PASS" start="2026-07-19T13:56:45.319140" elapsed="0.085940"/>
+</kw>
+<kw name="Fill Check In Date" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:45.406576" level="INFO">Typing text '20072026' into text field 'id=checkInDate'.</msg>
+<arg>${BOOKING_CHECK_IN_INPUT}</arg>
+<arg>${date}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:45.405565" elapsed="0.088469"/>
+</kw>
+<arg>${check_in}</arg>
+<status status="PASS" start="2026-07-19T13:56:45.405565" elapsed="0.088469"/>
+</kw>
+<kw name="Fill Check Out Date" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:45.495882" level="INFO">Typing text '19072026' into text field 'id=checkOutDate'.</msg>
+<arg>${BOOKING_CHECK_OUT_INPUT}</arg>
+<arg>${date}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:45.495571" elapsed="0.062120"/>
+</kw>
+<arg>${check_out}</arg>
+<status status="PASS" start="2026-07-19T13:56:45.494034" elapsed="0.064281"/>
+</kw>
+<arg>${booking_hotel_id}</arg>
+<arg>${booking_customer}</arg>
+<arg>${booking_people}</arg>
+<arg>${booking_beds}</arg>
+<arg>${booking_twin_beds}</arg>
+<arg>${reversed_check_in}</arg>
+<arg>${reversed_check_out}</arg>
+<status status="PASS" start="2026-07-19T13:56:45.006808" elapsed="0.552039"/>
+</kw>
+<kw name="Submit Booking" owner="booking_page">
+<kw name="Click Book Room Button" owner="booking_page">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:45.560019" level="INFO">Clicking button 'xpath=//button[contains(text(), 'Book Room')]'.</msg>
+<arg>${BOOKING_SUBMIT_BTN}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:45.560019" elapsed="0.079672"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-07-19T13:56:46.640897" level="INFO">Slept 1 second.</msg>
+<arg>${SLEEP_DURATION}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-07-19T13:56:45.640197" elapsed="1.000700"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:45.558847" elapsed="1.082050"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:45.558847" elapsed="1.082050"/>
+</kw>
+<kw name="Verify Booking Error" owner="booking_page">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${BOOKING_OUTPUT}</arg>
+<arg>timeout=${DEFAULT_TIMEOUT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-07-19T13:56:46.640897" elapsed="0.018697"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:46.672522" level="INFO">Element 'id=bookingOutput' contains text 'Invalid date range'.</msg>
+<arg>${BOOKING_OUTPUT}</arg>
+<arg>${expected_error}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2026-07-19T13:56:46.659594" elapsed="0.012928"/>
+</kw>
+<arg>${BOOKING_INVALID_DATES}</arg>
+<status status="PASS" start="2026-07-19T13:56:46.640897" elapsed="0.031625"/>
+</kw>
+<kw name="Clear Booking Form" owner="booking_page" type="TEARDOWN">
+<kw name="Clear Hotel ID" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_HOTEL_ID_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:46.674077" elapsed="0.027408"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:46.674077" elapsed="0.027408"/>
+</kw>
+<kw name="Clear Customer Name" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_CUSTOMER_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:46.701994" elapsed="0.027346"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:46.701485" elapsed="0.028792"/>
+</kw>
+<kw name="Clear People" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_PEOPLE_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:46.730783" elapsed="0.041529"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:46.730277" elapsed="0.042035"/>
+</kw>
+<kw name="Clear Beds" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_BEDS_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:46.773834" elapsed="0.023044"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:46.773834" elapsed="0.023044"/>
+</kw>
+<kw name="Clear Twin Beds" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_TWIN_BEDS_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:46.797891" elapsed="0.021711"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:46.796878" elapsed="0.022724"/>
+</kw>
+<kw name="Clear Check In Date" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_CHECK_IN_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:46.819602" elapsed="0.021336"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:46.819602" elapsed="0.021336"/>
+</kw>
+<kw name="Clear Check Out Date" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_CHECK_OUT_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:46.842203" elapsed="0.022002"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:46.842203" elapsed="0.022002"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:46.672522" elapsed="0.191683"/>
+</kw>
+<doc>Booking is blocked when check-out is before check-in.</doc>
+<tag>booking</tag>
+<tag>create</tag>
+<tag>negative</tag>
+<status status="PASS" start="2026-07-19T13:56:45.006808" elapsed="1.857397"/>
+</test>
+<test id="s1-s1-t3" name="TC-13 Booking Blocked With Missing Hotel ID" line="27">
+<kw name="Fill All Booking Fields Except" owner="booking_page">
+<kw name="Fill Valid Booking" owner="booking_page">
+<kw name="Fill Hotel ID" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:46.866857" level="INFO">Typing text 'HTL-102' into text field 'id=bookingHotelId'.</msg>
+<arg>${BOOKING_HOTEL_ID_INPUT}</arg>
+<arg>${hotel_id}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:46.866857" elapsed="0.061275"/>
+</kw>
+<arg>${hotel_id}</arg>
+<status status="PASS" start="2026-07-19T13:56:46.865319" elapsed="0.062813"/>
+</kw>
+<kw name="Fill Customer Name" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:46.928132" level="INFO">Typing text 'Test' into text field 'id=customerName'.</msg>
+<arg>${BOOKING_CUSTOMER_INPUT}</arg>
+<arg>${name}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:46.928132" elapsed="0.083617"/>
+</kw>
+<arg>${customer}</arg>
+<status status="PASS" start="2026-07-19T13:56:46.928132" elapsed="0.085194"/>
+</kw>
+<kw name="Fill People" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:47.013326" level="INFO">Typing text '1' into text field 'id=people'.</msg>
+<arg>${BOOKING_PEOPLE_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:47.013326" elapsed="0.054596"/>
+</kw>
+<arg>${people}</arg>
+<status status="PASS" start="2026-07-19T13:56:47.013326" elapsed="0.054596"/>
+</kw>
+<kw name="Fill Beds" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:47.067922" level="INFO">Typing text '1' into text field 'id=beds'.</msg>
+<arg>${BOOKING_BEDS_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:47.067922" elapsed="0.054378"/>
+</kw>
+<arg>${beds}</arg>
+<status status="PASS" start="2026-07-19T13:56:47.067922" elapsed="0.054378"/>
+</kw>
+<kw name="Fill Twin Beds" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:47.123830" level="INFO">Typing text '0' into text field 'id=twinBeds'.</msg>
+<arg>${BOOKING_TWIN_BEDS_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:47.122300" elapsed="0.073246"/>
+</kw>
+<arg>${twin_beds}</arg>
+<status status="PASS" start="2026-07-19T13:56:47.122300" elapsed="0.073246"/>
+</kw>
+<kw name="Fill Check In Date" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:47.196605" level="INFO">Typing text '19072026' into text field 'id=checkInDate'.</msg>
+<arg>${BOOKING_CHECK_IN_INPUT}</arg>
+<arg>${date}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:47.196080" elapsed="0.061517"/>
+</kw>
+<arg>${check_in}</arg>
+<status status="PASS" start="2026-07-19T13:56:47.196080" elapsed="0.061517"/>
+</kw>
+<kw name="Fill Check Out Date" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:47.259133" level="INFO">Typing text '20072026' into text field 'id=checkOutDate'.</msg>
+<arg>${BOOKING_CHECK_OUT_INPUT}</arg>
+<arg>${date}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:47.257597" elapsed="0.084768"/>
+</kw>
+<arg>${check_out}</arg>
+<status status="PASS" start="2026-07-19T13:56:47.257597" elapsed="0.084768"/>
+</kw>
+<arg>${booking_hotel_id}</arg>
+<arg>${booking_customer}</arg>
+<arg>${booking_people}</arg>
+<arg>${booking_beds}</arg>
+<arg>${booking_twin_beds}</arg>
+<arg>${booking_check_in}</arg>
+<arg>${booking_check_out}</arg>
+<status status="PASS" start="2026-07-19T13:56:46.865319" elapsed="0.477046"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Clear Hotel ID" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_HOTEL_ID_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:47.343892" elapsed="0.030235"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:47.343892" elapsed="0.030235"/>
+</kw>
+<arg>"${skip_field}" == "Hotel ID"</arg>
+<arg>Clear Hotel ID</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:47.342365" elapsed="0.031762"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Customer Name"</arg>
+<arg>Clear Customer Name</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:47.374127" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "People"</arg>
+<arg>Clear People</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:47.374127" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Beds"</arg>
+<arg>Clear Beds</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:47.374127" elapsed="0.001544"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Twin Beds"</arg>
+<arg>Clear Twin Beds</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:47.375671" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Check In Date"</arg>
+<arg>Clear Check In Date</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:47.375671" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Check Out Date"</arg>
+<arg>Clear Check Out Date</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:47.375671" elapsed="0.000000"/>
+</kw>
+<arg>Hotel ID</arg>
+<status status="PASS" start="2026-07-19T13:56:46.865319" elapsed="0.510352"/>
+</kw>
+<kw name="Submit Booking" owner="booking_page">
+<kw name="Click Book Room Button" owner="booking_page">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:47.377207" level="INFO">Clicking button 'xpath=//button[contains(text(), 'Book Room')]'.</msg>
+<arg>${BOOKING_SUBMIT_BTN}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:47.377207" elapsed="0.052173"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-07-19T13:56:48.430017" level="INFO">Slept 1 second.</msg>
+<arg>${SLEEP_DURATION}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-07-19T13:56:47.429380" elapsed="1.000637"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:47.377207" elapsed="1.052810"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:47.377207" elapsed="1.052810"/>
+</kw>
+<kw name="Verify Booking Error" owner="booking_page">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${BOOKING_OUTPUT}</arg>
+<arg>timeout=${DEFAULT_TIMEOUT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-07-19T13:56:48.431026" elapsed="0.013681"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:48.459067" level="INFO">Element 'id=bookingOutput' contains text 'Missing required booking fields'.</msg>
+<arg>${BOOKING_OUTPUT}</arg>
+<arg>${expected_error}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2026-07-19T13:56:48.444707" elapsed="0.014360"/>
+</kw>
+<arg>${BOOKING_MISSING_FIELDS}</arg>
+<status status="PASS" start="2026-07-19T13:56:48.430017" elapsed="0.029050"/>
+</kw>
+<kw name="Clear Booking Form" owner="booking_page" type="TEARDOWN">
+<kw name="Clear Hotel ID" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_HOTEL_ID_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:48.460577" elapsed="0.070539"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:48.459067" elapsed="0.072049"/>
+</kw>
+<kw name="Clear Customer Name" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_CUSTOMER_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:48.532163" elapsed="0.042593"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:48.531648" elapsed="0.043108"/>
+</kw>
+<kw name="Clear People" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_PEOPLE_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:48.575765" elapsed="0.036488"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:48.575765" elapsed="0.036488"/>
+</kw>
+<kw name="Clear Beds" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_BEDS_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:48.613765" elapsed="0.061142"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:48.612253" elapsed="0.062654"/>
+</kw>
+<kw name="Clear Twin Beds" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_TWIN_BEDS_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:48.674907" elapsed="0.030378"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:48.674907" elapsed="0.030378"/>
+</kw>
+<kw name="Clear Check In Date" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_CHECK_IN_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:48.706827" elapsed="0.029501"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:48.705285" elapsed="0.031043"/>
+</kw>
+<kw name="Clear Check Out Date" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_CHECK_OUT_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:48.736328" elapsed="0.030132"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:48.736328" elapsed="0.030132"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:48.459067" elapsed="0.307393"/>
+</kw>
+<doc>Booking is blocked when Hotel ID is blank.</doc>
+<tag>booking</tag>
+<tag>create</tag>
+<tag>negative</tag>
+<status status="PASS" start="2026-07-19T13:56:46.865319" elapsed="1.901141"/>
+</test>
+<test id="s1-s1-t4" name="TC-14 Booking Blocked With Missing Customer Name" line="34">
+<kw name="Fill All Booking Fields Except" owner="booking_page">
+<kw name="Fill Valid Booking" owner="booking_page">
+<kw name="Fill Hotel ID" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:48.767899" level="INFO">Typing text 'HTL-102' into text field 'id=bookingHotelId'.</msg>
+<arg>${BOOKING_HOTEL_ID_INPUT}</arg>
+<arg>${hotel_id}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:48.767899" elapsed="0.171497"/>
+</kw>
+<arg>${hotel_id}</arg>
+<status status="PASS" start="2026-07-19T13:56:48.767899" elapsed="0.171497"/>
+</kw>
+<kw name="Fill Customer Name" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:48.942320" level="INFO">Typing text 'Test' into text field 'id=customerName'.</msg>
+<arg>${BOOKING_CUSTOMER_INPUT}</arg>
+<arg>${name}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:48.942320" elapsed="0.131915"/>
+</kw>
+<arg>${customer}</arg>
+<status status="PASS" start="2026-07-19T13:56:48.940918" elapsed="0.133317"/>
+</kw>
+<kw name="Fill People" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:49.076781" level="INFO">Typing text '1' into text field 'id=people'.</msg>
+<arg>${BOOKING_PEOPLE_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:49.076781" elapsed="0.131321"/>
+</kw>
+<arg>${people}</arg>
+<status status="PASS" start="2026-07-19T13:56:49.075762" elapsed="0.133857"/>
+</kw>
+<kw name="Fill Beds" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:49.211977" level="INFO">Typing text '1' into text field 'id=beds'.</msg>
+<arg>${BOOKING_BEDS_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:49.211222" elapsed="0.117804"/>
+</kw>
+<arg>${beds}</arg>
+<status status="PASS" start="2026-07-19T13:56:49.209619" elapsed="0.119915"/>
+</kw>
+<kw name="Fill Twin Beds" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:49.331055" level="INFO">Typing text '0' into text field 'id=twinBeds'.</msg>
+<arg>${BOOKING_TWIN_BEDS_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:49.329534" elapsed="0.115599"/>
+</kw>
+<arg>${twin_beds}</arg>
+<status status="PASS" start="2026-07-19T13:56:49.329534" elapsed="0.115599"/>
+</kw>
+<kw name="Fill Check In Date" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:49.445133" level="INFO">Typing text '19072026' into text field 'id=checkInDate'.</msg>
+<arg>${BOOKING_CHECK_IN_INPUT}</arg>
+<arg>${date}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:49.445133" elapsed="0.102964"/>
+</kw>
+<arg>${check_in}</arg>
+<status status="PASS" start="2026-07-19T13:56:49.445133" elapsed="0.102964"/>
+</kw>
+<kw name="Fill Check Out Date" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:49.549607" level="INFO">Typing text '20072026' into text field 'id=checkOutDate'.</msg>
+<arg>${BOOKING_CHECK_OUT_INPUT}</arg>
+<arg>${date}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:49.549607" elapsed="0.099856"/>
+</kw>
+<arg>${check_out}</arg>
+<status status="PASS" start="2026-07-19T13:56:49.548097" elapsed="0.102002"/>
+</kw>
+<arg>${booking_hotel_id}</arg>
+<arg>${booking_customer}</arg>
+<arg>${booking_people}</arg>
+<arg>${booking_beds}</arg>
+<arg>${booking_twin_beds}</arg>
+<arg>${booking_check_in}</arg>
+<arg>${booking_check_out}</arg>
+<status status="PASS" start="2026-07-19T13:56:48.767899" elapsed="0.882200"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Hotel ID"</arg>
+<arg>Clear Hotel ID</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:49.650099" elapsed="0.000582"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Clear Customer Name" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_CUSTOMER_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:49.651813" elapsed="0.046550"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:49.651813" elapsed="0.046550"/>
+</kw>
+<arg>"${skip_field}" == "Customer Name"</arg>
+<arg>Clear Customer Name</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:49.651284" elapsed="0.047522"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "People"</arg>
+<arg>Clear People</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:49.698806" elapsed="0.000805"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Beds"</arg>
+<arg>Clear Beds</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:49.699611" elapsed="0.000739"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Twin Beds"</arg>
+<arg>Clear Twin Beds</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:49.700350" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Check In Date"</arg>
+<arg>Clear Check In Date</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:49.700350" elapsed="0.000599"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Check Out Date"</arg>
+<arg>Clear Check Out Date</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:49.700949" elapsed="0.000000"/>
+</kw>
+<arg>Customer Name</arg>
+<status status="PASS" start="2026-07-19T13:56:48.767899" elapsed="0.933050"/>
+</kw>
+<kw name="Submit Booking" owner="booking_page">
+<kw name="Click Book Room Button" owner="booking_page">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:49.701981" level="INFO">Clicking button 'xpath=//button[contains(text(), 'Book Room')]'.</msg>
+<arg>${BOOKING_SUBMIT_BTN}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:49.701457" elapsed="0.095216"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-07-19T13:56:50.798975" level="INFO">Slept 1 second.</msg>
+<arg>${SLEEP_DURATION}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-07-19T13:56:49.796673" elapsed="1.002302"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:49.701457" elapsed="1.097518"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:49.701457" elapsed="1.097518"/>
+</kw>
+<kw name="Verify Booking Error" owner="booking_page">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${BOOKING_OUTPUT}</arg>
+<arg>timeout=${DEFAULT_TIMEOUT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-07-19T13:56:50.798975" elapsed="0.021160"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:50.835482" level="INFO">Element 'id=bookingOutput' contains text 'Missing required booking fields'.</msg>
+<arg>${BOOKING_OUTPUT}</arg>
+<arg>${expected_error}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2026-07-19T13:56:50.820135" elapsed="0.015347"/>
+</kw>
+<arg>${BOOKING_MISSING_FIELDS}</arg>
+<status status="PASS" start="2026-07-19T13:56:50.798975" elapsed="0.036507"/>
+</kw>
+<kw name="Clear Booking Form" owner="booking_page" type="TEARDOWN">
+<kw name="Clear Hotel ID" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_HOTEL_ID_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:50.837025" elapsed="0.034943"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:50.835482" elapsed="0.037014"/>
+</kw>
+<kw name="Clear Customer Name" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_CUSTOMER_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:50.872496" elapsed="0.029464"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:50.872496" elapsed="0.029464"/>
+</kw>
+<kw name="Clear People" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_PEOPLE_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:50.902491" elapsed="0.033442"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:50.901960" elapsed="0.033973"/>
+</kw>
+<kw name="Clear Beds" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_BEDS_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:50.937443" elapsed="0.022309"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:50.935933" elapsed="0.024826"/>
+</kw>
+<kw name="Clear Twin Beds" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_TWIN_BEDS_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:50.960759" elapsed="0.029411"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:50.960759" elapsed="0.029411"/>
+</kw>
+<kw name="Clear Check In Date" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_CHECK_IN_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:50.990695" elapsed="0.034994"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:50.990170" elapsed="0.035519"/>
+</kw>
+<kw name="Clear Check Out Date" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_CHECK_OUT_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:51.027220" elapsed="0.031681"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:51.027220" elapsed="0.031681"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:50.835482" elapsed="0.223419"/>
+</kw>
+<doc>Booking is blocked when Customer Name is blank.</doc>
+<tag>booking</tag>
+<tag>bug</tag>
+<tag>create</tag>
+<tag>negative</tag>
+<status status="PASS" start="2026-07-19T13:56:48.766460" elapsed="2.292441"/>
+</test>
+<test id="s1-s1-t5" name="TC-15 Booking Blocked With Missing People" line="41">
+<kw name="Fill All Booking Fields Except" owner="booking_page">
+<kw name="Fill Valid Booking" owner="booking_page">
+<kw name="Fill Hotel ID" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:51.060929" level="INFO">Typing text 'HTL-102' into text field 'id=bookingHotelId'.</msg>
+<arg>${BOOKING_HOTEL_ID_INPUT}</arg>
+<arg>${hotel_id}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:51.060413" elapsed="0.070058"/>
+</kw>
+<arg>${hotel_id}</arg>
+<status status="PASS" start="2026-07-19T13:56:51.060413" elapsed="0.070573"/>
+</kw>
+<kw name="Fill Customer Name" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:51.131500" level="INFO">Typing text 'Test' into text field 'id=customerName'.</msg>
+<arg>${BOOKING_CUSTOMER_INPUT}</arg>
+<arg>${name}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:51.131500" elapsed="0.090714"/>
+</kw>
+<arg>${customer}</arg>
+<status status="PASS" start="2026-07-19T13:56:51.130986" elapsed="0.091228"/>
+</kw>
+<kw name="Fill People" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:51.222214" level="INFO">Typing text '1' into text field 'id=people'.</msg>
+<arg>${BOOKING_PEOPLE_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:51.222214" elapsed="0.066117"/>
+</kw>
+<arg>${people}</arg>
+<status status="PASS" start="2026-07-19T13:56:51.222214" elapsed="0.066117"/>
+</kw>
+<kw name="Fill Beds" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:51.289872" level="INFO">Typing text '1' into text field 'id=beds'.</msg>
+<arg>${BOOKING_BEDS_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:51.288331" elapsed="0.063805"/>
+</kw>
+<arg>${beds}</arg>
+<status status="PASS" start="2026-07-19T13:56:51.288331" elapsed="0.063805"/>
+</kw>
+<kw name="Fill Twin Beds" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:51.352660" level="INFO">Typing text '0' into text field 'id=twinBeds'.</msg>
+<arg>${BOOKING_TWIN_BEDS_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:51.352660" elapsed="0.066572"/>
+</kw>
+<arg>${twin_beds}</arg>
+<status status="PASS" start="2026-07-19T13:56:51.352136" elapsed="0.067096"/>
+</kw>
+<kw name="Fill Check In Date" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:51.419232" level="INFO">Typing text '19072026' into text field 'id=checkInDate'.</msg>
+<arg>${BOOKING_CHECK_IN_INPUT}</arg>
+<arg>${date}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:51.419232" elapsed="0.055145"/>
+</kw>
+<arg>${check_in}</arg>
+<status status="PASS" start="2026-07-19T13:56:51.419232" elapsed="0.055145"/>
+</kw>
+<kw name="Fill Check Out Date" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:51.475722" level="INFO">Typing text '20072026' into text field 'id=checkOutDate'.</msg>
+<arg>${BOOKING_CHECK_OUT_INPUT}</arg>
+<arg>${date}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:51.474377" elapsed="0.075747"/>
+</kw>
+<arg>${check_out}</arg>
+<status status="PASS" start="2026-07-19T13:56:51.474377" elapsed="0.075747"/>
+</kw>
+<arg>${booking_hotel_id}</arg>
+<arg>${booking_customer}</arg>
+<arg>${booking_people}</arg>
+<arg>${booking_beds}</arg>
+<arg>${booking_twin_beds}</arg>
+<arg>${booking_check_in}</arg>
+<arg>${booking_check_out}</arg>
+<status status="PASS" start="2026-07-19T13:56:51.058901" elapsed="0.491223"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Hotel ID"</arg>
+<arg>Clear Hotel ID</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:51.550632" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Customer Name"</arg>
+<arg>Clear Customer Name</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:51.551138" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Clear People" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_PEOPLE_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:51.551658" elapsed="0.032691"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:51.551658" elapsed="0.032691"/>
+</kw>
+<arg>"${skip_field}" == "People"</arg>
+<arg>Clear People</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:51.551138" elapsed="0.033211"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Beds"</arg>
+<arg>Clear Beds</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:51.584349" elapsed="0.001538"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Twin Beds"</arg>
+<arg>Clear Twin Beds</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:51.585887" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Check In Date"</arg>
+<arg>Clear Check In Date</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:51.585887" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Check Out Date"</arg>
+<arg>Clear Check Out Date</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:51.585887" elapsed="0.000000"/>
+</kw>
+<arg>People</arg>
+<status status="PASS" start="2026-07-19T13:56:51.058901" elapsed="0.526986"/>
+</kw>
+<kw name="Submit Booking" owner="booking_page">
+<kw name="Click Book Room Button" owner="booking_page">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:51.587398" level="INFO">Clicking button 'xpath=//button[contains(text(), 'Book Room')]'.</msg>
+<arg>${BOOKING_SUBMIT_BTN}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:51.587398" elapsed="0.066095"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-07-19T13:56:52.654107" level="INFO">Slept 1 second.</msg>
+<arg>${SLEEP_DURATION}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-07-19T13:56:51.653493" elapsed="1.000614"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:51.585887" elapsed="1.068220"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:51.585887" elapsed="1.068220"/>
+</kw>
+<kw name="Verify Booking Error" owner="booking_page">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${BOOKING_OUTPUT}</arg>
+<arg>timeout=${DEFAULT_TIMEOUT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-07-19T13:56:52.654756" elapsed="0.017912"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:52.808327" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-32.png"&gt;&lt;img src="selenium-screenshot-32.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2026-07-19T13:56:52.809840" level="FAIL">Element 'id=bookingOutput' should have contained text 'Missing required booking fields' but its text was '{
+  "success": true,
+  "booking": {
+    "id": "BKG-576103",
+    "hotelId": "HTL-102",
+    "customerName": "Test",
+    "people": 1,
+    "beds": 1,
+    "twinBeds": 0,
+    "checkInDate": "2026-07-19",
+    "checkOutDate": "2026-07-20",
+    "bookingDate": "2026-07-19T10:56:51.651Z",
+    "status": "confirmed",
+    "amount": 290
+  }
+}'.</msg>
+<arg>${BOOKING_OUTPUT}</arg>
+<arg>${expected_error}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="FAIL" start="2026-07-19T13:56:52.672668" elapsed="0.140320">Element 'id=bookingOutput' should have contained text 'Missing required booking fields' but its text was '{
+  "success": true,
+  "booking": {
+    "id": "BKG-576103",
+    "hotelId": "HTL-102",
+    "customerName": "Test",
+    "people": 1,
+    "beds": 1,
+    "twinBeds": 0,
+    "checkInDate": "2026-07-19",
+    "checkOutDate": "2026-07-20",
+    "bookingDate": "2026-07-19T10:56:51.651Z",
+    "status": "confirmed",
+    "amount": 290
+  }
+}'.</status>
+</kw>
+<arg>${BOOKING_MISSING_FIELDS}</arg>
+<status status="FAIL" start="2026-07-19T13:56:52.654107" elapsed="0.158881">Element 'id=bookingOutput' should have contained text 'Missing required booking fields' but its text was '{
+  "success": true,
+  "booking": {
+    "id": "BKG-576103",
+    "hotelId": "HTL-102",
+    "customerName": "Test",
+    "people": 1,
+    "beds": 1,
+    "twinBeds": 0,
+    "checkInDate": "2026-07-19",
+    "checkOutDate": "2026-07-20",
+    "bookingDate": "2026-07-19T10:56:51.651Z",
+    "status": "confirmed",
+    "amount": 290
+  }
+}'.</status>
+</kw>
+<kw name="Clear Booking Form" owner="booking_page" type="TEARDOWN">
+<kw name="Clear Hotel ID" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_HOTEL_ID_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:52.816098" elapsed="0.051689"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:52.816098" elapsed="0.051689"/>
+</kw>
+<kw name="Clear Customer Name" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_CUSTOMER_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:52.869301" elapsed="0.043001"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:52.867787" elapsed="0.044515"/>
+</kw>
+<kw name="Clear People" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_PEOPLE_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:52.913823" elapsed="0.026805"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:52.913823" elapsed="0.026805"/>
+</kw>
+<kw name="Clear Beds" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_BEDS_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:52.941141" elapsed="0.028501"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:52.941141" elapsed="0.028501"/>
+</kw>
+<kw name="Clear Twin Beds" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_TWIN_BEDS_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:52.969642" elapsed="0.025922"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:52.969642" elapsed="0.025922"/>
+</kw>
+<kw name="Clear Check In Date" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_CHECK_IN_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:52.997072" elapsed="0.028175"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:52.997072" elapsed="0.028175"/>
+</kw>
+<kw name="Clear Check Out Date" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_CHECK_OUT_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:53.025247" elapsed="0.025464"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:53.025247" elapsed="0.025464"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:52.815021" elapsed="0.235690"/>
+</kw>
+<doc>Booking is blocked when Number of People is blank.</doc>
+<tag>booking</tag>
+<tag>bug</tag>
+<tag>create</tag>
+<tag>negative</tag>
+<status status="FAIL" start="2026-07-19T13:56:51.058901" elapsed="1.992315">Element 'id=bookingOutput' should have contained text 'Missing required booking fields' but its text was '{
+  "success": true,
+  "booking": {
+    "id": "BKG-576103",
+    "hotelId": "HTL-102",
+    "customerName": "Test",
+    "people": 1,
+    "beds": 1,
+    "twinBeds": 0,
+    "checkInDate": "2026-07-19",
+    "checkOutDate": "2026-07-20",
+    "bookingDate": "2026-07-19T10:56:51.651Z",
+    "status": "confirmed",
+    "amount": 290
+  }
+}'.</status>
+</test>
+<test id="s1-s1-t6" name="TC-16 Booking Blocked With Missing Beds" line="48">
+<kw name="Fill All Booking Fields Except" owner="booking_page">
+<kw name="Fill Valid Booking" owner="booking_page">
+<kw name="Fill Hotel ID" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:53.053236" level="INFO">Typing text 'HTL-102' into text field 'id=bookingHotelId'.</msg>
+<arg>${BOOKING_HOTEL_ID_INPUT}</arg>
+<arg>${hotel_id}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:53.053236" elapsed="0.070520"/>
+</kw>
+<arg>${hotel_id}</arg>
+<status status="PASS" start="2026-07-19T13:56:53.053236" elapsed="0.072036"/>
+</kw>
+<kw name="Fill Customer Name" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:53.125272" level="INFO">Typing text 'Test' into text field 'id=customerName'.</msg>
+<arg>${BOOKING_CUSTOMER_INPUT}</arg>
+<arg>${name}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:53.125272" elapsed="0.065775"/>
+</kw>
+<arg>${customer}</arg>
+<status status="PASS" start="2026-07-19T13:56:53.125272" elapsed="0.065775"/>
+</kw>
+<kw name="Fill People" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:53.192086" level="INFO">Typing text '1' into text field 'id=people'.</msg>
+<arg>${BOOKING_PEOPLE_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:53.192086" elapsed="0.051172"/>
+</kw>
+<arg>${people}</arg>
+<status status="PASS" start="2026-07-19T13:56:53.191047" elapsed="0.052211"/>
+</kw>
+<kw name="Fill Beds" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:53.244883" level="INFO">Typing text '1' into text field 'id=beds'.</msg>
+<arg>${BOOKING_BEDS_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:53.244883" elapsed="0.056051"/>
+</kw>
+<arg>${beds}</arg>
+<status status="PASS" start="2026-07-19T13:56:53.244560" elapsed="0.056374"/>
+</kw>
+<kw name="Fill Twin Beds" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:53.301968" level="INFO">Typing text '0' into text field 'id=twinBeds'.</msg>
+<arg>${BOOKING_TWIN_BEDS_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:53.301453" elapsed="0.057044"/>
+</kw>
+<arg>${twin_beds}</arg>
+<status status="PASS" start="2026-07-19T13:56:53.301453" elapsed="0.057044"/>
+</kw>
+<kw name="Fill Check In Date" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:53.360039" level="INFO">Typing text '19072026' into text field 'id=checkInDate'.</msg>
+<arg>${BOOKING_CHECK_IN_INPUT}</arg>
+<arg>${date}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:53.360039" elapsed="0.056642"/>
+</kw>
+<arg>${check_in}</arg>
+<status status="PASS" start="2026-07-19T13:56:53.360039" elapsed="0.056642"/>
+</kw>
+<kw name="Fill Check Out Date" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:53.416681" level="INFO">Typing text '20072026' into text field 'id=checkOutDate'.</msg>
+<arg>${BOOKING_CHECK_OUT_INPUT}</arg>
+<arg>${date}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:53.416681" elapsed="0.051909"/>
+</kw>
+<arg>${check_out}</arg>
+<status status="PASS" start="2026-07-19T13:56:53.416681" elapsed="0.051909"/>
+</kw>
+<arg>${booking_hotel_id}</arg>
+<arg>${booking_customer}</arg>
+<arg>${booking_people}</arg>
+<arg>${booking_beds}</arg>
+<arg>${booking_twin_beds}</arg>
+<arg>${booking_check_in}</arg>
+<arg>${booking_check_out}</arg>
+<status status="PASS" start="2026-07-19T13:56:53.051720" elapsed="0.416870"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Hotel ID"</arg>
+<arg>Clear Hotel ID</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:53.468590" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Customer Name"</arg>
+<arg>Clear Customer Name</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:53.468590" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "People"</arg>
+<arg>Clear People</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:53.468590" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Clear Beds" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_BEDS_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:53.470127" elapsed="0.021759"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:53.470127" elapsed="0.021759"/>
+</kw>
+<arg>"${skip_field}" == "Beds"</arg>
+<arg>Clear Beds</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:53.468590" elapsed="0.023296"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Twin Beds"</arg>
+<arg>Clear Twin Beds</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:53.491886" elapsed="0.001243"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Check In Date"</arg>
+<arg>Clear Check In Date</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:53.493129" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Check Out Date"</arg>
+<arg>Clear Check Out Date</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:53.493129" elapsed="0.001204"/>
+</kw>
+<arg>Beds</arg>
+<status status="PASS" start="2026-07-19T13:56:53.051720" elapsed="0.442613"/>
+</kw>
+<kw name="Submit Booking" owner="booking_page">
+<kw name="Click Book Room Button" owner="booking_page">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:53.495357" level="INFO">Clicking button 'xpath=//button[contains(text(), 'Book Room')]'.</msg>
+<arg>${BOOKING_SUBMIT_BTN}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:53.494333" elapsed="0.051878"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-07-19T13:56:54.547921" level="INFO">Slept 1 second.</msg>
+<arg>${SLEEP_DURATION}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-07-19T13:56:53.546211" elapsed="1.001710"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:53.494333" elapsed="1.053588"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:53.494333" elapsed="1.053588"/>
+</kw>
+<kw name="Verify Booking Error" owner="booking_page">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${BOOKING_OUTPUT}</arg>
+<arg>timeout=${DEFAULT_TIMEOUT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-07-19T13:56:54.548442" elapsed="0.015713"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:54.639926" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-33.png"&gt;&lt;img src="selenium-screenshot-33.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2026-07-19T13:56:54.639926" level="FAIL">Element 'id=bookingOutput' should have contained text 'Missing required booking fields' but its text was '{
+  "success": true,
+  "booking": {
+    "id": "BKG-885261",
+    "hotelId": "HTL-102",
+    "customerName": "Test",
+    "people": 1,
+    "beds": 1,
+    "twinBeds": 0,
+    "checkInDate": "2026-07-19",
+    "checkOutDate": "2026-07-20",
+    "bookingDate": "2026-07-19T10:56:53.545Z",
+    "status": "confirmed",
+    "amount": 290
+  }
+}'.</msg>
+<arg>${BOOKING_OUTPUT}</arg>
+<arg>${expected_error}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="FAIL" start="2026-07-19T13:56:54.565185" elapsed="0.076257">Element 'id=bookingOutput' should have contained text 'Missing required booking fields' but its text was '{
+  "success": true,
+  "booking": {
+    "id": "BKG-885261",
+    "hotelId": "HTL-102",
+    "customerName": "Test",
+    "people": 1,
+    "beds": 1,
+    "twinBeds": 0,
+    "checkInDate": "2026-07-19",
+    "checkOutDate": "2026-07-20",
+    "bookingDate": "2026-07-19T10:56:53.545Z",
+    "status": "confirmed",
+    "amount": 290
+  }
+}'.</status>
+</kw>
+<arg>${BOOKING_MISSING_FIELDS}</arg>
+<status status="FAIL" start="2026-07-19T13:56:54.548442" elapsed="0.093000">Element 'id=bookingOutput' should have contained text 'Missing required booking fields' but its text was '{
+  "success": true,
+  "booking": {
+    "id": "BKG-885261",
+    "hotelId": "HTL-102",
+    "customerName": "Test",
+    "people": 1,
+    "beds": 1,
+    "twinBeds": 0,
+    "checkInDate": "2026-07-19",
+    "checkOutDate": "2026-07-20",
+    "bookingDate": "2026-07-19T10:56:53.545Z",
+    "status": "confirmed",
+    "amount": 290
+  }
+}'.</status>
+</kw>
+<kw name="Clear Booking Form" owner="booking_page" type="TEARDOWN">
+<kw name="Clear Hotel ID" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_HOTEL_ID_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:54.642465" elapsed="0.031276"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:54.641954" elapsed="0.033307"/>
+</kw>
+<kw name="Clear Customer Name" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_CUSTOMER_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:54.676783" elapsed="0.026805"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:54.675261" elapsed="0.028327"/>
+</kw>
+<kw name="Clear People" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_PEOPLE_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:54.705116" elapsed="0.030435"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:54.705116" elapsed="0.031942"/>
+</kw>
+<kw name="Clear Beds" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_BEDS_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:54.737058" elapsed="0.028473"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:54.737058" elapsed="0.029997"/>
+</kw>
+<kw name="Clear Twin Beds" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_TWIN_BEDS_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:54.767055" elapsed="0.029931"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:54.767055" elapsed="0.029931"/>
+</kw>
+<kw name="Clear Check In Date" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_CHECK_IN_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:54.796986" elapsed="0.025010"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:54.796986" elapsed="0.025010"/>
+</kw>
+<kw name="Clear Check Out Date" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_CHECK_OUT_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:54.823508" elapsed="0.027922"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:54.821996" elapsed="0.029434"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:54.641954" elapsed="0.209979"/>
+</kw>
+<doc>Booking is blocked when Number of Beds is blank.</doc>
+<tag>booking</tag>
+<tag>bug</tag>
+<tag>create</tag>
+<tag>negative</tag>
+<status status="FAIL" start="2026-07-19T13:56:53.051720" elapsed="1.800213">Element 'id=bookingOutput' should have contained text 'Missing required booking fields' but its text was '{
+  "success": true,
+  "booking": {
+    "id": "BKG-885261",
+    "hotelId": "HTL-102",
+    "customerName": "Test",
+    "people": 1,
+    "beds": 1,
+    "twinBeds": 0,
+    "checkInDate": "2026-07-19",
+    "checkOutDate": "2026-07-20",
+    "bookingDate": "2026-07-19T10:56:53.545Z",
+    "status": "confirmed",
+    "amount": 290
+  }
+}'.</status>
+</test>
+<test id="s1-s1-t7" name="TC-17 Booking Blocked With Missing Twin Beds" line="55">
+<kw name="Fill All Booking Fields Except" owner="booking_page">
+<kw name="Fill Valid Booking" owner="booking_page">
+<kw name="Fill Hotel ID" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:54.853451" level="INFO">Typing text 'HTL-102' into text field 'id=bookingHotelId'.</msg>
+<arg>${BOOKING_HOTEL_ID_INPUT}</arg>
+<arg>${hotel_id}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:54.853451" elapsed="0.067215"/>
+</kw>
+<arg>${hotel_id}</arg>
+<status status="PASS" start="2026-07-19T13:56:54.853451" elapsed="0.067215"/>
+</kw>
+<kw name="Fill Customer Name" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:54.921997" level="INFO">Typing text 'Test' into text field 'id=customerName'.</msg>
+<arg>${BOOKING_CUSTOMER_INPUT}</arg>
+<arg>${name}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:54.921997" elapsed="0.076148"/>
+</kw>
+<arg>${customer}</arg>
+<status status="PASS" start="2026-07-19T13:56:54.920666" elapsed="0.077479"/>
+</kw>
+<kw name="Fill People" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:54.999659" level="INFO">Typing text '1' into text field 'id=people'.</msg>
+<arg>${BOOKING_PEOPLE_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:54.999659" elapsed="0.168703"/>
+</kw>
+<arg>${people}</arg>
+<status status="PASS" start="2026-07-19T13:56:54.998145" elapsed="0.170727"/>
+</kw>
+<kw name="Fill Beds" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:55.170501" level="INFO">Typing text '1' into text field 'id=beds'.</msg>
+<arg>${BOOKING_BEDS_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:55.168872" elapsed="0.102004"/>
+</kw>
+<arg>${beds}</arg>
+<status status="PASS" start="2026-07-19T13:56:55.168872" elapsed="0.102004"/>
+</kw>
+<kw name="Fill Twin Beds" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:55.271900" level="INFO">Typing text '0' into text field 'id=twinBeds'.</msg>
+<arg>${BOOKING_TWIN_BEDS_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:55.271900" elapsed="0.107348"/>
+</kw>
+<arg>${twin_beds}</arg>
+<status status="PASS" start="2026-07-19T13:56:55.270876" elapsed="0.108372"/>
+</kw>
+<kw name="Fill Check In Date" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:55.381116" level="INFO">Typing text '19072026' into text field 'id=checkInDate'.</msg>
+<arg>${BOOKING_CHECK_IN_INPUT}</arg>
+<arg>${date}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:55.380589" elapsed="0.079305"/>
+</kw>
+<arg>${check_in}</arg>
+<status status="PASS" start="2026-07-19T13:56:55.379248" elapsed="0.081151"/>
+</kw>
+<kw name="Fill Check Out Date" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:55.461429" level="INFO">Typing text '20072026' into text field 'id=checkOutDate'.</msg>
+<arg>${BOOKING_CHECK_OUT_INPUT}</arg>
+<arg>${date}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:55.460912" elapsed="0.071387"/>
+</kw>
+<arg>${check_out}</arg>
+<status status="PASS" start="2026-07-19T13:56:55.460399" elapsed="0.071900"/>
+</kw>
+<arg>${booking_hotel_id}</arg>
+<arg>${booking_customer}</arg>
+<arg>${booking_people}</arg>
+<arg>${booking_beds}</arg>
+<arg>${booking_twin_beds}</arg>
+<arg>${booking_check_in}</arg>
+<arg>${booking_check_out}</arg>
+<status status="PASS" start="2026-07-19T13:56:54.853451" elapsed="0.678848"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Hotel ID"</arg>
+<arg>Clear Hotel ID</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:55.532299" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Customer Name"</arg>
+<arg>Clear Customer Name</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:55.532299" elapsed="0.001515"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "People"</arg>
+<arg>Clear People</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:55.533814" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Beds"</arg>
+<arg>Clear Beds</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:55.533814" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Clear Twin Beds" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_TWIN_BEDS_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:55.535335" elapsed="0.031243"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:55.535335" elapsed="0.031243"/>
+</kw>
+<arg>"${skip_field}" == "Twin Beds"</arg>
+<arg>Clear Twin Beds</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:55.533814" elapsed="0.032764"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Check In Date"</arg>
+<arg>Clear Check In Date</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:55.568376" elapsed="0.000000"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>"${skip_field}" == "Check Out Date"</arg>
+<arg>Clear Check Out Date</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-07-19T13:56:55.569922" elapsed="0.000000"/>
+</kw>
+<arg>Twin Beds</arg>
+<status status="PASS" start="2026-07-19T13:56:54.851933" elapsed="0.717989"/>
+</kw>
+<kw name="Submit Booking" owner="booking_page">
+<kw name="Click Book Room Button" owner="booking_page">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:55.572000" level="INFO">Clicking button 'xpath=//button[contains(text(), 'Book Room')]'.</msg>
+<arg>${BOOKING_SUBMIT_BTN}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:55.570942" elapsed="0.061911"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-07-19T13:56:56.634877" level="INFO">Slept 1 second.</msg>
+<arg>${SLEEP_DURATION}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-07-19T13:56:55.632853" elapsed="1.002024"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:55.570942" elapsed="1.064276"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:55.569922" elapsed="1.065296"/>
+</kw>
+<kw name="Verify Booking Error" owner="booking_page">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${BOOKING_OUTPUT}</arg>
+<arg>timeout=${DEFAULT_TIMEOUT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-07-19T13:56:56.635218" elapsed="0.012000"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:56.730530" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-34.png"&gt;&lt;img src="selenium-screenshot-34.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2026-07-19T13:56:56.731212" level="FAIL">Element 'id=bookingOutput' should have contained text 'Missing required booking fields' but its text was '{
+  "success": true,
+  "booking": {
+    "id": "BKG-344505",
+    "hotelId": "HTL-102",
+    "customerName": "Test",
+    "people": 1,
+    "beds": 1,
+    "twinBeds": 0,
+    "checkInDate": "2026-07-19",
+    "checkOutDate": "2026-07-20",
+    "bookingDate": "2026-07-19T10:56:55.630Z",
+    "status": "confirmed",
+    "amount": 290
+  }
+}'.</msg>
+<arg>${BOOKING_OUTPUT}</arg>
+<arg>${expected_error}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="FAIL" start="2026-07-19T13:56:56.647218" elapsed="0.084511">Element 'id=bookingOutput' should have contained text 'Missing required booking fields' but its text was '{
+  "success": true,
+  "booking": {
+    "id": "BKG-344505",
+    "hotelId": "HTL-102",
+    "customerName": "Test",
+    "people": 1,
+    "beds": 1,
+    "twinBeds": 0,
+    "checkInDate": "2026-07-19",
+    "checkOutDate": "2026-07-20",
+    "bookingDate": "2026-07-19T10:56:55.630Z",
+    "status": "confirmed",
+    "amount": 290
+  }
+}'.</status>
+</kw>
+<arg>${BOOKING_MISSING_FIELDS}</arg>
+<status status="FAIL" start="2026-07-19T13:56:56.635218" elapsed="0.096511">Element 'id=bookingOutput' should have contained text 'Missing required booking fields' but its text was '{
+  "success": true,
+  "booking": {
+    "id": "BKG-344505",
+    "hotelId": "HTL-102",
+    "customerName": "Test",
+    "people": 1,
+    "beds": 1,
+    "twinBeds": 0,
+    "checkInDate": "2026-07-19",
+    "checkOutDate": "2026-07-20",
+    "bookingDate": "2026-07-19T10:56:55.630Z",
+    "status": "confirmed",
+    "amount": 290
+  }
+}'.</status>
+</kw>
+<kw name="Clear Booking Form" owner="booking_page" type="TEARDOWN">
+<kw name="Clear Hotel ID" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_HOTEL_ID_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:56.733292" elapsed="0.027582"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:56.733292" elapsed="0.027582"/>
+</kw>
+<kw name="Clear Customer Name" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_CUSTOMER_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:56.762913" elapsed="0.026781"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:56.762143" elapsed="0.027551"/>
+</kw>
+<kw name="Clear People" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_PEOPLE_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:56.790699" elapsed="0.027777"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:56.789694" elapsed="0.028782"/>
+</kw>
+<kw name="Clear Beds" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_BEDS_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:56.820010" elapsed="0.026842"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:56.818476" elapsed="0.028376"/>
+</kw>
+<kw name="Clear Twin Beds" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_TWIN_BEDS_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:56.846852" elapsed="0.027789"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:56.846852" elapsed="0.028294"/>
+</kw>
+<kw name="Clear Check In Date" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_CHECK_IN_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:56.876167" elapsed="0.030983"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:56.875146" elapsed="0.032004"/>
+</kw>
+<kw name="Clear Check Out Date" owner="booking_page">
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${BOOKING_CHECK_OUT_INPUT}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:56.907150" elapsed="0.028515"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:56.907150" elapsed="0.028515"/>
+</kw>
+<status status="PASS" start="2026-07-19T13:56:56.731729" elapsed="0.203936"/>
+</kw>
+<doc>Booking is blocked when Twin Beds is blank.</doc>
+<tag>booking</tag>
+<tag>bug</tag>
+<tag>create</tag>
+<tag>negative</tag>
+<status status="FAIL" start="2026-07-19T13:56:54.851933" elapsed="2.083732">Element 'id=bookingOutput' should have contained text 'Missing required booking fields' but its text was '{
+  "success": true,
+  "booking": {
+    "id": "BKG-344505",
+    "hotelId": "HTL-102",
+    "customerName": "Test",
+    "people": 1,
+    "beds": 1,
+    "twinBeds": 0,
+    "checkInDate": "2026-07-19",
+    "checkOutDate": "2026-07-20",
+    "bookingDate": "2026-07-19T10:56:55.630Z",
+    "status": "confirmed",
+    "amount": 290
+  }
+}'.</status>
+</test>
+<test id="s1-s1-t8" name="TC-18 Booking Blocked With Missing Check-in Date" line="62">
+<kw name="Fill All Booking Fields Except" owner="booking_page">
+<kw name="Fill Valid Booking" owner="booking_page">
+<kw name="Fill Hotel ID" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:56.939259" level="INFO">Typing text 'HTL-102' into text field 'id=bookingHotelId'.</msg>
+<arg>${BOOKING_HOTEL_ID_INPUT}</arg>
+<arg>${hotel_id}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:56.939259" elapsed="0.063962"/>
+</kw>
+<arg>${hotel_id}</arg>
+<status status="PASS" start="2026-07-19T13:56:56.938798" elapsed="0.064423"/>
+</kw>
+<kw name="Fill Customer Name" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:57.004732" level="INFO">Typing text 'Test' into text field 'id=customerName'.</msg>
+<arg>${BOOKING_CUSTOMER_INPUT}</arg>
+<arg>${name}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:57.004732" elapsed="0.061664"/>
+</kw>
+<arg>${customer}</arg>
+<status status="PASS" start="2026-07-19T13:56:57.003221" elapsed="0.064189"/>
+</kw>
+<kw name="Fill People" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:57.068427" level="INFO">Typing text '1' into text field 'id=people'.</msg>
+<arg>${BOOKING_PEOPLE_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:57.068427" elapsed="0.062647"/>
+</kw>
+<arg>${people}</arg>
+<status status="PASS" start="2026-07-19T13:56:57.067410" elapsed="0.064768"/>
+</kw>
+<kw name="Fill Beds" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:57.133312" level="INFO">Typing text '1' into text field 'id=beds'.</msg>
+<arg>${BOOKING_BEDS_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:57.132178" elapsed="0.061338"/>
+</kw>
+<arg>${beds}</arg>
+<status status="PASS" start="2026-07-19T13:56:57.132178" elapsed="0.061338"/>
+</kw>
+<kw name="Fill Twin Beds" owner="booking_page">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-07-19T13:56:57.194784" level="INFO">Typing text '0' into text field 'id=twinBeds'.</msg>
+<arg>${BOOKING_TWIN_BEDS_INPUT}</arg>
+<arg>${count}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-07-19T13:56:57.194784" elapsed="0.057035"/>
+</kw>
+<arg>${twin_beds}</arg>
