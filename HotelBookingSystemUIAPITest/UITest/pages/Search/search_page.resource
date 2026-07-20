@@ -3,7 +3,8 @@ Library    SeleniumLibrary
 Library    ../../utils/data_helper.py
 Resource   ../base_page.resource
 Resource   search_selectors.resource
-Resource   ../../config/Constants.resource
+Resource   ../../config/timeouts.resource
+Resource   ../../assertions/search_assertions.resource
 
 *** Keywords ***
 Enter City
@@ -46,8 +47,7 @@ Reset Sort By
 
 Click Search Hotels Button
     Click Button    ${SEARCH_SUBMIT_BTN}
-    Sleep    ${SLEEP_DURATION}
-
+    Wait Until Element Is Visible    ${HOTELS_LIST_CONTAINER}    timeout=${DEFAULT_TIMEOUT}
 
 Filter Hotels By City
     [Arguments]    ${city_name}
@@ -82,7 +82,6 @@ Search With All Fields Empty
     Reset Sort By
     Click Search Hotels Button
 
-
 Reset Search Filters
     Clear City
     Clear Min Rating
@@ -91,43 +90,23 @@ Reset Search Filters
     Reset Sort By
     Click Search Hotels Button
 
-
-Verify Hotel Results Contains Text
-    [Arguments]    ${expected_text}
-    Wait Until Element Is Visible    ${HOTELS_LIST_CONTAINER}    timeout=${DEFAULT_TIMEOUT}
-    Element Should Contain    ${HOTELS_LIST_CONTAINER}    ${expected_text}
-
-Verify Hotel Results Not Contains Text
-    [Arguments]    ${text}
-    Wait Until Element Is Visible    ${HOTELS_LIST_CONTAINER}    timeout=${DEFAULT_TIMEOUT}
-    Element Should Not Contain    ${HOTELS_LIST_CONTAINER}    ${text}
-
-Verify Hotel Results Are Displayed
-    Wait Until Element Is Visible    ${HOTELS_LIST_CONTAINER}    timeout=${DEFAULT_TIMEOUT}
-    Element Should Be Visible    ${HOTELS_LIST_CONTAINER}
-
-Verify No Results Message
-    Wait Until Element Is Visible    ${HOTELS_LIST_CONTAINER}    timeout=${DEFAULT_TIMEOUT}
-    Wait Until Element Contains    ${HOTELS_LIST_CONTAINER}    ${NO_RESULTS_TEXT}    timeout=${DEFAULT_TIMEOUT}
-
-Verify No Hotel Exceeds Max Price
-    [Arguments]    ${max_price}
-    Wait Until Element Is Visible    ${HOTELS_LIST_CONTAINER}    timeout=${DEFAULT_TIMEOUT}
-    ${text}=    Get Text    ${HOTELS_LIST_CONTAINER}
-    ${has_expensive}=    Has Price Above    ${text}    ${max_price}
-    Should Not Be True    ${has_expensive}    Hotels exceeding max price ${max_price} were found
-
-Verify Pagination Next Button Exists
-    Element Should Be Visible    ${PAGINATION_NEXT_BTN}
-
 Click Next Page
     Click Element    ${PAGINATION_NEXT_BTN}
-    Sleep    ${SLEEP_DURATION}
+    Wait Until Element Is Visible    ${PAGINATION_INFO}    timeout=${DEFAULT_TIMEOUT}
 
 Click Previous Page
     Click Element    ${PAGINATION_PREV_BTN}
-    Sleep    ${SLEEP_DURATION}
+    Wait Until Element Is Visible    ${PAGINATION_INFO}    timeout=${DEFAULT_TIMEOUT}
 
 Get Current Page Info
     ${text}=    Get Text    ${PAGINATION_INFO}
     RETURN    ${text}
+
+Verify Pagination Changes Page
+    Verify Hotel Results Displayed
+    ${page_before}=    Get Current Page Info
+    Verify Pagination Next Button Exists
+    Click Next Page
+    ${page_after}=    Get Current Page Info
+    Should Not Be Equal    ${page_before}    ${page_after}
+    Click Previous Page

@@ -1,0 +1,7 @@
+reports/
+__pycache__/
+*.pyc
+.env
+output.xml
+log.html
+report.html
