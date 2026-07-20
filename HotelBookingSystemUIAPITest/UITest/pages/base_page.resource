@@ -2,6 +2,9 @@
 Library    SeleniumLibrary
 Resource   ../config/env.resource
 
+*** Variables ***
+${TOAST}    id=toast
+
 *** Keywords ***
 Open Hotel Application
     Open Browser    ${BASE_URL}    ${BROWSER}
