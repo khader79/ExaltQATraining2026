@@ -14,6 +14,7 @@ export class BookingPage {
   async getBookingSection() {
     return this.bookingSection;
   }
+
   async bookAppointment(date, startTime, endTime) {
     await this.dateInput.clear();
     await this.dateInput.focus();

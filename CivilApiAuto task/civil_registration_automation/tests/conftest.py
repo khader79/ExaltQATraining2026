@@ -29,3 +29,4 @@ def created_record():
 
     delete_response = delete_civil_record(record_id)
     assert delete_response.ok, f"Cleanup failed: {delete_response.status_code} {delete_response.text}"
+
