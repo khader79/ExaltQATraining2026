@@ -20,6 +20,21 @@ Verify List Bookings Contains Customer Name
     ${text}=    Get Text    ${LIST_BOOKINGS_OUTPUT}
     Should Contain    ${text}    "customerName": "${customer_name}"
 
+Verify List Bookings Contains Booking ID
+    [Arguments]    ${booking_id}
+    ${text}=    Get Text    ${LIST_BOOKINGS_OUTPUT}
+    Should Contain    ${text}    "id": "${booking_id}"
+
+Verify List Bookings Does Not Contain Booking ID
+    [Arguments]    ${booking_id}
+    ${text}=    Get Text    ${LIST_BOOKINGS_OUTPUT}
+    Should Not Contain    ${text}    "id": "${booking_id}"
+
+Verify List Bookings Does Not Contain Customer Name
+    [Arguments]    ${customer_name}
+    ${text}=    Get Text    ${LIST_BOOKINGS_OUTPUT}
+    Should Not Contain    ${text}    "customerName": "${customer_name}"
+
 Verify List Bookings Error Message
     [Arguments]    ${expected_message}
     Wait Until Element Contains    ${TOAST}    ${expected_message}    timeout=${DEFAULT_TIMEOUT}

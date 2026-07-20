@@ -22,6 +22,11 @@ Submit Load Bookings
     Click Button    ${LIST_BOOKINGS_LOAD_BTN}
     Wait Until Element Contains    ${LIST_BOOKINGS_OUTPUT}    "success"    timeout=${DEFAULT_TIMEOUT}
 
+Load Bookings For Hotel
+    [Arguments]    ${hotel_id}
+    Fill List Bookings Hotel ID    ${hotel_id}
+    Submit Load Bookings
+
 Cleanup Page State
     Clear List Bookings Hotel ID
     Clear Cancel Booking ID

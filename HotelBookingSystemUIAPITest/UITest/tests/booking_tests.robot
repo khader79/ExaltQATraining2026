@@ -2,6 +2,7 @@
 Documentation    Booking Management Tests
 Resource         ../pages/Booking/booking_page.resource
 Resource         ../pages/Cancel/cancel_page.resource
+Resource         ../pages/ListBookings/list_bookings_page.resource
 Suite Setup      Open Hotel Application
 Suite Teardown   Close Hotel Application
 Test Teardown    Cleanup Created Booking
@@ -12,6 +13,8 @@ TC-11 Create Valid Booking
     [Documentation]    Booking completes when all required fields are correct.
     [Tags]    booking    create    positive
     Create Test Booking And Verify All Fields
+    Load Bookings For Hotel    ${booking_hotel_id}
+    Verify List Bookings Contains Customer Name    ${booking_customer}
 
 TC-12 Booking Blocked With Reversed Dates
     [Documentation]    Booking is blocked when check-out is before check-in.

@@ -2,6 +2,7 @@
 Documentation    Booking Cancellation Tests
 Resource         ../pages/Booking/booking_page.resource
 Resource         ../pages/Cancel/cancel_page.resource
+Resource         ../pages/ListBookings/list_bookings_page.resource
 Resource         ../assertions/cancel_assertions.resource
 Suite Setup      Open Hotel Application
 Suite Teardown   Close Hotel Application
@@ -13,8 +14,12 @@ TC-30 Cancel Valid Booking
     [Documentation]    Cancellation completes when entering a valid Booking ID.
     [Tags]    cancel    positive
     [Setup]    Create Test Booking
+    Load Bookings For Hotel    ${booking_hotel_id}
+    Verify List Bookings Contains Customer Name    ${booking_customer}
     Submit Cancel Booking
     Verify Cancel Success
+    Load Bookings For Hotel    ${booking_hotel_id}
+    Verify List Bookings Does Not Contain Customer Name    ${booking_customer}
 
 TC-31 Cancel Non-Existent Booking
     [Documentation]    Cancellation is blocked when entering a non-existent Booking ID.
@@ -47,7 +52,11 @@ TC-35 Cancel Already Cancelled Booking
     [Documentation]    Cancellation is blocked when re-cancelling an already cancelled booking.
     [Tags]    cancel    negative    bug
     [Setup]    Create Test Booking
+    Load Bookings For Hotel    ${booking_hotel_id}
+    Verify List Bookings Contains Customer Name    ${booking_customer}
     Submit Cancel Booking
     Verify Cancel Success
+    Load Bookings For Hotel    ${booking_hotel_id}
+    Verify List Bookings Does Not Contain Customer Name    ${booking_customer}
     Submit Cancel Booking
     Verify Cancel Error Message    ${CANCEL_BOOKING_NOT_FOUND}
