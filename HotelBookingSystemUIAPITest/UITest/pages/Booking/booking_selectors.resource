@@ -1,5 +1,4 @@
 *** Variables ***
-# Booking Form Inputs
 ${BOOKING_HOTEL_ID_INPUT}       id=bookingHotelId
 ${BOOKING_CUSTOMER_INPUT}       id=customerName
 ${BOOKING_PEOPLE_INPUT}         id=people
@@ -8,9 +7,7 @@ ${BOOKING_TWIN_BEDS_INPUT}      id=twinBeds
 ${BOOKING_CHECK_IN_INPUT}       id=checkInDate
 ${BOOKING_CHECK_OUT_INPUT}      id=checkOutDate
 
-# Booking Actions
 ${BOOKING_SUBMIT_BTN}           xpath=//button[contains(text(), 'Book Room')]
 
-# Booking Output
 ${BOOKING_OUTPUT}               id=bookingOutput
 ${BOOKING_TOAST}                id=toast

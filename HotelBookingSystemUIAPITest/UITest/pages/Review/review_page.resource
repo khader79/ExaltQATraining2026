@@ -79,11 +79,6 @@ Create Test Review
     Submit Review
     Verify Review Created Successfully
 
-Create Test Review And Verify All Fields
-    Fill Valid Review
-    Submit Review
-    Verify Review Created Successfully
-
 Verify Review Blocked With Blank Field
     [Arguments]    ${field_locator}
     Fill Valid Review
@@ -95,7 +90,7 @@ Verify Review Blocked With Invalid Rating
     [Arguments]    ${rating}    ${comment}
     Fill Valid Review    rating=${rating}    comment=${comment}
     Submit Review
-    Verify Review Created Successfully
+    Verify Review Error Message    ${REVIEW_INVALID_RATING}
 
 Verify Review Deletion By Created Review
     Create Test Review
