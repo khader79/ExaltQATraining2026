@@ -81,8 +81,8 @@ TC-20 Booking Blocked With Past Check-in Date
     Submit Booking
     Verify Booking Error Message    ${BOOKING_INVALID_DATES}
 
-<<<<<<< HEAD
-=======
+
+
 TC-21 Booking Blocked When No Rooms Available
     [Documentation]    Booking is blocked when no rooms are available for selected dates.
     [Tags]    booking    create    negative
@@ -91,7 +91,6 @@ TC-21 Booking Blocked When No Rooms Available
     Submit Booking
     Verify Booking Error Message    ${BOOKING_NO_ROOMS}
     [Teardown]    Cleanup After Conflict Test
->>>>>>> 4ab7276669d5a4171e9fc7a1aca3aabbab26381c
 
 TC-22 Booking Allowed Preceding Fully Booked Period
     [Documentation]    Booking is available for dates immediately preceding the fully booked period.
