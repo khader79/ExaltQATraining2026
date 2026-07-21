@@ -61,9 +61,6 @@ TC-20 Booking Blocked With Past Check-in Date
     [Tags]    booking    create    negative    bug
     Verify Booking Blocked With InvalidDateRange    ${past_check_in}    ${past_check_out}
 
-TC-21 Booking Blocked When No Rooms Available
-    [Documentation]    Booking is blocked when no rooms are available for selected dates.
-    [Tags]    booking    create    negative    skip
 
 TC-22 Booking Blocked With Invalid People Text
     [Documentation]    The People field rejects non-numeric text input.
