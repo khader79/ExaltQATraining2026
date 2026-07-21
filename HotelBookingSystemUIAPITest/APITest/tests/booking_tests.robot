@@ -8,8 +8,7 @@ Resource         ../assertions/cancel_assertions.resource
 Resource         ../config/booking_test_data.resource
 Suite Setup      Create API Session
 Suite Teardown   Delete All Sessions
-Test Setup       Set Suite Variable    ${LAST_BOOKING_ID}    ${NONE}
-Test Teardown    Cancel Last Booking
+Test Teardown    Cancel All Bookings
 
 *** Test Cases ***
 TC-10 Create Valid Booking

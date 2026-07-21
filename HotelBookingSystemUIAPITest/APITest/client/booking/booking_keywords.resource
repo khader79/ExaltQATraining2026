@@ -7,7 +7,7 @@ Send Booking
     [Arguments]    ${body}
     ${response}=    POST On Session    api    ${BOOKING_ENDPOINT}    json=${body}    expected_status=any
     ${has_booking}=    Run Keyword And Return Status    Dictionary Should Contain Key    ${response.json()}    booking
-    Run Keyword If    ${has_booking}    Set Suite Variable    ${LAST_BOOKING_ID}    ${response.json()}[booking][id]
+    Run Keyword If    ${has_booking}    Append To List    ${BOOKING_IDS}    ${response.json()}[booking][id]
     RETURN    ${response}
 
 Valid Booking Body

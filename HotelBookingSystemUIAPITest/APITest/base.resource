@@ -27,7 +27,7 @@ ${TYPE_NUMBER}      number
 ${TYPE_STRING}      string
 ${TYPE_LIST}        list
 ${DEFAULT_PAGE}     1
-${LAST_BOOKING_ID}  ${NONE}
+@{BOOKING_IDS}
 
 *** Keywords ***
 Create API Session
