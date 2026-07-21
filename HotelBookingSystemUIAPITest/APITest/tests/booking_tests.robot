@@ -8,172 +8,153 @@ Resource         ../assertions/cancel_assertions.resource
 Resource         ../config/booking_test_data.resource
 Suite Setup      Create API Session
 Suite Teardown   Delete All Sessions
+Test Setup       Set Suite Variable    ${LAST_BOOKING_ID}    ${NONE}
+Test Teardown    Cancel Last Booking
 
 *** Test Cases ***
 TC-10 Create Valid Booking
-    [Documentation]    Verify POST /api/bookings with valid data creates a booking
     [Tags]    booking    positive
-
-    ${response}=    Create Valid Booking
+    ${body}=    Valid Booking Body
+    ${response}=    Send Booking    ${body}
     Verify Successful Booking    ${response}
-    ${cancel_response}=    Cancel Booking From Response    ${response}
-    Verify Successful Cancel    ${cancel_response}
 
-TC-11 Reject Booking With Missing Fields
-    [Documentation]    Verify POST /api/bookings without customerName returns 400
+TC-11 Reject Booking Missing customerName
     [Tags]    booking    negative
-
-    ${response}=    Create Booking With Missing Field    customerName
+    ${body}=    Valid Booking Body
+    Remove From Dictionary    ${body}    customerName
+    ${response}=    Send Booking    ${body}
     Verify Booking Error Response    ${response}    ${STATUS_BAD_REQUEST}    Missing required booking fields
 
-TC-12 Reject Booking When No Rooms Available
-    [Documentation]    Verify POST /api/bookings when no rooms available returns 409
+TC-12 Reject Booking No Rooms Available
     [Tags]    booking    negative
-
-    Exhaust Room Availability
-    ${check_in}=    Get Next Date By Days    60
-    ${check_out}=    Get Next Date By Days    65
-    ${response}=    Create Booking With Dates    ${check_in}    ${check_out}
+    ${body}=    Valid Booking Body    check_in=2026-09-19    check_out=2026-09-24
+    Send Booking    ${body}
+    ${response}=    Send Booking    ${body}
     Verify Booking Conflict Response    ${response}
 
-TC-13 Reject Booking With Invalid Date Range
-    [Documentation]    Verify POST /api/bookings with check-out before check-in returns 400
+TC-13 Reject Booking Invalid Date Range
     [Tags]    booking    negative
-
-    ${response}=    Create Booking With Invalid Date Range
+    ${body}=    Valid Booking Body    check_in=2026-07-31    check_out=2026-07-26
+    ${response}=    Send Booking    ${body}
     Verify Booking Error Response    ${response}    ${STATUS_BAD_REQUEST}    Invalid date range
 
-TC-14 Reject Booking With Non Existent Hotel
-    [Documentation]    Verify POST /api/bookings with non-existent hotel ID returns 404
+TC-14 Reject Booking Non Existent Hotel
     [Tags]    booking    negative
-
-    ${response}=    Create Booking With Non Existent Hotel
+    ${body}=    Valid Booking Body    hotel_id=${NON_EXISTENT_HOTEL_ID}
+    ${response}=    Send Booking    ${body}
     Verify Booking Error Response    ${response}    ${STATUS_NOT_FOUND}    Hotel not found
 
-TC-15 Reject Booking With Zero People
-    [Documentation]    Verify POST /api/bookings with 0 people returns 400
+TC-15 Reject Booking Zero People
     [Tags]    booking    negative
-
-    ${response}=    Create Booking With Zero People
+    ${body}=    Valid Booking Body    hotel_id=${SECOND_HOTEL_ID}    people=0
+    ${response}=    Send Booking    ${body}
     Verify Booking Error Response    ${response}    ${STATUS_BAD_REQUEST}    Invalid number of guests
 
-TC-16 Reject Booking With Negative Beds
-    [Documentation]    Verify POST /api/bookings with -1 beds returns 400
+TC-16 Reject Booking Negative Beds
     [Tags]    booking    negative
-
-    ${response}=    Create Booking With Negative Beds
+    ${body}=    Valid Booking Body    hotel_id=${SECOND_HOTEL_ID}    beds=-1
+    ${response}=    Send Booking    ${body}
     Verify Booking Error Response    ${response}    ${STATUS_BAD_REQUEST}    Invalid bed count
 
-TC-17 Reject Booking With Past Check In Date
-    [Documentation]    Verify POST /api/bookings with past check-in date returns 400
+TC-17 Reject Booking Past Check In
     [Tags]    booking    negative
-
-    ${response}=    Create Booking With Past Check In Date
+    ${body}=    Valid Booking Body    hotel_id=${SECOND_HOTEL_ID}    check_in=${DATE_PAST}
+    ${response}=    Send Booking    ${body}
     Verify Booking Error Response    ${response}    ${STATUS_BAD_REQUEST}    Invalid date range
 
-TC-18 Reject Booking With Invalid Date Format
-    [Documentation]    Verify POST /api/bookings with invalid date format returns 400
+TC-18 Reject Booking Invalid Date Format
     [Tags]    booking    negative
-
-    ${response}=    Create Booking With Invalid Date Format
+    ${body}=    Valid Booking Body    check_in=${INVALID_DATE}
+    ${response}=    Send Booking    ${body}
     Verify Booking Error Response    ${response}    ${STATUS_BAD_REQUEST}    Invalid date range
 
-TC-19 Reject Booking With Empty Customer Name
-    [Documentation]    Verify POST /api/bookings with empty customerName returns 400
+TC-19 Reject Booking Empty customerName
     [Tags]    booking    negative
-
-    ${response}=    Create Booking With Empty Customer Name
+    ${body}=    Valid Booking Body    customer_name=${EMPTY}
+    ${response}=    Send Booking    ${body}
     Verify Booking Error Response    ${response}    ${STATUS_BAD_REQUEST}    Missing required booking fields
 
-TC-20 Reject Booking With Negative Twin Beds
-    [Documentation]    Verify POST /api/bookings with -1 twinBeds returns 400
+TC-20 Reject Booking Negative Twin Beds
     [Tags]    booking    negative
-
-    ${response}=    Create Booking With Negative Twin Beds
+    ${body}=    Valid Booking Body    hotel_id=${SECOND_HOTEL_ID}    twin=-1
+    ${response}=    Send Booking    ${body}
     Verify Booking Error Response    ${response}    ${STATUS_BAD_REQUEST}    Invalid twin bed count
 
-TC-21 Reject Booking With Same Day Dates
-    [Documentation]    Verify POST /api/bookings with same check-in and check-out returns 400
+TC-21 Reject Booking Same Day Dates
     [Tags]    booking    negative
-
-    ${response}=    Create Booking With Same Day Dates
+    ${body}=    Valid Booking Body    check_out=2026-08-20
+    ${response}=    Send Booking    ${body}
     Verify Booking Error Response    ${response}    ${STATUS_BAD_REQUEST}    Invalid date range
 
-TC-22 Reject Booking With Check Out Before Check In
-    [Documentation]    Verify POST /api/bookings with check-out before check-in returns 400
+TC-22 Reject Booking Check Out Before Check In
     [Tags]    booking    negative
-
-    ${response}=    Create Booking With Invalid Date Range
+    ${body}=    Valid Booking Body    check_in=2026-07-31    check_out=2026-07-26
+    ${response}=    Send Booking    ${body}
     Verify Booking Error Response    ${response}    ${STATUS_BAD_REQUEST}    Invalid date range
 
-TC-23 Reject Booking With Empty Hotel ID
-    [Documentation]    Verify POST /api/bookings with empty hotelId returns 400
+TC-23 Reject Booking Empty Hotel ID
     [Tags]    booking    negative
-
-    ${response}=    Create Booking With Empty Hotel ID
+    ${body}=    Valid Booking Body    hotel_id=${EMPTY}
+    ${response}=    Send Booking    ${body}
     Verify Booking Error Response    ${response}    ${STATUS_BAD_REQUEST}    Missing required booking fields
 
-TC-24 Reject Booking With Invalid People Type
-    [Documentation]    Verify POST /api/bookings with people as string returns 400
+TC-24 Reject Booking Invalid People Type
     [Tags]    booking    negative
-
-    ${response}=    Create Booking With Invalid People Type
+    ${body}=    Valid Booking Body    hotel_id=${SECOND_HOTEL_ID}    people=one
+    ${response}=    Send Booking    ${body}
     Verify Booking Error Response    ${response}    ${STATUS_BAD_REQUEST}    Invalid data type
 
-TC-25 Reject Booking With Invalid Beds Type
-    [Documentation]    Verify POST /api/bookings with beds as string returns 400
+TC-25 Reject Booking Invalid Beds Type
     [Tags]    booking    negative
-
-    ${response}=    Create Booking With Invalid Beds Type
+    ${body}=    Valid Booking Body    hotel_id=${SECOND_HOTEL_ID}    beds=one
+    ${response}=    Send Booking    ${body}
     Verify Booking Error Response    ${response}    ${STATUS_BAD_REQUEST}    Invalid data type
 
-TC-26 Reject Booking With Invalid Twin Beds Type
-    [Documentation]    Verify POST /api/bookings with twinBeds as string returns 400
+TC-26 Reject Booking Invalid Twin Beds Type
     [Tags]    booking    negative
-
-    ${response}=    Create Booking With Invalid Twin Beds Type
+    ${body}=    Valid Booking Body    hotel_id=${SECOND_HOTEL_ID}    twin=one
+    ${response}=    Send Booking    ${body}
     Verify Booking Error Response    ${response}    ${STATUS_BAD_REQUEST}    Invalid data type
 
-TC-27 Reject Booking Overlapping Start Boundary
-    [Documentation]    Verify POST /api/bookings that overlaps start of existing reservation returns 409
+TC-27 Reject Booking Overlap Start Boundary
     [Tags]    booking    negative    overlap
-
-    Create Booking With Dates    2026-08-01    2026-08-05
-    ${response}=    Create Booking Overlapping Start Boundary
+    ${body}=    Valid Booking Body    check_in=2026-09-29    check_out=2026-10-05
+    ${existing}=    Send Booking    ${body}
+    ${body}[checkOutDate]=    Set Variable    2026-10-01
+    ${response}=    Send Booking    ${body}
     Verify Booking Conflict Response    ${response}
 
-TC-28 Reject Booking Overlapping End Boundary
-    [Documentation]    Verify POST /api/bookings that overlaps end of existing reservation returns 409
+TC-28 Reject Booking Overlap End Boundary
     [Tags]    booking    negative    overlap
-
-    Create Booking With Dates    2026-08-01    2026-08-05
-    ${response}=    Create Booking Overlapping End Boundary
+    ${body}=    Valid Booking Body    check_in=2026-10-05    check_out=2026-10-11
+    ${existing}=    Send Booking    ${body}
+    ${body}[checkInDate]=    Set Variable    2026-10-08
+    ${response}=    Send Booking    ${body}
     Verify Booking Conflict Response    ${response}
 
-TC-29 Reject Booking Completely Enclosing Existing
-    [Documentation]    Verify POST /api/bookings that completely encloses existing reservation returns 409
+TC-29 Reject Booking Enclosing Existing
     [Tags]    booking    negative    overlap
-
-    Create Booking With Dates    2026-08-01    2026-08-05
-    ${response}=    Create Booking Completely Enclosing Existing
+    ${body}=    Valid Booking Body    check_in=2026-10-11    check_out=2026-10-14
+    ${existing}=    Send Booking    ${body}
+    ${body}[checkInDate]=    Set Variable    2026-10-09
+    ${body}[checkOutDate]=    Set Variable    2026-10-16
+    ${response}=    Send Booking    ${body}
     Verify Booking Conflict Response    ${response}
 
-TC-30 Allow Booking Adjacent Check Out Before
-    [Documentation]    Verify POST /api/bookings where checkOutDate touches next checkInDate succeeds
+TC-30 Allow Booking Adjacent Before
     [Tags]    booking    positive    adjacent
-
-    Create Booking With Dates    2026-08-01    2026-08-05
-    ${response}=    Create Booking Adjacent Check Out Before
+    ${body}=    Valid Booking Body    check_in=2026-10-17    check_out=2026-10-21
+    ${existing}=    Send Booking    ${body}
+    ${body}[checkInDate]=    Set Variable    2026-10-11
+    ${body}[checkOutDate]=    Set Variable    2026-10-17
+    ${response}=    Send Booking    ${body}
     Verify Successful Booking    ${response}
-    ${cancel_response}=    Cancel Booking From Response    ${response}
-    Verify Successful Cancel    ${cancel_response}
 
-TC-31 Allow Booking Adjacent Check In After
-    [Documentation]    Verify POST /api/bookings where checkInDate touches previous checkOutDate succeeds
+TC-31 Allow Booking Adjacent After
     [Tags]    booking    positive    adjacent
-
-    Create Booking With Dates    2026-08-01    2026-08-05
-    ${response}=    Create Booking Adjacent Check In After
+    ${body}=    Valid Booking Body    check_in=2026-10-22    check_out=2026-10-26
+    ${existing}=    Send Booking    ${body}
+    ${body}[checkInDate]=    Set Variable    2026-10-26
+    ${body}[checkOutDate]=    Set Variable    2026-10-31
+    ${response}=    Send Booking    ${body}
     Verify Successful Booking    ${response}
-    ${cancel_response}=    Cancel Booking From Response    ${response}
-    Verify Successful Cancel    ${cancel_response}

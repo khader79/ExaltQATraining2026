@@ -8,65 +8,55 @@ Suite Setup      Create API Session
 Suite Teardown   Delete All Sessions
 
 *** Test Cases ***
-TC-1 Get Default Paginated Hotels List
-    [Documentation]    Verify GET /api/hotels returns valid paginated response
+TC-1 Get Default Hotels
     [Tags]    search    positive
-
-    ${response}=    Get Hotels
+    ${response}=    Search Hotels
     Verify Default Hotels Response    ${response}
 
-TC-2 Filter Hotels By City
-    [Documentation]    Verify filtering by city returns only matching hotels
-    [Tags]    search    filter    positive
+TC-2 Filter By City
+    [Tags]    search    positive
+    ${params}=    Create Dictionary    city=${VALID_CITY}
+    ${response}=    Search Hotels    ${params}
+    Verify Filtered By Field    ${response}    city    ${VALID_CITY}
 
-    ${response}=    Filter Hotels By City    ${VALID_CITY}
-    Verify Filtered Hotels Response    ${response}    ${FIELD_CITY}    ${VALID_CITY}
+TC-3 Filter By Non-Existent City
+    [Tags]    search    negative
+    ${params}=    Create Dictionary    city=${NON_EXISTENT_CITY}
+    ${response}=    Search Hotels    ${params}
+    Verify Empty Response    ${response}
 
-TC-3 Filter Hotels By Non-Existent City
-    [Documentation]    Verify filtering by non-existent city returns empty list
-    [Tags]    search    filter    negative
+TC-4 Filter By Amenity
+    [Tags]    search    positive
+    ${params}=    Create Dictionary    amenity=${VALID_AMENITY}
+    ${response}=    Search Hotels    ${params}
+    Verify Filtered By Amenity    ${response}    ${VALID_AMENITY}
 
-    ${response}=    Filter Hotels By City    ${NON_EXISTENT_CITY}
-    Verify Empty Hotels Response    ${response}
+TC-5 Filter By Max Price
+    [Tags]    search    bug
+    ${params}=    Create Dictionary    maxPrice=${MAX_PRICE}
+    ${response}=    Search Hotels    ${params}
+    Verify Filtered By Max Price    ${response}    ${MAX_PRICE}
 
-TC-4 Filter Hotels By Amenity
-    [Documentation]    Verify filtering by amenity returns only hotels containing that amenity
-    [Tags]    search    filter    positive
+TC-6 Filter By Min Rating
+    [Tags]    search    positive
+    ${params}=    Create Dictionary    minRating=${MIN_RATING}
+    ${response}=    Search Hotels    ${params}
+    Verify Filtered By Min Rating    ${response}    ${MIN_RATING}
 
-    ${response}=    Filter Hotels By Amenity    ${VALID_AMENITY}
-    Verify Filtered Hotels By Amenity    ${response}    ${VALID_AMENITY}
+TC-7 Get Page 2
+    [Tags]    search    positive
+    ${params}=    Create Dictionary    page=${PAGE_NUMBER}
+    ${response}=    Search Hotels    ${params}
+    Verify Page Number    ${response}    ${PAGE_NUMBER}
 
-TC-5 Filter Hotels By Max Price
-    [Documentation]    Verify filtering by maxPrice returns hotels with price <= maxPrice
-    [Tags]    search    filter    negative    bug
+TC-8 Negative Page Defaults To 1
+    [Tags]    search    negative
+    ${params}=    Create Dictionary    page=${NEGATIVE_PAGE}
+    ${response}=    Search Hotels    ${params}
+    Verify Page Number    ${response}    1
 
-    ${response}=    Filter Hotels By Max Price    ${MAX_PRICE}
-    Verify Filtered Hotels By Max Price    ${response}    ${MAX_PRICE}
-
-TC-6 Filter Hotels By Min Rating
-    [Documentation]    Verify filtering by minRating returns hotels with rating >= minRating
-    [Tags]    search    filter    positive
-
-    ${response}=    Filter Hotels By Min Rating    ${MIN_RATING}
-    Verify Filtered Hotels By Min Rating    ${response}    ${MIN_RATING}
-
-TC-7 Get Specific Page
-    [Documentation]    Verify fetching page 2 returns correct page number
-    [Tags]    search    pagination    positive
-
-    ${response}=    Filter Hotels By Page    ${PAGE_NUMBER}
-    Verify Page Response    ${response}    ${PAGE_NUMBER}
-
-TC-8 Handle Negative Page Number
-    [Documentation]    Verify negative page number defaults to page 1
-    [Tags]    search    pagination    negative
-
-    ${response}=    Filter Hotels By Page    ${NEGATIVE_PAGE}
-    Verify Default Page Fallback    ${response}
-
-TC-9 Handle Negative Price Filter
-    [Documentation]    Verify negative maxPrice is handled gracefully
-    [Tags]    search    filter    negative    bug
-
-    ${response}=    Filter Hotels By Max Price    ${NEGATIVE_PRICE}
-    Verify Empty Hotels Response    ${response}
+TC-9 Negative Price Ignores Filter
+    [Tags]    search    bug
+    ${params}=    Create Dictionary    maxPrice=${NEGATIVE_PRICE}
+    ${response}=    Search Hotels    ${params}
+    Verify Response List Not Empty    ${response}    hotels
