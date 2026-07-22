@@ -2,41 +2,45 @@
 
 Robot Framework API automation tests.
 
-## Prerequisites
-
-- Python 3.8+
-- pip install -r requirements.txt
-- Application running at configured BASE_URL
-
-## Environment Variables
-
-| Variable | Default | Description |
-|---|---|---|
-| API_BASE_URL | http://localhost:3000 | API base URL |
-
-## Run Tests
+## Setup
 
 ```bash
-cd APITest
-robot --outputdir reports tests/
-robot --outputdir reports tests/search_tests.robot
+pip install -r requirements.txt
 ```
 
-## Project Structure
+## Run
+
+```bash
+run                  # all tests
+run search_tests     # single suite
+```
+
+## Structure
 
 ```
-APITest/
-├── base.resource          # Shared keywords and assertions
-├── config/
-│   └── env.resource       # URLs, status codes, endpoints
-├── client/                # API call keywords per domain
-│   ├── search/
-│   ├── booking/
-│   ├── cancel/
-│   ├── listbookings/
-│   └── review/
-├── assertions/            # Verification keywords per domain
-├── utils/                 # Python helpers
-├── tests/                 # Test suites
-└── reports/               # Generated output
+base.resource                shared keywords
+config/                      test data + environment
+├── env.resource             URLs, status codes
+├── booking_test_data.resource
+├── listbookings_test_data.resource
+├── review_test_data.resource
+└── search_test_data.resource
+client/                      API calls
+├── booking/
+├── cancel/
+├── listbookings/
+├── review/
+└── search/
+assertions/                  verifications
+├── booking_assertions.resource
+├── cancel_assertions.resource
+├── listbookings_assertions.resource
+├── review_assertions.resource
+└── search_assertions.resource
+tests/                       test cases
+├── booking_tests.robot
+├── cancel_tests.robot
+├── listbookings_tests.robot
+├── review_tests.robot
+└── search_tests.robot
 ```

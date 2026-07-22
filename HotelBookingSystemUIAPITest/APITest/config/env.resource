@@ -12,5 +12,4 @@ ${STATUS_NOT_FOUND}    404
 ${STATUS_CONFLICT}     409
 ${SEARCH_ENDPOINT}     /api/hotels
 ${BOOKING_ENDPOINT}    /api/bookings
-${CANCEL_ENDPOINT}     /api/bookings
 ${REVIEW_ENDPOINT}     /api/reviews

@@ -1,0 +1,3 @@
+*** Variables ***
+${VALID_LISTING_HOTEL_ID}  HTL-101
+${HOTEL_ID_NO_BOOKINGS}    HTL-106

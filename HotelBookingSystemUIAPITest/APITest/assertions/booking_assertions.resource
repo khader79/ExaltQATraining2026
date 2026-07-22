@@ -9,8 +9,8 @@ Verify Successful Booking
     Verify Response Has Key    ${response}    booking
     ${booking}=    Set Variable    ${response.json()}[booking]
     Verify Item Field Equals    ${booking}    status    confirmed
-    Verify Item Field Has Key    ${booking}    id
-    Verify Item Field Has Key    ${booking}    amount
+    Verify Response Has Key    ${booking}    id
+    Verify Response Has Key    ${booking}    amount
 
 Verify Booking Error Response
     [Arguments]    ${response}    ${status}    ${expected_message}
@@ -22,8 +22,4 @@ Verify Booking Conflict Response
     [Arguments]    ${response}
     Verify Status Code    ${response}    ${STATUS_CONFLICT}
     Verify Response Field Equals    ${response}    success    ${False}
-    Verify Response Field Equals    ${response}    message    No rooms available for selected dates
-
-Verify Item Field Has Key
-    [Arguments]    ${item}    ${key}
-    Dictionary Should Contain Key    ${item}    ${key}
+    Verify Response Field Equals    ${response}    message    ${ERR_NO_ROOMS}
