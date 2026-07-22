@@ -1,0 +1,32 @@
+runner:
+  name: robot
+  settings:
+    loglevel: DEBUG:INFO
+    outputdir: reports
+
+tasks:
+  test:
+    command:
+      - robot
+      - --outputdir
+      - reports
+      - tests/
+    shell: true
+
+  test-suite:
+    command:
+      - robot
+      - --outputdir
+      - reports
+      - tests/$[SUITE].robot
+    shell: true
+
+  test-tag:
+    command:
+      - robot
+      - --outputdir
+      - reports
+      - --include
+      - $[TAG]
+      - tests/
+    shell: true

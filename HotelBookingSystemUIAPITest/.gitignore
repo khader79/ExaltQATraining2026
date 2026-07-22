@@ -1,7 +1,4 @@
 reports/
-log.html
-output.xml
-report.html
 __pycache__/
 *.pyc
 .env

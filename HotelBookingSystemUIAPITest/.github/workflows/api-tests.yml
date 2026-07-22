@@ -1,0 +1,88 @@
+name: API Tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 8 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Robot Framework tag filter'
+        required: false
+        default: ''
+
+jobs:
+  api-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r APITest/requirements.txt
+
+      - name: Run all tests
+        if: ${{ github.event.inputs.tag == '' }}
+        run: |
+          cd APITest
+          robot \
+            --outputdir reports \
+            --loglevel DEBUG:INFO \
+            --timestampoutputs \
+            tests/
+
+      - name: Run tests by tag
+        if: ${{ github.event.inputs.tag != '' }}
+        run: |
+          cd APITest
+          robot \
+            --outputdir reports \
+            --loglevel DEBUG:INFO \
+            --include ${{ github.event.inputs.tag }} \
+            --timestampoutputs \
+            tests/
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports-${{ github.run_number }}
+          path: APITest/reports/
+          retention-days: 30
+
+      - name: Publish report summary
+        if: always()
+        run: |
+          if [ -f APITest/reports/output.xml ]; then
+            echo "## Test Results" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+
+            PASS=$(grep -o 'pass="[0-9]*"' APITest/reports/output.xml | grep -o '[0-9]*' | head -1)
+            FAIL=$(grep -o 'fail="[0-9]*"' APITest/reports/output.xml | grep -o '[0-9]*' | head -1)
+            TOTAL=$((PASS + FAIL))
+
+            echo "| Metric | Count |" >> $GITHUB_STEP_SUMMARY
+            echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+            echo "| Total  | $TOTAL |" >> $GITHUB_STEP_SUMMARY
+            echo "| Passed | $PASS |" >> $GITHUB_STEP_SUMMARY
+            echo "| Failed | $FAIL |" >> $GITHUB_STEP_SUMMARY
+
+            if [ "$FAIL" -eq 0 ]; then
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "> **All tests passed**" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "> **$FAIL test(s) failed**" >> $GITHUB_STEP_SUMMARY
+            fi
+          fi
